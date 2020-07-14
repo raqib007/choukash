@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserGroupCreateFormComponent } from '../create-user-group/user-group-create-form/user-group-create-form.component';
-import { ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../dialog/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator} from '@angular/material/paginator';
 import { List } from '../../../core/list/list.interface';
@@ -12,7 +12,7 @@ import { componentDestroyed } from '../../../core/utils/component-destroyed';
 import { filter, takeUntil, first } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
 import { UserGroup } from '../../../model/user-group';
-import { UserService } from '../../../_services';
+import { UserService,NotificationService } from '../../../_services';
 
 @Component({
 	selector: 'chokash-create-user-group',
@@ -23,19 +23,18 @@ export class CreateUserGroupComponent implements List<UserGroup>, OnInit, OnDest
 	subject$: ReplaySubject<UserGroup[]> = new ReplaySubject<UserGroup[]>(1);
 	data$: Observable<UserGroup[]>;
 	locations: UserGroup[];
-
 	usersGroupData = null;
-
     formData = {
 		user_group_id : '',
 		user_group_name : '',
-		description : ''
+		is_active : '',
+		note : ''
 	};
 	@Input()
 	columns: ListColumn[] = [
 		// { name: 'ID', property: 'user_group_id', visible: true, isModelProperty: true,width:'10%' },
 		{ name: 'Name', property: 'user_group_name', visible: true, isModelProperty: true ,width:'50%'},
-		{ name: 'Description', property: 'description', visible: true, isModelProperty: true ,width:'30%'},
+		{ name: 'Description', property: 'note', visible: true, isModelProperty: true ,width:'30%'},
 		{ name: 'Actions', property: 'actions', visible: true}
 	] as ListColumn[];
 
@@ -48,7 +47,11 @@ export class CreateUserGroupComponent implements List<UserGroup>, OnInit, OnDest
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 	  
-	constructor(public dialog: MatDialog, private userService: UserService) {}
+	constructor(
+		public dialog: MatDialog, 
+		private userService: UserService,
+		private notifyService : NotificationService
+		) {}
 
 	get visibleColumns() {
 		return this.columns.filter(column => column.visible).map(column => column.property);
@@ -59,25 +62,27 @@ export class CreateUserGroupComponent implements List<UserGroup>, OnInit, OnDest
 		// .pipe(first())
 		.subscribe(
 			res => {
+				res = res.filter((item : any) => item.is_active == true);
 				this.locations = res.map(l => {
 					let data = {
 						user_group_id : l.user_group_id,
 						user_group_name : l.user_group_name,
-						description : 'No description'
+						is_active : l.is_active,
+						note : l.note
 					};
 					return new UserGroup(data);
 				});
 			},
 			err => {
 				alert('HTTP Error'+err);
+				this.notifyService.showError(err, "User Group");
 			},
 			() => {
-				// console.log('HTTP request completed = ',this.locations);
 				this.prepareData();
 			}
 		);
 	}
-
+	/* prepare data from pagination */
 	prepareData(){
 		this.subject$.next(this.locations);
 		this.data$ = this.subject$.asObservable();
@@ -103,8 +108,16 @@ export class CreateUserGroupComponent implements List<UserGroup>, OnInit, OnDest
 		const dialogRef = this.dialog.open(UserGroupCreateFormComponent,dialogConfig);
         dialogRef.afterClosed().subscribe(
 			val => {
-				// console.log("Dialog output:", val);
-				this.ngOnInit();
+				if(val == 'no'){
+
+				}else{
+					if(row.user_group_id == ''){
+						this.notifyService.showSuccess("User group data has been successfully saved!!", "User Group");
+					}else{
+						this.notifyService.showSuccess("User group data has been successfully updated!!", "User Group");
+					}
+					this.ngOnInit();
+				}
 			}
         );
 	}
@@ -115,7 +128,18 @@ export class CreateUserGroupComponent implements List<UserGroup>, OnInit, OnDest
 			data: {id: row.id, msg: 'Are you sure want to delete this record?'}
 		});
 		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed');
+			if(result == 'yes'){
+				this.userService.deleteUserGroup(row.user_group_id).subscribe((res : any) =>{
+					console.log(res.code);
+					console.log(res.code == 200);
+					if(res.code == 200){
+						this.notifyService.showSuccess("User group data has been successfully deleted!!", "User Group");
+						this.ngOnInit();
+					}else{
+						this.notifyService.showError(res.message, "User Group");
+					}
+				});
+			}
 		});
   	}
   	onFilterChange(value) {

@@ -38,18 +38,18 @@ export class User{
     
     constructor(user?) {
         if(user){
-            this.id = user.id;
-            this.fname = user.fname;
-            this.lname = user.lname;
-            this.uname = user.uname;
-            this.description = user.description;
-            this.ltype = user.ltype;
-            this.lgroup = user.lgroup;
+            this.first_name = user.first_name;
+            this.last_name = user.last_name;
+            this.user_name = user.user_name;
+            this.note = user.note;
+            this.location_type_id = user.location_type_id;
+            this.location_type_name = user.location_type_name;
             this.mobile = user.mobile;
             this.email = user.email;
-            this.uid = user.uid;
+            this.user_id = user.user_id;
             this.password = user.password;
-            this.ugroupid = user.ugroupid;
+            this.user_group = user.user_group;
+            this.is_active = user.is_active;
         }else{
             this.id = -1;
             this.company_id = '';

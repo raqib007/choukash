@@ -1,7 +1,7 @@
 
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserCreateFormComponent} from '../create-user/user-create-form/user-create-form.component';
-import { ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent} from '../../dialog/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator} from '@angular/material/paginator';
@@ -9,11 +9,12 @@ import { List } from '../../../core/list/list.interface';
 import { ListColumn } from '../../../core/list/list-column.model';
 import { ListDataSource } from '../../../core/list/list-datasource';
 import { ListDatabase } from '../../../core/list/list-database';
+import { componentDestroyed } from '../../../core/utils/component-destroyed';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
 import { User } from '../../../model/user';
 import { UserData } from '../../../dummy-data/user';
-import { componentDestroyed } from '../../../core/utils/component-destroyed';
+import { UserService,NotificationService } from '../../../_services';
 
 @Component({
     selector: 'choukash-create-user',
@@ -27,34 +28,34 @@ export class CreateUserComponent implements List<User>, OnInit, OnDestroy {
 	users: User[];
 
 	formData = {
-		id : -1,
-		fname : '',
-		lname : '',
-		uname: '',
-		description: '',
-		ltype: '',
-		lgroup: '',
+		first_name : '',
+		last_name : '',
+		user_name: '',
+		note: '',
+		location_type_id: '',
+		location_type_name: '',
 		mobile: '',
 		email: '',
-		uid: '',
+		user_id: '',
 		password: '',
-		ugroupid: ''
+		user_group: '',
+		is_active : true
 	};
 
     @Input()
 	columns: ListColumn[] = [
-		{ name: 'ID', property: 'id', visible: true, isModelProperty: true,width:'5%' },
-		{ name: 'First Name', property: 'fname', visible: true, isModelProperty: true ,width:'7%'},
-		{ name: 'Last Name', property: 'lname', visible: true, isModelProperty: true ,width:'7%'},
-		{ name: 'User Name', property: 'uname', visible: true, isModelProperty: true,width:'5%' },
-		{ name: 'Description', property: 'description', visible: true, isModelProperty: true ,width:'9%'},
-		{ name: 'Location Type', property: 'ltype', visible: true, isModelProperty: true ,width:'9%'},
-		{ name: 'Location', property: 'lgroup', visible: true, isModelProperty: true,width:'9%' },
+		// { name: 'ID', property: 'id', visible: true, isModelProperty: true,width:'5%' },
+		{ name: 'First Name', property: 'first_name', visible: true, isModelProperty: true ,width:'7%'},
+		{ name: 'Last Name', property: 'last_name', visible: true, isModelProperty: true ,width:'7%'},
+		{ name: 'User Name', property: 'user_name', visible: true, isModelProperty: true,width:'5%' },
+		{ name: 'Description', property: 'note', visible: true, isModelProperty: true ,width:'9%'},
+		{ name: 'Location Type', property: 'location_type_id', visible: true, isModelProperty: true ,width:'9%'},
+		{ name: 'Location', property: 'location_type_name', visible: true, isModelProperty: true,width:'9%' },
 		{ name: 'Mobile', property: 'mobile', visible: true, isModelProperty: true ,width:'8%'},
 		{ name: 'Email', property: 'email', visible: true, isModelProperty: true ,width:'8%'},
-		{ name: 'User ID', property: 'uid', visible: true, isModelProperty: true,width:'8%' },
+		{ name: 'User ID', property: 'user_id', visible: true, isModelProperty: true,width:'8%' },
 		{ name: 'Password', property: 'password', visible: true, isModelProperty: true ,width:'9%'},
-		{ name: 'User Group', property: 'ugroupid', visible: true, isModelProperty: true ,width:'8%'},
+		{ name: 'User Group', property: 'user_group', visible: true, isModelProperty: true ,width:'8%'},
 		{ name: 'Actions', property: 'actions', visible: true}
 	] as ListColumn[];
 
@@ -67,13 +68,51 @@ export class CreateUserComponent implements List<User>, OnInit, OnDestroy {
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 	  
-	constructor(public dialog: MatDialog) {}
+	constructor(
+			public dialog: MatDialog,
+			private userService: UserService,
+			private notifyService : NotificationService
+		) {}
 
 	get visibleColumns() {
 		return this.columns.filter(column => column.visible).map(column => column.property);
 	}
 	ngOnInit() {
-		this.users = UserData.map(l => new User(l));
+		this.userService.getAllUser()
+		.subscribe(
+			res => {
+				res = res.filter((item : any) => item.is_active == true);
+				this.users = res.map(l => {
+					let data = {
+						first_name : l.first_name,
+						last_name : l.last_name,
+						user_name : l.user_name,
+						note : l.note,
+						location_type_id : l.location_type_id,
+						location_type_name : l.location_type_name,
+						mobile : 'No mobile field',
+						email : l.email,
+						user_id : l.user_id,
+						password : l.password,
+						user_group : l.user_group,
+						is_active: l.is_active
+					};
+					return new User(data);
+				});
+			},
+			err => {
+				this.notifyService.showError(err, "User");
+			},
+			() => {
+				console.log(this.users);
+				this.prepareData();
+			}
+		);
+		// this.users = UserData.map(l => new User(l));
+		
+	}
+	/* prepare data from pagination */
+	prepareData(){
 		this.subject$.next(this.users);
 		this.data$ = this.subject$.asObservable();
 		this.database = new ListDatabase<User>();
@@ -87,39 +126,49 @@ export class CreateUserComponent implements List<User>, OnInit, OnDestroy {
 		});
 		this.dataSource = new ListDataSource<User>(this.database, this.sort, this.paginator, this.columns);
 	}
+	/* Add or Edit Funtion For User */
 	editUser(row){
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.disableClose = true;
 		dialogConfig.autoFocus = true;
 		dialogConfig.maxWidth = '100vw';
-		dialogConfig.width = '750px';
-		dialogConfig.data = {
-			id: row.id,
-			fname : row.fname,
-			lname : row.lname,
-			uname: row.uname,
-			description: row.description,
-			ltype: row.ltype,
-			lgroup: row.lgroup,
-			mobile: row.mobile,
-			email: row.email,
-			uid: row.uid,
-			password: row.password,
-			ugroupid: row.ugroupid,
-			title : (row.id > -1)?'Edit User':'Create New User'
-		};
+		dialogConfig.width = '60vw';
+		dialogConfig.data = row;
 		const dialogRef = this.dialog.open(UserCreateFormComponent,dialogConfig);
         dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
-        );
+			val => {
+				if(val == 'no'){
+
+				}else{
+					if(row.user_id == ''){
+						this.notifyService.showSuccess("User data has been successfully saved!!", "User");
+					}else{
+						this.notifyService.showSuccess("User data has been successfully updated!!", "User");
+					}
+					this.ngOnInit();
+				}
+			}
+		);
 	}
+	/* Delete Funtion For User */
 	deleteUser(row){
 		const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
 			width: '250px',
 			data: {id: row.id, msg: 'Are you sure want to delete this record?'}
 		});
 		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed');
+			if(result == 'yes'){
+				this.userService.deleteUser(row.user_group_id).subscribe((res : any) =>{
+					console.log(res.code);
+					console.log(res.code == 200);
+					if(res.code == 200){
+						this.notifyService.showSuccess("User data has been successfully deleted!!", "User");
+						this.ngOnInit();
+					}else{
+						this.notifyService.showError(res.message, "User");
+					}
+				});
+			}
 		});
 	}
 	onFilterChange(value) {

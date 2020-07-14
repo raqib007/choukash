@@ -8,6 +8,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>CANCEL</button>
-    <button mat-button cdkFocusInitial (click)="save()">YES</button>
+    <button mat-button mat-dialog-close="no" >CANCEL</button>
+    <button mat-button mat-dialog-close="yes" cdkFocusInitial>YES</button>
 </mat-dialog-actions>

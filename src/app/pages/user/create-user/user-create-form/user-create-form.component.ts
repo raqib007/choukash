@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, Validators, FormGroup} from "@angular/forms";
 import { User } from "../../../../model/user";
+import { UserService } from '../../../../_services';
 
 @Component({
     selector: 'app-user-create-form',
@@ -13,6 +14,8 @@ export class UserCreateFormComponent implements OnInit {
     form: FormGroup;
     title:string;
     btnTitle:string;
+    showErrMsg = false;
+    errMsg = '';
 
     locationTypes = [
 		{id:1,value:'Location Type One'},
@@ -31,33 +34,57 @@ export class UserCreateFormComponent implements OnInit {
 	];
 
     constructor(
-			private fb: FormBuilder,
+            private fb: FormBuilder,
+            private userService : UserService,
 			private dialogRef: MatDialogRef<UserCreateFormComponent>,
-			@Inject(MAT_DIALOG_DATA) {id,fname,lname,uname,description,ltype,lgroup,mobile,email,uid,password,ugroupid}:User 
+			@Inject(MAT_DIALOG_DATA) user:User 
 		) {
 
-        this.title = (id > -1)?'Edit User Group':'Add New User Group';
-        this.btnTitle = (id > -1)?'UPDATE':'SAVE';
+        this.title = (user.user_id != '')?'Edit User Group':'Add New User Group';
+        this.btnTitle = (user.user_id != '')?'UPDATE':'SAVE';
 		
         this.form = fb.group({
-            name: [name, Validators.required],
-            fname: [name, Validators.required],
-            lname: [name, Validators.required],
-            uname: [name, Validators.required],
-            description: [name, Validators.required],
-            ltype: [name, Validators.required],
-            lgroup: [name, Validators.required],
+            first_name: [name, Validators.required],
+            last_name: [name, Validators.required],
+            user_name: [name, Validators.required],
+            note: [name, Validators.required],
+            location_type_id: [name, Validators.required],
+            location_type_name: [name, Validators.required],
             mobile: [name, Validators.required],
             email: [name, Validators.required],
-            uid: [name, Validators.required],
+            user_id: [name, Validators.required],
             password: [name, Validators.required],
-            ugroupid: [name, Validators.required]
+            user_group: [name, Validators.required],
+            is_active: [name, Validators.required]
         });
+        this.form.setValue(user);
     }
     ngOnInit() {
     }
-    save() {
-        this.dialogRef.close(this.form.value);
+    saveData() {
+        this.form.value.is_active = true;
+        console.log('user data ',this.form.value);
+        if(this.form.value.user_id == ''){
+            this.userService.saveUserData(this.form.value).subscribe((res : any) => {
+                console.log('Response = ',res);
+                if(res.code == 200){
+                    this.dialogRef.close(this.form.value);
+                }else{
+                    this.showErrMsg = true;
+                    this.errMsg = res.message;
+                }
+            });
+        }else{
+            this.userService.updateUserData(this.form.value).subscribe((res : any) => {
+                console.log('Response in update = ',res);
+                if(res.code == 200){
+                    this.dialogRef.close(this.form.value);
+                }else{
+                    this.showErrMsg = true;
+                    this.errMsg = res.message;
+                }
+            });
+        }
     }
     close() {
         this.dialogRef.close();

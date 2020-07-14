@@ -29,10 +29,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CdkTableModule} from '@angular/cdk/table';
 import { ListModule } from '../../core/list/list.module';
 
-
 import { CreateUserGroupComponent} from './create-user-group/create-user-group.component';
 import { CreateUserComponent} from './create-user/create-user.component';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { UserGroupCreateFormComponent } from './create-user-group/user-group-create-form/user-group-create-form.component';
 import { UserCreateFormComponent } from './create-user/user-create-form/user-create-form.component';
 
@@ -72,13 +70,11 @@ import { UserCreateFormComponent } from './create-user/user-create-form/user-cre
 	  	UserComponent,
 	  	CreateUserGroupComponent,
 		CreateUserComponent,
-		ConfirmationDialogComponent,
 		UserGroupCreateFormComponent,
 		UserCreateFormComponent
 	],
 	exports: [UserComponent],
 	entryComponents: [
-		ConfirmationDialogComponent,
 		UserGroupCreateFormComponent,
 		UserCreateFormComponent
 	],

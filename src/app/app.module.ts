@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule} from '@angular/flex-layout';
+import { ToastrModule } from 'ngx-toastr';
 
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
@@ -46,7 +47,8 @@ import { JwtInterceptor,ErrorInterceptor } from './_helpers';
 		CdkTableModule,
 		FlexLayoutModule,
 		// MatMultiselectModule
-		NgMultiSelectDropDownModule.forRoot()
+		NgMultiSelectDropDownModule.forRoot(),
+		ToastrModule.forRoot()
 	],
 	providers: [
 		AuthGuard,

@@ -30,7 +30,8 @@ export class UserGroupCreateFormComponent implements OnInit {
         this.form = fb.group({
             user_group_id: [name],
             user_group_name: [name, Validators.required],
-            description: [name, Validators.required]
+            note: [name, Validators.required],
+            is_active: [name]
         });
         this.form.setValue(userGroup);
     }
@@ -39,8 +40,9 @@ export class UserGroupCreateFormComponent implements OnInit {
     }
 
     saveData() {
+        this.form.value.is_active = true;
         if(this.form.value.user_group_id == ''){
-            this.userService.saveData(this.form.value).subscribe((res : any) => {
+            this.userService.saveUserGroupData(this.form.value).subscribe((res : any) => {
                 console.log('Response = ',res);
                 if(res.code == 200){
                     this.dialogRef.close(this.form.value);
@@ -50,7 +52,7 @@ export class UserGroupCreateFormComponent implements OnInit {
                 }
             });
         }else{
-            this.userService.updateData(this.form.value).subscribe((res : any) => {
+            this.userService.updateUserGroupData(this.form.value).subscribe((res : any) => {
                 console.log('Response in update = ',res);
                 if(res.code == 200){
                     this.dialogRef.close(this.form.value);
