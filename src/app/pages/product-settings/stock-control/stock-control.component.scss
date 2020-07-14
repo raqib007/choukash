@@ -1,0 +1,16 @@
+// .mat-table{
+// 	height: calc(80vh - 269px)!important;
+//     overflow: auto!important;
+// }
+.stock-control{
+    ::ng-deep .mat-paginator-container{
+        display: none!important;
+    }
+    p{
+        font-size: 14px;
+        color: #0000008a;
+    }
+    .elastic-list .list-header{
+        display: none!important;
+    }
+}

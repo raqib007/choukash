@@ -1,0 +1,79 @@
+
+<div fxLayout="row" fxLayout.gt-sm="row">
+    <div fxFlex="60" fxFlexOffset="20" class="fxflex-div"> 
+        <div fxflex>
+            <mat-checkbox fxFlex="5%" color="primary"></mat-checkbox>
+            <div fxFlex="93%">
+                <mat-form-field>
+                    <mat-label>Inventory</mat-label>
+                    <input matInput [(ngModel)] = "formData.inventory" name="formData.inventory">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxflex>
+            <mat-checkbox fxFlex="5%" color="primary"></mat-checkbox>
+            <div fxFlex="93%">
+                <mat-form-field>
+                    <mat-label>Part</mat-label>
+                    <input matInput [(ngModel)] = "formData.part" name="formData.part">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxflex>
+            <mat-checkbox fxFlex="5%" color="primary"></mat-checkbox>
+            <div fxFlex="93%">
+                <mat-form-field>
+                    <mat-label>Non Inventory</mat-label>
+                    <input matInput [(ngModel)] = "formData.noninventory" name="formData.noninventory">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxflex>
+            <mat-checkbox fxFlex="5%" color="primary"></mat-checkbox>
+            <div fxFlex="93%">
+                <mat-form-field>
+                    <mat-label>Service</mat-label>
+                    <input matInput [(ngModel)] = "formData.service" name="formData.service">
+                </mat-form-field>
+            </div>
+        </div>
+        
+        <div fxflex>
+            <mat-checkbox fxFlex="5%" color="primary"></mat-checkbox>
+            <div fxFlex="93%">
+                <mat-form-field>
+                    <mat-label>Internal Use</mat-label>
+                    <input matInput [(ngModel)] = "formData.internal" name="formData.internal">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxflex>
+            <mat-checkbox fxFlex="5%" color="primary"></mat-checkbox>
+            <div fxFlex="93%">
+                <mat-form-field>
+                    <mat-label>Capital Equipment</mat-label>
+                    <input matInput [(ngModel)] = "formData.capital" name="formData.capital">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxflex>
+            <mat-checkbox fxFlex="5%" color="primary"></mat-checkbox>
+            <div fxFlex="93%">
+                <mat-form-field>
+                    <mat-label>Shipping </mat-label>
+                    <input matInput [(ngModel)] = "formData.shipping" name="formData.shipping">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="div-right-end">
+    <button mat-button color="primary">SAVE</button>
+    <button mat-button color="primary">EDIT</button>
+</div>

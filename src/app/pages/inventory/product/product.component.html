@@ -1,0 +1,100 @@
+<div class="page components">
+	<elastic-page-header [height]="'176px'" background="url(/assets/img/demo/headers/pattern-3.png)" [reverse]="true"></elastic-page-header>
+	
+	<div class="container">
+		<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+			<div class="sticky-menu" fxFlex #sticky fxHide fxShow.gt-sm>
+				<mat-list class="list">
+					<mat-list-item class="list-item" *ngFor="let item of sidebarList" (click)="changeItem(item)" [ngClass]= "{'active': seletedIndex == item.id}" matRipple>
+						<h4 matLine>{{item.name}}</h4>
+					</mat-list-item>
+				</mat-list> 
+			</div>
+
+			<div fxLayout="column" fxFlex="100%" fxFlex.gt-sm="85%" >
+				<elastic-breadcrumbs [currentPage]="'General'" [names]="['Inventory']"  [header]="'primary'"></elastic-breadcrumbs>
+				<div class="div-product-details">
+					<div class="div-fixed-button" fxLayout.gt-sm="row" fxLayoutGap="24px" fxLayoutAlign="center center">
+						<button mat-raised-button>SAVE</button>
+						<button mat-raised-button>CLOSE</button>
+						<button mat-raised-button>CREATE NEW</button>
+						<button mat-raised-button>RESET</button>
+						<button mat-raised-button>EDIT</button>
+						<button mat-raised-button>DELETE</button>
+					</div>
+
+					<div fxLayout="column" fxLayoutGap="24px">
+						<div *ngIf="seletedIndex == 0">
+							<inventory-product-general></inventory-product-general>
+						</div>
+
+						<div *ngIf="seletedIndex == 1">
+							<inventory-product-uom></inventory-product-uom>
+						</div>
+
+						<div *ngIf="seletedIndex == 2">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 3">
+							<inventory-product-dimension></inventory-product-dimension>
+						</div>
+
+						<div *ngIf="seletedIndex == 4">
+							<inventory-product-locations></inventory-product-locations>
+						</div>
+						<div *ngIf="seletedIndex == 5">
+							<product-vendor-information></product-vendor-information>
+						</div>
+
+						<div *ngIf="seletedIndex == 6">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 7">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 8">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 9">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 10">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 11">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 12">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 13">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 15">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 16">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+						<div *ngIf="seletedIndex == 17">
+							<inventory-product-variant></inventory-product-variant>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+  

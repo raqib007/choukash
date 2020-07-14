@@ -1,0 +1,53 @@
+<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="8px">
+				<span class="badge primary">1</span>
+				<span>Default Address</span>
+			</div>
+		</ng-template>
+		<app-location-default-address></app-location-default-address>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+			<span class="badge primary">2</span>
+			<span>Invoice Address</span>
+			</div>
+		</ng-template>
+		<app-location-invoice-address></app-location-invoice-address>
+	</mat-tab>
+
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+			<span class="badge primary">3</span>
+			<span>Shipping Address</span>
+			</div>
+		</ng-template>
+		<app-location-shipping-address></app-location-shipping-address>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+			<span class="badge primary">4</span>
+			<span>Location Details</span>
+			</div>
+		</ng-template>
+		<app-location-details></app-location-details>
+	</mat-tab>
+
+ 
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+				<span class="badge primary">5</span>
+				<span>Locations within Location</span>
+			</div>
+		</ng-template>
+		<app-location-with-location></app-location-with-location>
+	</mat-tab>
+</mat-tab-group>

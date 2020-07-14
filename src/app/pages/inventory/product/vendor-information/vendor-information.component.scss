@@ -1,0 +1,46 @@
+@import "../../../../../styles/_var.scss";
+
+.card{
+	.content{
+		max-height: calc(100vh - 329px)!important;
+        overflow: auto;
+        padding:24px 30px!important;
+    }
+    .header{
+        padding-left: 30px!important;
+    }
+	padding: 0px!important;
+  	@include responsivePadding();
+    .main {
+		background: white;
+		border:none!important;
+
+		@include cardBorder;
+
+		.section {
+			padding-top: 32px;
+			padding-bottom: 16px;
+
+			.heading {
+				font-weight: 500;
+				margin-bottom: 24px;
+			}
+
+			.content {
+				color: $color__text-dark;
+				font-size: 15px;
+			}
+		}
+    }
+	.product-location{
+		p{
+			margin: 0!important;
+			font-size: 12px!important;
+			color:#616161 !important;
+		}
+		.mat-form-field{
+			width: 100%!important;
+			font-size: 13px;
+		}
+	}
+}

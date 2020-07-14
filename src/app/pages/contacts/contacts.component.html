@@ -1,0 +1,38 @@
+<div class="card alternative">
+	<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Contact Group</span>
+				</div>
+			</ng-template>
+			<erp-contact-subgroup-list></erp-contact-subgroup-list>
+		</mat-tab>
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Contact</span>
+				</div>
+			</ng-template>
+			<erp-contact-list></erp-contact-list>
+		</mat-tab>
+		
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>CRM</span>
+				</div>
+			</ng-template>
+			<erp-contact-subgroup-list></erp-contact-subgroup-list>
+		</mat-tab>
+		
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Emails</span>
+				</div>
+			</ng-template>
+			<erp-contact-list></erp-contact-list>
+        </mat-tab>
+	</mat-tab-group>
+</div>

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+<form [formGroup]="form" >
+    <mat-dialog-content class="mat-typography">
+        <label *ngIf="showErrMsg" class="text-danger">{{errMsg}}</label>
+
+        <mat-form-field>
+            <input matInput
+                    placeholder="User Group Name"
+                    formControlName="user_group_name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+                    placeholder="Description"
+                    formControlName="description">
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>CANCEL</button>
+        <button mat-raised-button color="primary" cdkFocusInitial [disabled]="form.invalid" (click)="saveData()">{{btnTitle}}</button>
+    </mat-dialog-actions>
+</form>

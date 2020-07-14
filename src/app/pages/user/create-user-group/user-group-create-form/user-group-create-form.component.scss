@@ -1,0 +1,16 @@
+@media (max-width: 600px) {
+// Making the modal fullscreen in mobiles
+    .cdk-overlay-pane {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+}
+.mat-dialog-container {
+    width: 50vw !important;
+}
+.mat-form-field {
+    display: block;
+}
+.mat-dialog-actions{
+    justify-content: flex-end;
+}

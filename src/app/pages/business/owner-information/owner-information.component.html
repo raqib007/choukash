@@ -1,0 +1,125 @@
+
+
+<div *ngIf="showAddress" fxLayout="row" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" style="margin-top: 30px;">
+    <button mat-button color="primary" (click)="createContact()">
+        CREATE CONTACT
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<div *ngIf="showAddress">
+    <div class="profile-overview" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
+        <div class="main" fxFlex.gt-sm>
+            <div class="section">
+                <div class="heading">First Name Last Name</div>
+                <div class="heading founder">Founder</div>
+                <div class="heading businame">Business Name</div>
+                <div class="heading ofc">Head Office</div>
+                <div class="content" fxLayout="column" fxLayoutAlign="start start">
+                    <div class="info" fxLayout="row">
+                        <div class="names">
+                            <div class="name">Address :</div>
+                            <div class="name">Zip Code :</div>
+                            <div class="name">City :</div>
+                            <div class="name">Country :</div>
+                            <div class="name">Phone Number :</div>
+                            <div class="name">Mobile Number :</div>
+                            <div class="name">E-mail :</div>
+                            <div class="name">Website :</div>
+                        </div>
+                        <div class="values">
+                            <div class="value">93 Kazi Nazrul Islam Avenue, Tejgaon</div>
+                            <div class="value">1212</div>
+                            <div class="value">Dhaka</div>
+                            <div class="value">Bangladesh</div>
+                            <div class="value">+880255012000</div>
+                            <div class="value">+8801911344133</div>
+                            <div class="value">shawkat@gononet.net</div>
+                            <div class="value">www.gononet.net</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="aside" fxFlex.gt-sm="320px">
+    
+            <div class="upload" fxLayout="column" fxLayoutAlign="center center">
+    
+                <label class="filelabel" *ngIf="!previewUrl">
+                    <mat-icon>cloud_upload</mat-icon>
+                    <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="onSelectFile($event)"/>
+                </label>
+    
+                <div class="image-preview" *ngIf="previewUrl">
+                    <img fxFlex="150px" class="picture" [src]="previewUrl" />                 
+                </div>
+    
+                <div *ngIf="!previewUrl">
+                    <p>You can drag and drop the file or click here to browse</p>
+                </div>
+    
+            </div>
+    
+            <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+                <button type="button" mat-button (click)="onSubmit()">UPLOAD IMAGE</button>
+            </div>
+    
+        </div>
+    </div>
+    
+    <div class="addess-overview" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
+        <div class="main" fxFlex.gt-sm>
+            <div class="section">
+                <div class="heading">Default Address</div>
+                <div class="content">
+                    <p class="company-name">GONONET LLC</p>
+                    <p>Shawkat Islam</p>
+                    <p>93 Kazi Nazrul Islam Avenue</p>
+                    <p>Dhaka 1215</p>
+                    <p>Bangladesh (BD)</p>
+                    <p>+880255012000</p>
+                    <p>+8801911344133</p>
+                    <p>shawkat@gononet.net</p>
+                    <p>www.gononet.net</p>
+                </div>
+            </div>
+        </div>
+        <div class="main" fxFlex.gt-sm>
+            <div class="section">
+                <div class="heading">Invoice Address</div>
+                <div class="content">
+                    <p class="company-name">GONONET LLC</p>
+                    <p>Shawkat Islam</p>
+                    <p>93 Kazi Nazrul Islam Avenue</p>
+                    <p>Dhaka 1215</p>
+                    <p>Bangladesh (BD)</p>
+                    <p>+880255012000</p>
+                    <p>+8801911344133</p>
+                    <p>shawkat@gononet.net</p>
+                    <p>www.gononet.net</p>
+                </div>
+            </div>
+        </div>
+        <div class="main" fxFlex.gt-sm>
+            <div class="section">
+                <div class="heading">Shipping Address</div>
+                <div class="content">
+                    <p class="company-name">GONONET LLC</p>
+                    <p>Shawkat Islam</p>
+                    <p>93 Kazi Nazrul Islam Avenue</p>
+                    <p>Dhaka 1215</p>
+                    <p>Bangladesh (BD)</p>
+                    <p>+880255012000</p>
+                    <p>+8801911344133</p>
+                    <p>shawkat@gononet.net</p>
+                    <p>www.gononet.net</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div align="end">
+        <button mat-button color="primary">SAVE</button>
+        <button mat-button color="primary">EDIT</button>
+    </div>
+</div>

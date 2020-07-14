@@ -1,0 +1,100 @@
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Unit of Measurement</div>
+    </div>
+    <div class="content" fxLayout="column">
+        <mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>BASE UOM</span>
+                    </div>
+                </ng-template>
+                <div fxFlex="60%" fxFlexOffset="20%">
+                    <mat-form-field>
+                        <mat-label>Select base UOM</mat-label>
+                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                            <mat-option *ngFor="let l of unitList" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>ALTERNATIVE UOM</span>
+                    </div>
+                </ng-template>
+
+                <div fxFlex="100%" fxFlex.gt-sm>
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+                        <div style='display: flex;align-items: center;font-size: 13px;'>
+                            <label>Base UOM {{base}}</label>
+                        </div>
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Alt UOM" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="UOM Code" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <mat-label>Relation</mat-label>
+                            <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                                <mat-option *ngFor="let l of relation" [value]="l.id">
+                                    {{l.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Multiply By" type="text">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>DEFINE UOM FOR SALES AND PURPOSE</span>
+                    </div>
+                </ng-template>
+
+                <div fxFlex="60%" fxFlexOffset="20%">
+                    <mat-form-field>
+                        <mat-label>UOM for Purchase</mat-label>
+                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                            <mat-option *ngFor="let l of unitList" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>UOM for Stock</mat-label>
+                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                            <mat-option *ngFor="let l of unitList" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>UOM for Sales</mat-label>
+                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                            <mat-option *ngFor="let l of unitList" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

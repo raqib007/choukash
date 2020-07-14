@@ -1,0 +1,58 @@
+<div class="card alternative">
+	<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Create User Group</span>
+				</div>
+			</ng-template>
+			<chokash-create-user-group></chokash-create-user-group>
+		</mat-tab>
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Assign User Group Right</span>
+				</div>
+			</ng-template>
+			<div class="shipping-address">
+				<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+					<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+						<input matInput placeholder="First Name">
+						</mat-form-field>
+						<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+						<input matInput placeholder="Last Name">
+					</mat-form-field>
+				</div>
+	
+				<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+					<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+					<input matInput placeholder="Email Address">
+					</mat-form-field>
+					<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+					<input matInput placeholder="Confirm Email Address">
+					</mat-form-field>
+				</div>
+		
+				<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+					<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+					<input matInput placeholder="Address">
+					</mat-form-field>
+					<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+					<input matInput placeholder="City">
+					</mat-form-field>
+					<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+					<input matInput placeholder="Zipcode">
+					</mat-form-field>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Create User</span>
+				</div>
+			</ng-template>
+			<choukash-create-user></choukash-create-user>
+		</mat-tab>
+	</mat-tab-group>
+</div>

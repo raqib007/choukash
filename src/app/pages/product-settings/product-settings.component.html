@@ -1,0 +1,60 @@
+<div class="card alternative">
+	<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Customize Dashboard</span>
+				</div>
+			</ng-template>
+			<product-dashboard></product-dashboard>
+        </mat-tab>
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Inventory Type</span>
+				</div>
+			</ng-template>
+			<product-inventory-type></product-inventory-type>
+        </mat-tab>
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Product Catagory</span>
+				</div>
+			</ng-template>
+			<product-catagory-list></product-catagory-list>
+		</mat-tab>
+		<!-- <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Product Sub Catagory</span>
+				</div>
+			</ng-template>
+			<product-subcategory-list></product-subcategory-list>
+        </mat-tab> -->
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Brand</span>
+				</div>
+			</ng-template>
+			<product-brand-list></product-brand-list>
+        </mat-tab>
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Unit of Measurements</span>
+				</div>
+			</ng-template>
+			<product-unit-list></product-unit-list>
+        </mat-tab>
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Stock Control</span>
+				</div>
+			</ng-template>
+			<product-stock-control></product-stock-control>
+        </mat-tab>
+	</mat-tab-group>
+</div>

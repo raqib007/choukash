@@ -1,0 +1,46 @@
+<div class="page components">
+	<elastic-page-header [height]="'176px'" background="url(/assets/img/demo/headers/pattern-3.png)" [reverse]="true"></elastic-page-header>
+	
+	<div class="container">
+		<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+			<div class="sticky-menu" fxFlex #sticky fxHide fxShow.gt-sm>
+				<mat-list class="list">
+					<h3 class="mat-header">Settings</h3>
+					<h3 matSubheader>Home/Settings</h3>
+					<mat-list-item class="list-item" *ngFor="let item of sidebarList" (click)="changeItem(item)" [ngClass]= "{'active': seletedIndex == item.id}" matRipple>
+						<h4 matLine>{{item.name}}</h4>
+					</mat-list-item>
+				</mat-list> 
+			</div>
+
+			<div fxLayout="column" fxFlex="100%" fxFlex.gt-sm="85%">
+				<elastic-breadcrumbs [currentPage]="subHeaderName" [names]="['Settings']"  [header]="'primary'"></elastic-breadcrumbs>
+
+				<!-- <div fxLayout="column" fxLayoutGap="24px" *ngFor="let item of sidebarList">
+					<div *ngIf="seletedIndex == item.id">{{item.pageName}}</div>
+				</div> -->
+
+				<div fxLayout="column" fxLayoutGap="24px">
+					<div *ngIf="seletedIndex == 0"><app-business></app-business></div>
+				</div>
+
+				<div fxLayout="column" fxLayoutGap="24px">
+					<div *ngIf="seletedIndex == 1"><app-location></app-location></div>
+				</div>
+
+				<div fxLayout="column" fxLayoutGap="24px">
+					<div *ngIf="seletedIndex == 2"><app-user></app-user></div>
+				</div>
+
+				<div fxLayout="column" fxLayoutGap="24px">
+					<div *ngIf="seletedIndex == 3"><erp-contacts></erp-contacts></div>
+				</div>
+
+				<div fxLayout="column" fxLayoutGap="24px">
+					<div *ngIf="seletedIndex == 4"><erp-product-settings></erp-product-settings></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+  

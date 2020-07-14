@@ -1,0 +1,53 @@
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Product Variant</div>
+    </div>
+    <div class="content" fxLayout="column">
+        <div fxFlex="100%" fxFlex.gt-sm>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px" *ngFor="let attr of attributeLists; let i = index">
+                <mat-form-field fxFlex.gt-sm>
+                    <input matInput placeholder="Attribute Name" type="text" [(ngModel)]="attr.name" #ctrl="ngModel" required>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Size</mat-label>
+                    <mat-select [(ngModel)]="attr.size" #ctrl="ngModel" required multiple>
+                        <mat-option *ngFor="let l of sizes" [value]="l.id">
+                            {{l.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- <div fxFlex="23%" fxLayout="column" class="border">
+                    <label fxFlex>Size</label>
+                    <div fxFlex>
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Size'"
+                            [data]="sizes"
+                            [(ngModel)]="attr.size"
+                            [settings]="dropdownSettings"
+                            (onSelect)="onItemSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            >
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div> -->
+
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Color</mat-label>
+                    <mat-select [(ngModel)]="attr.color" #ctrl="ngModel" required multiple>
+                        <mat-option *ngFor="let l of colors" [value]="l.id">
+                            {{l.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="div-center" *ngIf="(i == (attributeLists.length -1))" fxLayoutGap.gt-sm="5px">
+                    <button mat-icon-button matTooltip="Add Attribute" (click)="addAttributes()"><mat-icon>add</mat-icon></button>
+                    <button mat-icon-button matTooltip="Remove Attribute" (click)="removeAttributes(i)" *ngIf="i > 0"><mat-icon>delete</mat-icon></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

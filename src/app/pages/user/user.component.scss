@@ -1,0 +1,80 @@
+@import "../../../styles/_var.scss";
+
+.form-wizard-page {
+  font-size: 15px;
+
+  @include responsivePadding();
+
+  .card.alternative {
+    padding: 0;
+
+    .shopping-cart {
+
+      @include responsivePadding();
+
+    }
+
+    .user-group {
+
+      @include responsivePadding();
+    }
+
+    .payment-details {
+      @include responsivePadding();
+    }
+
+    .confirmation {
+      @include responsivePadding();
+
+      .cart {
+        margin-top: 24px;
+      }
+    }
+  }
+
+  .cart {
+    color: $color__text-darker;
+
+    .table {
+      width: 100%;
+      font-size: 15px;
+      line-height: 1.5;
+
+      > thead {
+        td {
+          padding: 8px;
+          font-weight: 500;
+          border-bottom: 1px solid $color__border;
+        }
+      }
+
+      > tbody {
+        td {
+          vertical-align: top;
+          padding: 8px;
+          border-bottom: 1px solid $color__border;
+        }
+      }
+    }
+
+    .total {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .tab-navigation {
+    @include responsivePadding();
+  }
+}
+.table-pagination {
+    @include responsivePadding();
+}
+table {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.mat-raised-button{
+  text-transform: uppercase;
+}

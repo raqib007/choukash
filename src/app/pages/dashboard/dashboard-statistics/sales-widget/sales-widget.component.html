@@ -1,0 +1,52 @@
+<div class="sales-widget card border no-padding-content space">
+  <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="name" fxLayout="row">
+      <div>Sales Summary</div>
+    </div>
+
+    <div class="actions" fxLayout="row">
+      <button type="button" mat-icon-button [matMenuTriggerFor]="cardMenuRef">
+        <mat-icon class="icon">more_vert</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="data" fxLayout="column"
+         fxLayout.gt-md="row wrap" fxLayoutAlign="center" fxLayoutAlign.gt-md="space-between"
+         fxLayoutGap="16px" fxLayoutGap.gt-md="24px">
+      <div class="group" fxLayout="column" fxFlexAlign="center">
+        <div class="property">Total Sales</div>
+        <div [countUp]="17532" [options]="{ prefix: '$' }" class="value primary">$17,532</div>
+      </div>
+      <div class="group" fxLayout="column" fxFlexAlign="center">
+        <div class="property">Revenue</div>
+        <div [countUp]="8432" [options]="{ prefix: '$' }" class="value accent">$8,432</div>
+      </div>
+      <div class="group" fxLayout="column" fxFlexAlign="center">
+        <div class="property">Expenses</div>
+        <div [countUp]="4236" [options]="{ prefix: '$' }" class="value warn">$4,236</div>
+      </div>
+    </div>
+
+    <div class="chart">
+      <canvas width="100" height="40" #canvas></canvas>
+    </div>
+  </div>
+
+</div>
+
+<mat-menu #cardMenuRef="matMenu">
+  <button mat-menu-item>
+    <mat-icon>refresh</mat-icon>
+    <span>Refresh</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable alerts</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Remove Widget</span>
+  </button>
+</mat-menu>

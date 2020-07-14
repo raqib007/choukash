@@ -1,0 +1,23 @@
+
+
+.product-dashboard{
+    padding: 10px 25px;
+    h4{
+        color: #666;
+        font-size: 14px;
+        margin: 10px auto;
+    }
+    ::ng-deep .mat-checkbox-layout .mat-checkbox-label{
+        font-size: 13px!important;
+    }
+    .mat-checkbox{
+        cursor: pointer;
+        font-size: 13px!important;
+    }
+    .form-group{
+        flex: 1 1 100%; 
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+    
+}

@@ -1,0 +1,88 @@
+<div class="elastic">
+	<elastic-list name="" [columns]="columns" (filterChange)="onFilterChange($event)">
+
+		<div class="extra-actions" fxLayout="row" fxLayoutAlign="start baseline" >
+			<button mat-raised-button (click)="editProduct(formData)" color="primary">CREATE</button>
+		</div>
+		
+		<mat-table #table #outerSort="matSort" [dataSource]="dataSource2" multiTemplateDataRows class="parent-table" matSort>			
+			<ng-container matColumnDef="expand" >
+				<mat-header-cell class="actions-cell" *matHeaderCellDef fxFlex="5%"></mat-header-cell>
+				<mat-cell class="actions-cell" *matCellDef="let row" fxFlex="5%">
+					<div *ngIf="row.items?.data.length">
+						<mat-icon class="icon-expand" color="primary" (click)="toggleRow(row)" *ngIf="!row.isExpand">chevron_right </mat-icon>
+						<mat-icon class="icon-expand" color="primary" (click)="toggleRow(row)" *ngIf="row.isExpand">expand_more </mat-icon>
+					</div>
+				</mat-cell>
+			</ng-container>
+
+			<ng-container *ngFor="let column of columns">
+				<ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+					<mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+					<mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
+				</ng-container>
+			</ng-container>
+
+			<ng-container matColumnDef="expandedDetail">
+				<mat-cell *matCellDef="let row" [attr.colspan]="5">
+					<div class="example-element-detail" *ngIf="row.items?.data.length" [@detailExpand]="row.isExpand ? 'expanded' : 'collapsed'">
+						<div class="inner-table mat-elevation-z8" *ngIf="row.isExpand">
+							<mat-table #table #innerTables #innerSort="matSort" [dataSource]="row.items" matSort>
+								
+								<ng-container class="checkbox1" *ngFor="let col of columns">
+									<ng-container *ngIf="col.isModelProperty" [matColumnDef]="col.property">
+										<mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="col.width"> {{ col.name }}</mat-header-cell>
+										<mat-cell *matCellDef="let row" [fxFlex]="col.width"> {{ row[col.property] }}</mat-cell>
+									</ng-container>
+								</ng-container>
+
+								<ng-container matColumnDef="cusColumns">
+									<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="10%">Action</mat-header-cell>
+									<mat-cell class="actions-cell" *matCellDef="let row">
+										<button  mat-icon-button color="primary" (click)="editSubCat(row)"  matTooltip="Edit Product Sub Category">
+											<mat-icon>edit</mat-icon>
+										</button>
+										<button  mat-icon-button color="primary" (click)="deleteSubCat(row)"  matTooltip="Delete Product Sub Category">
+											<mat-icon>delete</mat-icon>
+										</button>
+									</mat-cell>
+								</ng-container>
+
+								<mat-header-row *matHeaderRowDef="subCategoryColumns"></mat-header-row>
+								<mat-row *matRowDef="let row; columns: subCategoryColumns;"></mat-row>
+							</mat-table>
+						</div>
+					</div>
+				</mat-cell>
+			</ng-container>
+
+			<ng-container matColumnDef="actions">
+				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="15%">Action</mat-header-cell>
+				<mat-cell class="actions-cell" *matCellDef="let row">
+					<button  mat-icon-button color="primary" (click)="addSubCat(row)" matTooltip="Add Product Sub Category"><mat-icon>add</mat-icon></button>
+					<button  mat-icon-button color="primary" (click)="editProduct(row)" matTooltip="Edit Product Category"><mat-icon>edit</mat-icon></button>
+					<button  mat-icon-button color="primary" (click)="deleteGroup(row)" matTooltip="Delete Category"><mat-icon>delete</mat-icon></button>
+				</mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+			<!-- <mat-row *matRowDef="let row; columns: visibleColumns;" > -->
+			<!-- </mat-row> -->
+			<mat-row 
+				*matRowDef="let row; columns: visibleColumns;" 
+				[class.example-element-row]="row.items?.data.length"
+				[class.example-expanded-row]="expandedElement === row">
+			</mat-row>
+			<mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
+		</mat-table>
+
+		<mat-paginator class="paginator" 
+			[pageIndex]="0"
+			[pageSizeOptions]="[5, 10, 25, 100]"
+			[length]="resultsLength" 
+			[pageSize]="pageSize">
+		</mat-paginator>
+
+	</elastic-list>
+
+</div>

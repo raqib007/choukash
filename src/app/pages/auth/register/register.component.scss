@@ -1,0 +1,80 @@
+@import "../../../../styles/_var.scss";
+
+:host {
+  display: block;
+  background: #fff url('/assets/img/demo/backgrounds/pattern-1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.register {
+	background: white;
+	width: 30vw;
+	.register-header {
+		background: $layout-alpha__background-color__sidenav-item;
+		padding: 30px;
+
+		.logo {
+			height: 25px;
+			width: auto;
+		}
+	}
+	.register-content {
+		padding: 25px;
+
+		.mat-form-field {
+			width: 100%;
+		}
+
+		.extra-options {
+			margin: 16px 0 32px;
+
+			.remember-me {
+				color: #777;
+			}
+		}
+
+		a {
+			text-decoration: none;
+			color: #2196F3;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.note {
+			color: #777;
+			margin: 24px 0 0;
+			text-align: center;
+		}
+	}
+	.text-danger{
+		color:red;
+		margin-bottom: 10px;
+	}
+	.invalid-feedback{
+		width: 100%;
+		margin-top: .25rem;
+		font-size: 80%;
+		color: #dc3545;
+		margin-left: 25px;
+	}
+	.extra-options{
+		margin: 16px 0 10px!important;
+	}
+	.note{
+		margin: 10px 0 0!important;
+	}
+}
+@media screen and (max-width: 992px) {
+	.register {
+		width: 70vw;
+	}
+}
+@media screen and (max-width: 600px) {
+	.register {
+		width: 90vw;
+	}
+}

@@ -1,0 +1,20 @@
+<div class="card alternative">
+	<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Business Information</span>
+				</div>
+			</ng-template>
+			<app-business-information></app-business-information>
+        </mat-tab>
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Owner's Contact Information</span>
+				</div>
+			</ng-template>
+			<app-owner-information></app-owner-information>
+        </mat-tab>
+	</mat-tab-group>
+</div>

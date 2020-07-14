@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Confirmation Alert</h2>
+
+<mat-dialog-content class="mat-typography">
+    <ng-template let-data>
+        Hello, {{data.msg}}
+      </ng-template>
+    <p>{{data.msg}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>CANCEL</button>
+    <button mat-button cdkFocusInitial (click)="save()">YES</button>
+</mat-dialog-actions>

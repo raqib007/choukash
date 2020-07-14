@@ -1,0 +1,123 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content [formGroup]="form" class="mat-typography">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+            <mat-label>Contact Type</mat-label>
+            <mat-select formControlName="contactType">
+                <mat-option *ngFor="let l of contactType" [value]="l.id">
+                    {{l.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+            <mat-label>Sub Group</mat-label>
+            <mat-select formControlName="subContactType">
+                <mat-option *ngFor="let l of subContactType" [value]="l.id">
+                    {{l.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+            <mat-label>Business Name</mat-label>
+            <input matInput formControlName="bname">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+            <mat-label>Job Title</mat-label>
+            <input matInput formControlName="jobTitle">
+        </mat-form-field>
+    </div>
+                
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="fname">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lname">
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field>
+            <mat-label>Location Type</mat-label>
+            <mat-select formControlName="ltype">
+                <mat-option *ngFor="let l of locationType" [value]="l">
+                    {{l}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Location Group</mat-label>
+            <mat-select formControlName="locationName">
+                <mat-option *ngFor="let l of LocationName" [value]="l">
+                    {{l}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city">
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field>
+            <mat-label>Zip Code</mat-label>
+            <input matInput formControlName="zipCode">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country">
+                <mat-option *ngFor="let l of country" [value]="l">
+                    {{l}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field>
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Mobile Number</mat-label>
+            <input matInput formControlName="mobile">
+        </mat-form-field>
+    </div>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Name Initials or Description</mat-label>
+            <input matInput formControlName="description">
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>CANCEL</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="save()">{{btnTitle}}</button>
+</mat-dialog-actions>

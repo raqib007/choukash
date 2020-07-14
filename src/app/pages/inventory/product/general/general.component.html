@@ -1,0 +1,107 @@
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">General</div>
+    </div>
+    <div class="content" fxLayout="column">
+        <div class="product-general" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="32px">
+            <div class="main" fxFlex.gt-sm>
+                <div class="result" fxLayout="column" fxLayoutAlign="center center">
+                    <mat-form-field>
+                        <mat-label>Inventory Type</mat-label>
+                        <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                            <mat-option *ngFor="let l of businessTypes" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Product Category</mat-label>
+                        <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                            <mat-option *ngFor="let l of businessTypes" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Product Name</mat-label>
+                        <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                            <mat-option *ngFor="let l of businessTypes" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Product Number</mat-label>
+                        <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Barcode/UPC/SKU</mat-label>
+                        <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Select Band</mat-label>
+                        <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                            <mat-option *ngFor="let l of industryType" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Stock Control</mat-label>
+                        <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                            <mat-option *ngFor="let l of industryType" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Date Created</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Created By</mat-label>
+                        <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                            <mat-option *ngFor="let l of industryType" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                </div>
+            </div>
+            <div class="aside" fxFlex.gt-sm="320px">
+                <div class="upload" fxLayout="column" fxLayoutAlign="center center">
+                    <label class="filelabel" *ngIf="!previewUrl">
+                        <mat-icon>file_upload</mat-icon>
+                        <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="onSelectFile($event)"/>
+                    </label>
+        
+                    <div class="image-preview" *ngIf="previewUrl">
+                        <img fxFlex="150px" class="picture" [src]="previewUrl" />                 
+                    </div>
+        
+                    <div *ngIf="!previewUrl">
+                        <p>You can drag and drop the file or click here to browse</p>
+                    </div>
+        
+                </div>
+        
+                <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+                    <button type="button" mat-button (click)="onSubmit()">Upload Product Image</button>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</div>

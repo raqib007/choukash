@@ -1,0 +1,28 @@
+@import "../../../styles/_var.scss";
+.inventory-dashboard-page{
+    @include responsivePadding();
+    .card.alternative{
+        background-color: #f4f4f4;
+    }
+    .elastic{
+        padding: 10px 25px;
+    }
+    .extra-actions {
+        padding-left: $padding__page!important;
+    }
+    .mat-table {
+        height: calc(80vh - 299px) !important;
+        overflow: auto !important;
+    }
+    .ng-autocomplete {
+        width: 100%!important;
+    }
+    .div-search{
+        margin-top: 0px!important;
+    }
+    .elastic-list .list-header{
+        padding-right: 15px;
+    }
+    
+}
+

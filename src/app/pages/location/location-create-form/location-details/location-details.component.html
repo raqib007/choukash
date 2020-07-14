@@ -1,0 +1,55 @@
+
+<h4 class="form-title">Location Details</h4>
+<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start center" fxLayoutGap="24px">
+    <div class="form-theming card" fxFlex="100%" fxFlex.gt-sm>
+        <div class="content" fxLayout="column">
+            <div class="result" fxLayout="column" fxLayoutAlign="center center">
+
+                <mat-form-field>
+                    <mat-select placeholder="Price Tier">
+                        <mat-option value="headoffice">A</mat-option>
+                        <mat-option value="branch">B</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Select Freight">
+                        <mat-option value="headoffice">A</mat-option>
+                        <mat-option value="branch">B</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Select Currency">
+                        <mat-option value="headoffice">A</mat-option>
+                        <mat-option value="branch">B</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Alternative GL Account">
+                        <mat-option value="headoffice">A</mat-option>
+                        <mat-option value="branch">B</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="TAX">
+                        <mat-option value="headoffice">A</mat-option>
+                        <mat-option value="branch">B</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Store Number" value="">
+                </mat-form-field>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div align="end">
+    <button mat-button color="primary" mat-dialog-close>CANCEL</button>
+    <button mat-button color="primary" cdkFocusInitial>CREATE LOCATION</button>
+</div>

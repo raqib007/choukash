@@ -1,0 +1,32 @@
+<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="8px">
+				<span class="badge primary">1</span>
+				<span>Default Address</span>
+			</div>
+		</ng-template>
+		<owner-default-address></owner-default-address>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+			<span class="badge primary">2</span>
+			<span>Invoice Address</span>
+			</div>
+		</ng-template>
+		<owner-invoice-address></owner-invoice-address>
+	</mat-tab>
+
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+			<span class="badge primary">3</span>
+			<span>Shipping Address</span>
+			</div>
+		</ng-template>
+		<owner-shipping-address></owner-shipping-address>
+	</mat-tab>
+</mat-tab-group>

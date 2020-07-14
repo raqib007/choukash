@@ -1,0 +1,10 @@
+
+.card{
+	.content{
+		height: calc(100vh - 329px)!important;
+		overflow: auto;
+	}
+    .div-center{
+        display: flex;align-items: center;font-size: 13px;
+    }
+}

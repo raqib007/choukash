@@ -1,0 +1,33 @@
+@import "../../../../styles/_var.scss";
+
+.extra-actions {
+	padding-left: $padding__page!important;
+}
+.mat-table{
+	height: calc(80vh - 269px)!important;
+    overflow: auto!important;
+}
+.ng-autocomplete {
+    width: 100%!important;
+}
+
+.div-search{
+    border: 0px solid black;
+    margin: 20px 1px;
+    label{
+        margin-bottom: 5px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .autocomplete-container{
+        height: 30px!important;
+    }
+    ::ng-deep .autocomplete-container .input-container input:focus{
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.45);
+    }
+    ::ng-deep .autocomplete-container .suggestions-container ul li a{
+        padding: 7px 15px;
+        font-size: 14px;
+    }
+}

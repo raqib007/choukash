@@ -1,0 +1,82 @@
+
+<div class="profile-overview" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="32px">
+    <div class="main" fxFlex.gt-sm>
+        <div class="content">
+            <div class="result" fxLayout="column" fxLayoutAlign="center center">
+                <mat-form-field>
+                    <mat-label>Business Name</mat-label>
+                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Business Legal Name</mat-label>
+                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Select Business Type for Tax Form</mat-label>
+                    <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                        <mat-option *ngFor="let l of businessTypes" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Tax ID</mat-label>
+                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Social Security Number</mat-label>
+                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Select Industry Type</mat-label>
+                    <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
+                        <mat-option *ngFor="let l of industryType" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Date of Establishment</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="aside" fxFlex.gt-sm="320px">
+
+        <div class="upload" fxLayout="column" fxLayoutAlign="center center">
+
+            <label class="filelabel" *ngIf="!previewUrl">
+                <mat-icon>cloud_upload</mat-icon>
+                <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="onSelectFile($event)"/>
+            </label>
+
+            <div class="image-preview" *ngIf="previewUrl">
+                <img fxFlex="150px" class="picture" [src]="previewUrl" />                 
+            </div>
+
+            <div *ngIf="!previewUrl">
+                <p>You can drag and drop the file or click here to browse</p>
+            </div>
+
+        </div>
+
+        <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+            <button type="button" mat-button (click)="onSubmit()">UPLOAD LOGO</button>
+        </div>
+
+    </div>
+</div>
+
+<div align="end">
+    <button mat-button color="primary">SAVE</button>
+    <button mat-button color="primary">EDIT</button>
+</div>

@@ -1,0 +1,54 @@
+<div class="elastic stock-control">
+	<elastic-list name="" [columns]="columns" (filterChange)="onFilterChange($event)">
+
+		<mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="checkbox">
+				<mat-header-cell class="actions-cell" *matHeaderCellDef></mat-header-cell>
+				<mat-cell class="actions-cell" *matCellDef="let row">
+					<mat-checkbox color="primary" (click)="$event.stopPropagation()"></mat-checkbox>
+				</mat-cell>
+            </ng-container>
+            
+			<ng-container class="checkbox1" *ngFor="let column of columns">
+				<ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+					<mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+					<mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
+				</ng-container>
+            </ng-container>
+            
+            <ng-container matColumnDef="actions">
+				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+				<mat-cell class="actions-cell" *matCellDef="let row">
+					<button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+					    <mat-icon>more_horiz</mat-icon>
+					</button>
+
+					<mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+                        <button mat-menu-item>
+                            <span>Active</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Inactive</span>
+                        </button>
+					</mat-menu>
+				</mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+		</mat-table>
+
+		<mat-paginator class="paginator" 
+			[pageIndex]="0"
+			[length]="resultsLength" 
+			[pageSize]="pageSize">
+        </mat-paginator>
+
+    </elastic-list>
+	<p>Select stock control methods to follow your business from the list.</p>
+	
+	<div class="div-right-end">
+		<button mat-button color="primary">SAVE</button>
+		<button mat-button color="primary">EDIT</button>
+	</div>
+</div>

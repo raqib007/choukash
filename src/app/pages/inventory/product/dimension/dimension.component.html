@@ -1,0 +1,64 @@
+
+<div class="card border space pro-dimension">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Dimensions</div>
+    </div>
+
+    <div class="content">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
+            <div fxFlex.gt-sm="60">
+                <div fxLayout="column" fxLayout.gt-sm="row">
+                    <label>Add Size</label>
+                </div>
+                <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px" *ngFor="let attr of sizeList; let i = index">
+                    <mat-form-field fxFlex.gt-sm="20" fxFlex.xs="100">
+                        <input matInput placeholder="Length" type="text" [(ngModel)]="attr.name" #ctrl="ngModel">
+                    </mat-form-field>
+                    <mat-form-field fxFlex.gt-sm="20" fxFlex.xs="100">
+                        <input matInput placeholder="Width" type="text" [(ngModel)]="attr.width" #ctrl="ngModel">
+                    </mat-form-field>
+                    <mat-form-field fxFlex.gt-sm="20" fxFlex.xs="100">
+                        <input matInput placeholder="Height" type="text" [(ngModel)]="attr.height" #ctrl="ngModel">
+                    </mat-form-field>
+                    <mat-form-field fxFlex.gt-sm="20" fxFlex.xs="100">
+                        <mat-label>UOM</mat-label>
+                        <mat-select [(ngModel)]="attr.uom" #ctrl="ngModel">
+                            <mat-option *ngFor="let l of unitList" [value]="l.id">
+                                {{l.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="div-center" *ngIf="(i == (sizeList.length -1))" fxLayoutGap.gt-sm="5px">
+                        <button mat-icon-button matTooltip="Add Height" (click)="addHeight()"><mat-icon>add</mat-icon></button>
+                        <button mat-icon-button matTooltip="Remove Height" (click)="removeHeight(i)" *ngIf="i > 0"><mat-icon>delete</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div fxFlex.gt-sm="40">
+                <div fxLayout="column" fxLayout.gt-sm="row">
+                    <label>Add Weight</label>
+                </div>
+                <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px" *ngFor="let attr of weightList; let i = index">
+                    <mat-form-field fxFlex.gt-sm="33" fxFlex.xs="100">
+                        <input matInput placeholder="Weight" type="text" [(ngModel)]="attr.weight" #ctrl="ngModel">
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex.gt-sm="33" fxFlex.xs="100">
+                        <mat-label>UOM</mat-label>
+                        <mat-select [(ngModel)]="attr.uom" #ctrl="ngModel">
+                            <mat-option *ngFor="let l of unitList" [value]="l.id">
+                                {{l.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="div-center" *ngIf="(i == (weightList.length -1))" fxFlex.gt-sm="33" fxFlex.xs="100" fxLayoutGap.gt-sm="5px">
+                        <button mat-icon-button matTooltip="Add Weight" (click)="addWeight()"><mat-icon>add</mat-icon></button>
+                        <button mat-icon-button matTooltip="Remove Weight" (click)="removeWeight(i)" *ngIf="i > 0"><mat-icon>delete</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
