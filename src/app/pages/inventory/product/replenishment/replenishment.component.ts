@@ -8,7 +8,7 @@ import { LIST_FADE_ANIMATION } from '../../../../core/utils/list.animation';
 	animations: [...LIST_FADE_ANIMATION]
 })
 export class ReplenishmentComponent implements OnInit {
-	selectedIndex = 3;
+	selectedIndex = 4;
 	showNewLeadTime = false;
 	base = 'Each';
 	formData = {

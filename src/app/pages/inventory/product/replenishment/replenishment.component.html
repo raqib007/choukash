@@ -101,7 +101,7 @@
                     </div>
                 </ng-template>
 
-                <p>Add Reorder Level</p>
+                <p style="margin-top: 0;font-size: 14px;">Add Reorder Level</p>
                 <div fxFlex="100%" fxFlex.gt-sm>
                     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
                         <mat-form-field fxFlex.gt-sm>
@@ -126,33 +126,87 @@
                     </div>
                 </ng-template>
 
-                <div fxFlex="60%" fxFlexOffset="20%">
-                    <mat-form-field>
-                        <mat-label>UOM for Purchase</mat-label>
-                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
-                            <mat-option *ngFor="let l of unitList" [value]="l">
-                                {{l}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <p style="margin-top: 0;font-size: 14px;">Auto Reorder Point Tool</p>
+                <div fxFlex="100%" fxFlex.gt-sm>
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
 
-                    <mat-form-field>
-                        <mat-label>UOM for Stock</mat-label>
-                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
-                            <mat-option *ngFor="let l of unitList" [value]="l">
-                                {{l}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                        <mat-form-field fxFlex.gt-sm>
+                            <mat-label>Date Range Staring From</mat-label>
+                            <input matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label>UOM for Sales</mat-label>
-                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
-                            <mat-option *ngFor="let l of unitList" [value]="l">
-                                {{l}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                        <mat-form-field fxFlex.gt-sm>
+                            <mat-label>To</mat-label>
+                            <input matInput [matDatepicker]="pickerTo">
+                            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerTo></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Unit Sales Per Day" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Insert Forecast Percentage" type="text">
+                            <span matSuffix>%</span>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Desired Unit Sales Per Day" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Lead Time " type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Lead Time Demand" type="text">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Reorder Point = Load Time Demand" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="+ Safety Stock" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="=" type="text">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Order Upto Level = ROP" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="+ (Order Interval Days X Unit Sakes Per Days )" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="=" type="text">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Confirm Reorder Point" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Confirm Order Upto Level" type="text">
+                        </mat-form-field>
+                    </div>
                 </div>
             </mat-tab>
         </mat-tab-group>
