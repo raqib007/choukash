@@ -25,7 +25,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     isHeaderNeeded(url: string) {
-        if (url.split('/')[3] == 'loginAuth-1.0.0' && (url.split('/')[5] == 'update' || url.split('/')[5] == 'get' || url.split('/')[5] == 'delete')) {
+        if (url.split('/')[3] == 'loginAuth-1.0.0' && (url.split('/')[6] == 'update' || url.split('/')[6] == 'get' || url.split('/')[6] == 'delete' || url.split('/')[5] == 'user_group')) {
             return true;
         } else {
             return false;
