@@ -15,7 +15,7 @@ export class ReplenishmentComponent implements OnInit {
 		id:0,
 		unit: '',
 	};
-	unitList = ['Kg','Each','Liter','Bottle','Gram'];
+	unitList = ['Kg','Each','Liter','Bottle','Gram','Test'];
 	vendorLists = [{id:1,name:'Vendor 1'},{id:2,name:'Vendor 2'}];
 	relation = [{id:1,name:'Greater Than Base Unit'},{id:2,name:'Smaller Than Base Unit'}];
 	constructor(
