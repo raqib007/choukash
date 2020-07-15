@@ -14,7 +14,7 @@ export class JwtInterceptor implements HttpInterceptor {
         const user = this.accountService.userValue;
         const isLoggedIn = user && user.token;
         const isApiUrl = request.url.startsWith(environment.apiUrl);
-        if (isLoggedIn && isApiUrl) {
+        if (this.isHeaderNeeded(request.url) && isLoggedIn && isApiUrl) {
             request = request.clone({
                 setHeaders: {
                     Authorization: `${user.token}`
@@ -22,5 +22,13 @@ export class JwtInterceptor implements HttpInterceptor {
             });
         }
         return next.handle(request);
+    }
+
+    isHeaderNeeded(url: string) {
+        if (url.split('/')[3] == 'loginAuth-1.0.0') {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

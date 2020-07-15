@@ -1,1 +1,160 @@
-<p>replenishment works!</p>
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Unit of Measurement</div>
+    </div>
+    <div class="content" fxLayout="column">
+        <mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>LEAD TIME</span>
+                    </div>
+                </ng-template>
+                <div fxFlex="100%" fxFlex.gt-sm>
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <mat-label>Select default vendor for this product</mat-label>
+                            <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                                <mat-option *ngFor="let l of vendorLists" [value]="l.id">
+                                    {{l.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Show default lead time (for this vendor)" type="text">
+                            <span matSuffix>Days</span>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100%">
+                    <button mat-button color="primary" (click)="addNewLeadTime()">Add New Default Lead Time <mat-icon>add</mat-icon></button>
+                </div>
+                <div fxFlex="100%">
+                    <mat-form-field fxFlex.gt-sm *ngIf="showNewLeadTime">
+                        <!-- <span matPrefix>+1 &nbsp;</span> -->
+                        <input matInput placeholder="New Default Lead Time" type="text">
+                        <span matSuffix>Days</span>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>ORDER INTERVAL DAYS</span>
+                    </div>
+                </ng-template>
+
+                <div fxFlex="60%" fxFlexOffset="20%">
+                    <mat-form-field>
+                        <input matInput placeholder="Order Interval Days" type="text">
+                        <span matSuffix>Insert number of days interval</span>
+                    </mat-form-field>    
+                </div>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>SAFETY STOCK</span>
+                    </div>
+                </ng-template>
+
+                <p>Safety Stock Calculation</p>
+                <div fxFlex="100%" fxFlex.gt-sm>
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Insert Maximum Daily Usage" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Insert Maximum Lead Time in Days" type="text">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Insert Average Daily Usage" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Insert Average Lead Days" type="text">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex="49%" fxFlex.gt-sm = "49%">
+                            <input matInput placeholder="Safety Stock fot This Product Is" type="text">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex fxLayoutAlign="center center" style="color:#f48e36db">
+                    <label>(MaximumDaily Usage * Maximum Lead Time In days) - (Average Daily Usage * Average Lead Days)</label>
+                </div>
+
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>REORDER LEVEL</span>
+                    </div>
+                </ng-template>
+
+                <p>Add Reorder Level</p>
+                <div fxFlex="100%" fxFlex.gt-sm>
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Insert Order Up to Level(OUL)" type="text">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex.gt-sm>
+                            <input matInput placeholder="Insert Reorder Point (ROP)" type="text">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="end end" class="end-msg">
+                    <p fxFlex.gt-sm>ROP is the minimum quantity of a product  at which level that product should be reordered  to avoid  a stock out.</p>
+                    <p fxFlex.gt-sm>OUL is the maximum quantity of a product can be at stock.</p>
+                </div>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                        <span>AUTO REORDER POINT TOOL</span>
+                    </div>
+                </ng-template>
+
+                <div fxFlex="60%" fxFlexOffset="20%">
+                    <mat-form-field>
+                        <mat-label>UOM for Purchase</mat-label>
+                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                            <mat-option *ngFor="let l of unitList" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>UOM for Stock</mat-label>
+                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                            <mat-option *ngFor="let l of unitList" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>UOM for Sales</mat-label>
+                        <mat-select [(ngModel)] = "formData.unit" name="formData.unit">
+                            <mat-option *ngFor="let l of unitList" [value]="l">
+                                {{l}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

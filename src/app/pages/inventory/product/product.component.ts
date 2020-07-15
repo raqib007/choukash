@@ -9,7 +9,7 @@ import { ROUTE_TRANSITION } from '../../../app.animation';
 	host: { '[@routeTransition]': '' }
 })
 export class ProductComponent implements OnInit, AfterContentInit {
-	seletedIndex = 2;
+	seletedIndex = 6;
 	constructor() { }
 	sidebarList = [];
 	subHeaderName = "Settings/Business";
@@ -22,17 +22,18 @@ export class ProductComponent implements OnInit, AfterContentInit {
 			{id:3,name:'Dimensions',pageName:'<inventory-product-variant></inventory-product-variant>'},
 			{id:4,name:'Locations',pageName:'<inventory-product-variant></inventory-product-variant>'},
 			{id:5,name:'Vendor Informations',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:6,name:'Replenishment',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:7,name:'Costing',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:8,name:'Price Management',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:9,name:'Accounts',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:10,name:'ABC Analysis',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:11,name:'Stock Quantity Check',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:12,name:'Add Initial Inventory',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:13,name:'Move Inventory',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:14,name:'Cycle Count/ Adjust',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:15,name:'Scrap Inventory',pageName:'<inventory-product-variant></inventory-product-variant>'},
-			{id:16,name:'Display Management',pageName:'<inventory-product-variant></inventory-product-variant>'},
+			{id:6,name:'Replenishment',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			
+			{id:7,name:'Costing',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:8,name:'Price Management',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:9,name:'Accounts',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:10,name:'ABC Analysis',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:11,name:'Stock Quantity Check',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:12,name:'Add Initial Inventory',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:13,name:'Move Inventory',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:14,name:'Cycle Count/ Adjust',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:15,name:'Scrap Inventory',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			{id:16,name:'Display Management',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
 			// {id:17,name:'Move Inventory',pageName:'<inventory-product-variant></inventory-product-variant>'}
 		];
 	}

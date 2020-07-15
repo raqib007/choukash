@@ -26,21 +26,7 @@ export class CreateUserComponent implements List<User>, OnInit, OnDestroy {
 	subject$: ReplaySubject<User[]> = new ReplaySubject<User[]>(1);
 	data$: Observable<User[]>;
 	users: User[];
-
-	formData = {
-		first_name : '',
-		last_name : '',
-		user_name: '',
-		note: '',
-		location_type_id: '',
-		location_type_name: '',
-		mobile: '',
-		email: '',
-		user_id: '',
-		password: '',
-		user_group: '',
-		is_active : true
-	};
+	formData = new User();
 
     @Input()
 	columns: ListColumn[] = [
@@ -49,8 +35,8 @@ export class CreateUserComponent implements List<User>, OnInit, OnDestroy {
 		{ name: 'Last Name', property: 'last_name', visible: true, isModelProperty: true ,width:'7%'},
 		{ name: 'User Name', property: 'user_name', visible: true, isModelProperty: true,width:'5%' },
 		{ name: 'Description', property: 'note', visible: true, isModelProperty: true ,width:'9%'},
-		{ name: 'Location Type', property: 'location_type_id', visible: true, isModelProperty: true ,width:'9%'},
-		{ name: 'Location', property: 'location_type_name', visible: true, isModelProperty: true,width:'9%' },
+		{ name: 'Location Type', property: 'location_type_name', visible: true, isModelProperty: true ,width:'9%'},
+		{ name: 'Location', property: 'location_group_name', visible: true, isModelProperty: true,width:'9%' },
 		{ name: 'Mobile', property: 'mobile', visible: true, isModelProperty: true ,width:'8%'},
 		{ name: 'Email', property: 'email', visible: true, isModelProperty: true ,width:'8%'},
 		{ name: 'User ID', property: 'user_id', visible: true, isModelProperty: true,width:'8%' },
@@ -90,6 +76,8 @@ export class CreateUserComponent implements List<User>, OnInit, OnDestroy {
 						note : l.note,
 						location_type_id : l.location_type_id,
 						location_type_name : l.location_type_name,
+						location_group_id : l.location_group_id,
+						location_group_name : l.location_group_name,
 						mobile : 'No mobile field',
 						email : l.email,
 						user_id : l.user_id,
@@ -108,8 +96,6 @@ export class CreateUserComponent implements List<User>, OnInit, OnDestroy {
 				this.prepareData();
 			}
 		);
-		// this.users = UserData.map(l => new User(l));
-		
 	}
 	/* prepare data from pagination */
 	prepareData(){

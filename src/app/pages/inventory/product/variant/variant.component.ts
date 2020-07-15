@@ -13,16 +13,7 @@ export class VariantComponent implements OnInit {
 	sizes = [{id:1,name:'Small'},{id:2,name:'Medium'},{id:3,name:'Large'}];
 	colors = [{id:1,name:'Green'},{id:2,name:'Red'},{id:3,name:'Grey'}];
 	attributeLists = [
-		{
-			id:1,
-			name:'Attribute Name 1',
-			size:[
-				{ id: 1, name: 'Small'},
-				{ id: 3, name: 'Large'}
-			],
-			values:'1,2,3'},
-		{id:2,name:'Attribute Name 2',size:[],values:'1,2,3'},
-		{id:3,name:'Attribute Name 3',size:[],values:'1,2,3'}
+		{id:1,name:'Size',values:'Small,Large,Medium'}
 	];
 	dropdownList = [];
 	selectedItems = [];
@@ -41,7 +32,7 @@ export class VariantComponent implements OnInit {
 	}
 	addAttributes() {
 		let lastNumber = this.attributeLists.length+1;
-		this.attributeLists.push({id:lastNumber,name:'Attribute Name '+lastNumber,size:[],values:''});
+		this.attributeLists.push({id:lastNumber,name:'',values:''});
 	}
 	removeAttributes(index) {
 		this.attributeLists.splice(this.attributeLists.length-1, 1);

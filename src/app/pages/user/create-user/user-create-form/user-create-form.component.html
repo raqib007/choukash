@@ -1,5 +1,22 @@
 <h2 mat-dialog-title>{{title}}</h2>
 
+
+<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px" class="border">
+    <label fxFlex>Assign User Group</label>
+    <div fxFlex>
+        <ng-multiselect-dropdown
+            [placeholder]="'Select user group'"
+            [data]="userGroup"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+        </ng-multiselect-dropdown>
+    </div>
+</div>
+
+
 <form [formGroup]="form" >
     <mat-dialog-content class="mat-typography">
         <label *ngIf="showErrMsg" class="text-danger">{{errMsg}}</label>
@@ -27,15 +44,15 @@
         <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
             <mat-form-field fxFlex="100%" fxFlex.gt-sm>
                 <mat-select placeholder="Location Type"  formControlName="location_type_id">
-                    <mat-option *ngFor="let l of locationTypes" [value]="l.id">
-                    {{l.value}}
+                    <mat-option *ngFor="let l of locationTypes" [value]="l.location_type_id">
+                        {{l.location_type_name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="100%" fxFlex.gt-sm>
-                <mat-select placeholder="Location Group"  formControlName="location_type_name">
-                    <mat-option *ngFor="let l of locationGroup" [value]="l.id">
-                    {{l.value}}
+                <mat-select placeholder="Location Group" formControlName="location_group_id">
+                    <mat-option *ngFor="let l of locationGroup" [value]="l.location_group_id">
+                        {{l.location_group_name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -62,8 +79,9 @@
         <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
             <mat-form-field fxFlex="100%" fxFlex.gt-sm="100%">
                 <mat-select placeholder="Assign User Group"  formControlName="user_group" multiple>
-                    <mat-option *ngFor="let l of userGroup" [value]="l.id">
-                    {{l.value}}
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let l of userGroup" [value]="l.user_group_id">
+                        {{l.user_group_name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -73,6 +91,6 @@
 
     <mat-dialog-actions align="end">
         <button mat-raised-button mat-dialog-close='no'>CANCEL</button>
-        <button mat-raised-button color="primary" cdkFocusInitial [disabled]="form.invalid" (click)="save()">{{btnTitle}}</button>
+        <button mat-raised-button color="primary" cdkFocusInitial [disabled]="form.invalid" (click)="saveData()">{{btnTitle}}</button>
     </mat-dialog-actions>
 </form>

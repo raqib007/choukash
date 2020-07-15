@@ -28,6 +28,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CdkTableModule} from '@angular/cdk/table';
 import { ListModule } from '../../core/list/list.module';
+import { SortablejsModule } from 'ngx-sortablejs';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { CreateUserGroupComponent} from './create-user-group/create-user-group.component';
 import { CreateUserComponent} from './create-user/create-user.component';
@@ -64,7 +66,9 @@ import { UserCreateFormComponent } from './create-user/user-create-form/user-cre
 		MatSortModule,
 		MatProgressSpinnerModule,
 		CdkTableModule,
-		ListModule
+		ListModule,
+		SortablejsModule,
+		NgMultiSelectDropDownModule.forRoot()
   	],
   	declarations: [
 	  	UserComponent,
