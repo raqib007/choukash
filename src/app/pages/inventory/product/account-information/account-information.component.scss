@@ -1,0 +1,38 @@
+@import "../../../../../styles/_var.scss";
+
+.card{
+	.content{
+		max-height: calc(100vh - 329px)!important;
+        overflow: auto;
+	}
+	padding: 0px!important;
+  	@include responsivePadding();
+
+	.product-pricing{
+		p{
+			margin: 0!important;
+			font-size: 12px!important;
+			color:#616161 !important;
+		}
+		.mat-form-field{
+			width: 100%!important;
+			font-size: 13px;
+        }
+        .end-msg p{
+            color: #adadad;
+            display: block;
+            font-size: 10px;
+            margin: 0;
+            color: #f48e36db!important;
+		}
+		table.mat-table{
+			width: 100%!important;
+		}
+		.mat-raised-button.mat-warn{
+			background-color: #f48e36db!important;
+		}
+		.mat-checkbox{
+			margin-top: 15px!important;
+		}
+	}
+}

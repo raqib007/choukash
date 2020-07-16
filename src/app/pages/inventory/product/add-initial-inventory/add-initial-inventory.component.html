@@ -1,1 +1,111 @@
-<p>add-initial-inventory works!</p>
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Add Initial Inventory</div>
+    </div>
+    <div class="content ini-inventory">
+        <div fxFlex="100%">
+            <!-- <div fxLayout="row wrap" fxLayoutGap="25px" style="margin-right:-25px;">
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(33%-25px)">
+                    <input matInput placeholder="Name">
+                </mat-form-field>
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(33%-25px)">
+                    <input matInput placeholder="Occupation">
+                </mat-form-field>
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(33%-25px)">
+                    <input matInput placeholder="Company">
+                </mat-form-field>
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(33%-25px)">
+                    <input matInput placeholder="Name">
+                </mat-form-field>
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(33%-25px)">
+                    <input matInput placeholder="Occupation">
+                </mat-form-field>
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(33%-25px)">
+                    <input matInput placeholder="Company">
+                </mat-form-field>
+                <span class="cdk-visually-hidden"></span>
+            </div> -->
+
+
+            <div fxLayout="row wrap" fxLayoutGap="25px">
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Product Name" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Quantity in Hand" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Brand" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Default Vendor" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Location Group</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Location</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Add Quantity</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Unit of Measurement</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Insert Unit Cost" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Account Head</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Insert Date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Note" type="text">
+                </mat-form-field>
+                <span class="cdk-visually-hidden"></span>
+            </div>
+        </div>
+    </div>
+</div>

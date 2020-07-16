@@ -9,7 +9,7 @@ import { ROUTE_TRANSITION } from '../../../app.animation';
 	host: { '[@routeTransition]': '' }
 })
 export class ProductComponent implements OnInit, AfterContentInit {
-	seletedIndex = 8;
+	seletedIndex = 10;
 	constructor() { }
 	sidebarList = [];
 	subHeaderName = "Settings/Business";

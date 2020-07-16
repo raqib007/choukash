@@ -1,1 +1,54 @@
-<p>account-information works!</p>
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Account Information</div>
+    </div>
+    <div class="content product-pricing">
+        <div fxFlex="100%">
+            
+            <div fxLayout="row" fxLayout.gt-sm="row">
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Select Inventory Asset Account for Total Cost of Inventory in Hand</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayout.gt-sm="row">
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Select Income Account for Product Sales</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayout.gt-sm="row">
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Select Expense Account for Cost of Goods Sold</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayout.gt-sm="row">
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Select Sales tax Category</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
