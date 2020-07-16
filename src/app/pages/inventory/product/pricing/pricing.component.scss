@@ -8,7 +8,7 @@
 	padding: 0px!important;
   	@include responsivePadding();
 
-	.product-costing{
+	.product-pricing{
 		p{
 			margin: 0!important;
 			font-size: 12px!important;
@@ -27,6 +27,12 @@
 		}
 		table.mat-table{
 			width: 100%!important;
+		}
+		.mat-raised-button.mat-warn{
+			background-color: #f48e36db!important;
+		}
+		.mat-checkbox{
+			margin-top: 15px!important;
 		}
 	}
 }
