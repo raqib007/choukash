@@ -9,7 +9,7 @@ import { ROUTE_TRANSITION } from '../../../app.animation';
 	host: { '[@routeTransition]': '' }
 })
 export class ProductComponent implements OnInit, AfterContentInit {
-	seletedIndex = 10;
+	seletedIndex = 13;
 	constructor() { }
 	sidebarList = [];
 	subHeaderName = "Settings/Business";
@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit, AfterContentInit {
 			{id:7,name:'Costing',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
 			{id:8,name:'Pricing',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
 			{id:9,name:'Accounts',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
-			{id:10,name:'ABC Analysis',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
+			// {id:10,name:'ABC Analysis',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
 			{id:11,name:'Stock Quantity Check',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
 			{id:12,name:'Add Initial Inventory',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},
 			{id:13,name:'Move Inventory',pageName:'<inventory-product-replenishment></inventory-product-replenishment>'},

@@ -1,1 +1,96 @@
-<p>move-inventory works!</p>
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Move Inventory</div>
+    </div>
+    <div class="content move-inventory">
+        <div fxFlex="100%">
+            <div fxLayout="row wrap" fxLayoutGap="25px">
+                <mat-form-field fxFlex.xs="calc(100%-25px)" fxFlex="calc(100%-25px)">
+                    <mat-label>Select Product</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Move From</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Move To</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Quantity" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Stock Control" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Select Lot/Batch/Serial No." type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Move Date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <span class="cdk-visually-hidden"></span>
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutGap="25px" style="margin-top: 15px;margin-bottom: 15px;">
+                <mat-checkbox [checked]="false" fxFlex.xs="calc(50%-25px)" fxFlex="calc(80%-25px)">Create Transfer Order</mat-checkbox>
+                <button mat-raised-button color="warn" fxFlex.xs="calc(50%-25px)" fxFlex="calc(20%-25px)">MOVE INVENTORY</button>
+            </div>
+            <div fxLayout="row" fxLayout.gt-sm="row" style="margin-top: 15px;margin-bottom: 15px;">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="product">
+                        <th mat-header-cell *matHeaderCellDef> Location Group </th>
+                        <td mat-cell *matCellDef="let element"> {{element.product}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="code">
+                        <th mat-header-cell *matHeaderCellDef> Inventory in Hand </th>
+                        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="note">
+                        <th mat-header-cell *matHeaderCellDef> Inventory Committed </th>
+                        <td mat-cell *matCellDef="let element"> {{element.note}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="uom">
+                        <th mat-header-cell *matHeaderCellDef> UOM </th>
+                        <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ucost">
+                        <th mat-header-cell *matHeaderCellDef> Stock in Control </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ucost}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
