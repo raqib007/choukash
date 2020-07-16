@@ -1,1 +1,110 @@
-<p>pricing works!</p>
+
+<div class="card border space">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="name">Pricing</div>
+    </div>
+    <div class="content product-costing">
+        <div fxFlex="100%" fxFlex.gt-sm>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Select Costing Method</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let l of locationGroup" [value]="l.id">
+                            {{l.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field fxFlex.gt-sm>
+                    <mat-label>Purchase UOM</mat-label>
+                    <mat-select [(ngModel)] = "formData.location" name="formData.location">
+                        <mat-option *ngFor="let u of unitList" [value]="u">
+                            {{u}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                <div style='display: flex;align-items: center;font-size: 13px;'>
+                    <label>Cost</label>
+                </div>
+                <mat-form-field fxFlex.gt-sm>
+                    <input matInput placeholder="Cost In GPB" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.gt-sm>
+                    <input matInput placeholder="Rate" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.gt-sm>
+                    <input matInput placeholder="Cost In USD" type="text">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.gt-sm>
+                    <input matInput placeholder="Rate" type="text">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="end end" class="end-msg">
+                <p fxFlex.gt-sm>Different Cost options will be displayed as multiple Currencies selected.</p>
+                <p fxFlex.gt-sm>Currency Convertion will be shown if selected at Accounting/Currency Setting .</p>
+            </div>
+
+            <div fxLayout="row" fxLayout.gt-sm="row" style="margin-top: 15px;margin-bottom: 15px;">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> Invoice Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Receiving Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="symbol">
+                        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ucost">
+                        <th mat-header-cell *matHeaderCellDef> Unit Cost </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ucost}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="tcost">
+                        <th mat-header-cell *matHeaderCellDef> Total Cost </th>
+                        <td mat-cell *matCellDef="let element"> {{element.tcost}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="details">
+                        <th mat-header-cell *matHeaderCellDef> Vendor Details </th>
+                        <td mat-cell *matCellDef="let element"> {{element.details}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px" style="margin-bottom: 15px;">
+                <div fxFlex.gt-sm style='display: flex;align-items: center;font-size: 13px;'>
+                    <label>Quality In Hand : </label>
+                </div>
+                <div fxFlex.gt-sm style='display: flex;align-items: center;font-size: 13px;'>
+                    <label>Show Total Cost of Quantity In Hand :</label>
+                </div>
+                <div fxFlex.gt-sm style='display: flex;align-items: center;font-size: 13px;'>
+                    <label>Average Cost :</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
