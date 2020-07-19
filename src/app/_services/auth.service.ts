@@ -34,6 +34,12 @@ export class AuthService {
         return this.userSubject.value;
     }
 
+    private tokenExpired(token: string) {
+        const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+        return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+    }
+      
+
     register(user: User) {
         return this.http.post(`${environment.apiUrl}/loginAuth-1.0.0/user/user_info/save`, user).pipe(
             map((res : any) => {
