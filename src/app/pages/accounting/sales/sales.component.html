@@ -1,1 +1,47 @@
-<p>sales works!</p>
+<mat-tab-group class="form-wizard" [(selectedIndex)]="tabIndex" animationDuration="0ms" style="padding: 0 2rem;">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">1</span>
+                <span>Payment Terms</span>
+            </div>
+        </ng-template>
+        <sales-payment-items></sales-payment-items>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">2</span>
+                <span>Cost Method</span>
+            </div>
+        </ng-template>
+        <accounting-cost-method></accounting-cost-method>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">3</span>
+                <span>Create Price Groups</span>
+            </div>
+        </ng-template>
+        <!-- <accounting-rounding-off></accounting-rounding-off> -->
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">4</span>
+                <span>Create Price Rules</span>
+            </div>
+        </ng-template>
+        <!-- <accounting-rounding-off></accounting-rounding-off> -->
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">2</span>
+                <span>Tax Rates</span>
+            </div>
+        </ng-template>
+        <!-- <accounting-rounding-off></accounting-rounding-off> -->
+    </mat-tab>
+</mat-tab-group>

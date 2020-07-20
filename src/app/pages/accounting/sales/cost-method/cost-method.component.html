@@ -1,0 +1,31 @@
+
+
+<div class="card border space">
+    <div class="content sales-cost-price" fxLayout="row">
+        <div fxFlex="60%" fxFlexOffset="20%">
+            <p style="text-align: center;">Select Costing Method</p>
+            <p class="info-msg">Drag the costing method name from The List to my Costing Method List</p>
+            <div class="list-container" fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center">
+                <div class="list mat-elevation-z4">
+                    <mat-toolbar>Select Costing Methods</mat-toolbar>
+                    <mat-list [sortablejs]="contactTypeList" [sortablejsOptions]="groupOptions">
+                        <mat-list-item class="small-list-item" *ngFor="let list of contactTypeList">
+                            <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.value }} </h3>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            
+                <mat-icon class="left-right-compare">compare_arrows</mat-icon>
+            
+                <div class="list mat-elevation-z4">
+                    <mat-toolbar>My Costing Methods</mat-toolbar>
+                        <mat-list [sortablejs]="assignContactList" [sortablejsOptions]="groupOptions">
+                        <mat-list-item class="small-list-item" *ngFor="let list of assignContactList">
+                            <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.value }} </h3>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

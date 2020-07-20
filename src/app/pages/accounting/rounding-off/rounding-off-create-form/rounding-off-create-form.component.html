@@ -16,7 +16,7 @@
                 <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
                     <mat-label>Rounding Strategy</mat-label>
                     <mat-select formControlName="strategy">
-                        <mat-option *ngFor="let l of unitList" [value]="l">
+                        <mat-option *ngFor="let l of strategyList" [value]="l">
                             {{l}}
                         </mat-option>
                     </mat-select>
@@ -25,7 +25,7 @@
                 <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
                     <mat-label>Rounding Method</mat-label>
                     <mat-select formControlName="method">
-                        <mat-option *ngFor="let l of unitList" [value]="l">
+                        <mat-option *ngFor="let l of methodList" [value]="l">
                             {{l}}
                         </mat-option>
                     </mat-select>
@@ -38,7 +38,7 @@
                 <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
                     <mat-label>Select Adjusment Account</mat-label>
                     <mat-select formControlName="adjusment_account">
-                        <mat-option *ngFor="let l of unitList" [value]="l">
+                        <mat-option *ngFor="let l of adjustList" [value]="l">
                             {{l}}
                         </mat-option>
                     </mat-select>

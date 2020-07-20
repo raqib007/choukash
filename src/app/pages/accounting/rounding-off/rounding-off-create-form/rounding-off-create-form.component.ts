@@ -17,9 +17,9 @@ export class RoundingOffCreateFormComponent implements OnInit {
     showErrMsg = false;
     errMsg = '';
 
-    locationTypes = [];
-	locationGroup = [];
-	userGroup = [];
+    strategyList = ['Add A Rounding Line','Modify Amount'];
+	methodList = ['Up','Down','Half Up'];
+	adjustList = ['Up','Down','Half Up'];
 	
     selectedItems = [
         { user_group_id: '55c469b8-c5a3-11ea-b70f-1c1b0de07df2', user_group_name: 'Admin' },
@@ -53,67 +53,67 @@ export class RoundingOffCreateFormComponent implements OnInit {
         // this.getLocationType();
         // this.getLocationGroup();
     }
-    getUserGroupList(){
-        this.userService.getAll()
-		.subscribe(
-			res => {
-				res = res.filter((item : any) => item.is_active == true);
-				this.userGroup = res.map(l => {
-					let data = {
-						user_group_id : l.user_group_id,
-						user_group_name : l.user_group_name
-					};
-					return data;
-				});
-			},
-			err => {
-				this.notifyService.showError(err, "User Group");
-			},
-			() => {
+    // getUserGroupList(){
+    //     this.userService.getAll()
+	// 	.subscribe(
+	// 		res => {
+	// 			res = res.filter((item : any) => item.is_active == true);
+	// 			this.userGroup = res.map(l => {
+	// 				let data = {
+	// 					user_group_id : l.user_group_id,
+	// 					user_group_name : l.user_group_name
+	// 				};
+	// 				return data;
+	// 			});
+	// 		},
+	// 		err => {
+	// 			this.notifyService.showError(err, "User Group");
+	// 		},
+	// 		() => {
 
-			}
-		);
-    }
-    getLocationType(){
-        this.locationService.getAllLocationType()
-		.subscribe(
-			res => {
-				res = res.filter((item : any) => item.is_active == true);
-				this.locationTypes = res.map(l => {
-					let data = {
-						location_type_id : l.location_type_id,
-						location_type_name : l.location_type_name
-					};
-					return data;
-				});
-			},
-			err => {
-				this.notifyService.showError(err, "Location Type");
-			},
-			() => {
-			}
-		);
-    }
-    getLocationGroup(){
-        this.locationService.getAllLocationGroup()
-		.subscribe(
-			res => {
-				res = res.filter((item : any) => item.is_active == true);
-				this.locationGroup = res.map(l => {
-					let data = {
-						location_group_id : l.location_group_id,
-						location_group_name : l.location_group_name
-					};
-					return data;
-				});
-			},
-			err => {
-				this.notifyService.showError(err, "Location group");
-			},
-			() => {
-			}
-		);
-    }
+	// 		}
+	// 	);
+    // }
+    // getLocationType(){
+    //     this.locationService.getAllLocationType()
+	// 	.subscribe(
+	// 		res => {
+	// 			res = res.filter((item : any) => item.is_active == true);
+	// 			this.locationTypes = res.map(l => {
+	// 				let data = {
+	// 					location_type_id : l.location_type_id,
+	// 					location_type_name : l.location_type_name
+	// 				};
+	// 				return data;
+	// 			});
+	// 		},
+	// 		err => {
+	// 			this.notifyService.showError(err, "Location Type");
+	// 		},
+	// 		() => {
+	// 		}
+	// 	);
+    // }
+    // getLocationGroup(){
+    //     this.locationService.getAllLocationGroup()
+	// 	.subscribe(
+	// 		res => {
+	// 			res = res.filter((item : any) => item.is_active == true);
+	// 			this.locationGroup = res.map(l => {
+	// 				let data = {
+	// 					location_group_id : l.location_group_id,
+	// 					location_group_name : l.location_group_name
+	// 				};
+	// 				return data;
+	// 			});
+	// 		},
+	// 		err => {
+	// 			this.notifyService.showError(err, "Location group");
+	// 		},
+	// 		() => {
+	// 		}
+	// 	);
+    // }
     saveData() {
 		// this.form.value.is_active = true;
         if(this.form.value.user_id == ''){

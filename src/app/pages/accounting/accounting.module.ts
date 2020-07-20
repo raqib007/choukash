@@ -37,6 +37,8 @@ import { AdvancedComponent } from './advanced/advanced.component';
 import { IntegrationSetupComponent } from './integration-setup/integration-setup.component';
 import { RoundingOffComponent } from './rounding-off/rounding-off.component';
 import { RoundingOffCreateFormComponent } from './rounding-off/rounding-off-create-form/rounding-off-create-form.component';
+import { CostMethodComponent } from './sales/cost-method/cost-method.component';
+import { PaymentItemsComponent } from './sales/payment-items/payment-items.component';
 
 @NgModule({
 	imports: [
@@ -80,7 +82,9 @@ import { RoundingOffCreateFormComponent } from './rounding-off/rounding-off-crea
 		AdvancedComponent, 
 		IntegrationSetupComponent, 
 		RoundingOffComponent, 
-		RoundingOffCreateFormComponent
+		RoundingOffCreateFormComponent, 
+		CostMethodComponent, 
+		PaymentItemsComponent
 	],
 	exports: [AccountingComponent],
 	entryComponents: [

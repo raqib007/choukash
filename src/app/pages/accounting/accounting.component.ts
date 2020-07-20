@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./accounting.component.scss']
 })
 export class AccountingComponent implements OnInit {
-	selectedIndex = 0;
+	selectedIndex = 1;
 	selectedIndexChild = 0;
 	constructor() { }
 
