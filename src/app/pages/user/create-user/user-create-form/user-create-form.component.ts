@@ -39,21 +39,21 @@ export class UserCreateFormComponent implements OnInit {
 
         this.title = (user.user_id != '')?'Edit User':'Add New User';
         this.btnTitle = (user.user_id != '')?'UPDATE':'SAVE';
-		user.user_group = this.selectedItems;
+		// user.user_group = this.selectedItems;
         this.form = fb.group({
             first_name: [name, Validators.required],
             last_name: [name, Validators.required],
             user_name: [name, Validators.required],
-            note: [name, Validators.required],
-            location_type_id: [name, Validators.required],
-            location_group_id: [name, Validators.required],
-            location_type_name: [name, Validators.required],
-            location_group_name: [name, Validators.required],
+            note: [name],
+            location_type_id: [name],
+            location_group_id: [name],
+            location_type_name: [name],
+            location_group_name: [name],
             mobile: [name, Validators.required],
             email: [name, Validators.required],
             user_id: [name, Validators.required],
             password: [name, Validators.required],
-            user_group: [name, Validators.required],
+            user_group: [name],
             is_active: [name, Validators.required]
         });
         this.form.setValue(user);
