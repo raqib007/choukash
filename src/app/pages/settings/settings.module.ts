@@ -12,7 +12,9 @@ import { UserModule } from '../user/user.module';
 import { LocationModule} from '../location/location.module';
 import { BusinessModule } from '../business/business.module';
 import { ContactsModule } from '../contacts/contacts.module';
+import { AccountingModule } from '../accounting/accounting.module';
 import { ProductSettingsModule } from '../product-settings/product-settings.module';
+import { from } from 'rxjs';
 
 @NgModule({
 	imports: [
@@ -28,7 +30,8 @@ import { ProductSettingsModule } from '../product-settings/product-settings.modu
 		LocationModule,
 		BusinessModule,
 		ContactsModule,
-		ProductSettingsModule
+		ProductSettingsModule,
+		AccountingModule
 	],
 	declarations: [SettingsComponent],
 	entryComponents: [SettingsComponent]

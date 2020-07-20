@@ -1,0 +1,57 @@
+
+<h2 mat-dialog-title>{{title}}</h2>
+<form [formGroup]="form" >
+    <mat-dialog-content class="mat-typography">
+        <label *ngIf="showErrMsg" class="text-danger">{{errMsg}}</label>
+        <div fxFlex="100%">
+            <div fxLayout="row wrap" fxLayoutGap="25px">
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Rounding Off Name" type="text" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Rounding Precision" type="text" formControlName="precision">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Rounding Strategy</mat-label>
+                    <mat-select formControlName="strategy">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Rounding Method</mat-label>
+                    <mat-select formControlName="method">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Rounding Account" type="text" formControlName="account">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Adjusment Account</mat-label>
+                    <mat-select formControlName="adjusment_account">
+                        <mat-option *ngFor="let l of unitList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <span class="cdk-visually-hidden"></span>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close='no'>CANCEL</button>
+        <button mat-raised-button color="primary" cdkFocusInitial [disabled]="form.invalid" (click)="saveData()">{{btnTitle}}</button>
+    </mat-dialog-actions>
+</form>

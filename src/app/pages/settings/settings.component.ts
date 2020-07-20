@@ -10,7 +10,7 @@ import { isNgTemplate } from '@angular/compiler';
 	host: { '[@routeTransition]': '' }
 })
 export class SettingsComponent implements OnInit, AfterContentInit {
-	seletedIndex = 0;
+	seletedIndex = 5;
 	constructor() { }
 	sidebarList = [];
 	subHeaderName = "Business";
@@ -20,7 +20,8 @@ export class SettingsComponent implements OnInit, AfterContentInit {
 			{id:1,name:'Locations',pageName:'<app-location></app-location>'},
 			{id:2,name:'User',pageName:'<app-user></app-user>'},
 			{id:3,name:'Contacts',pageName:'<app-contacts></app-contacts>'},
-			{id:4,name:'Product Setting',pageName:'<app-contacts></app-contacts>'}
+			{id:4,name:'Product Setting',pageName:'<app-contacts></app-contacts>'},
+			{id:5,name:'Accounting',pageName:'<erp-accounting></erp-accounting>'}
 		];
 	}
 

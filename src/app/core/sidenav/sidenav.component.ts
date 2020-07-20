@@ -24,7 +24,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sidenavItems$ = this.store.select(fromRoot.getSidenavItems);
-    console.log('in side bar',this.sidenavItems$);
+    // console.log('in side bar',this.sidenavItems$);
     this.currentlyOpen$ = this.store.select(fromRoot.getSidenavCurrentlyOpen);
   }
 

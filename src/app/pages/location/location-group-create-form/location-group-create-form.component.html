@@ -3,7 +3,7 @@
 <mat-dialog-content [formGroup]="form" class="mat-typography">
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field fxFlex="100%" fxFlex.gt-sm>
-            <input matInput placeholder="Location Name" formControlName="locationName">
+            <input matInput placeholder="Location Name" formControlName="location_group_name">
         </mat-form-field>
     </div>
 
@@ -16,7 +16,7 @@
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field fxFlex="100%" fxFlex.gt-sm="100%">
-            <mat-select placeholder="Location Type"  formControlName="type">
+            <mat-select placeholder="Location Type"  formControlName="location_type_id">
                 <mat-option *ngFor="let l of locationTypes" [value]="l.id">
                   {{l.value}}
                 </mat-option>
@@ -26,7 +26,7 @@
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field fxFlex="100%" fxFlex.gt-sm>
-            <input matInput placeholder="Location Short Name" formControlName="shortName">
+            <input matInput placeholder="Location Short Name" formControlName="short_name">
         </mat-form-field>
     </div>
 
@@ -43,6 +43,8 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>CANCEL</button>
-    <button mat-raised-button color="primary" cdkFocusInitial (click)="save()">{{btnTitle}}</button>
+    <button mat-raised-button mat-dialog-close="no">CANCEL</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="saveData()">{{btnTitle}}</button>
 </mat-dialog-actions>
+
+<!-- [disabled]="form.invalid"  -->

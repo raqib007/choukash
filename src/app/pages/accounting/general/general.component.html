@@ -1,0 +1,117 @@
+
+<div fxLayout="row" fxLayout.gt-sm="row">
+    <div fxFlex="100" style="margin: 1rem 4rem 0 4rem;">
+        <div fxLayout="row wrap" fxLayoutGap="25px">
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>First Month of Fiscal Year</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Date Format</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of dateFormat" [value]="l.id">
+                        {{l.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>First Month of Income Tax Year</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Number Format</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of numberFormat" [value]="l.id">
+                        {{l.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Accounting Method</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Customer Format</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of customerFormat" [value]="l.id">
+                        {{l.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Accounting Closing Date</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Warm If Duplicate Check Number is Used</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Business Type</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Warm If Duplicate Bill Number is Used</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <input matInput placeholder="Tax Form" type="text">
+            </mat-form-field>
+
+            <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                <mat-label>Warm If Duplicate Journal Number is Used</mat-label>
+                <mat-select [(ngModel)] = "formData.fiscal" name="formData.fiscal">
+                    <mat-option *ngFor="let l of unitList" [value]="l">
+                        {{l}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <span class="cdk-visually-hidden"></span>
+        </div>
+    </div>
+</div>
+
+<div class="div-right-end">
+    <button mat-button color="primary">SAVE</button>
+    <button mat-button color="primary">EDIT</button>
+</div>

@@ -17,16 +17,16 @@ export class AuthGuard implements CanActivate {
     }
     private tokenExpired(token: string) {
         const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-        console.log('jwt token expiry = ',expiry);
+        // console.log('jwt token expiry = ',expiry);
         return (Math.floor((new Date).getTime() / 1000)) >= expiry;
     }
 
     canActivate(route : ActivatedRouteSnapshot, state: RouterStateSnapshot){
         if(localStorage.getItem('choukashUser')){
             /*** logged in so true true ***/
-            console.log('jwt token = ',this.userSubject.value.token);
+            // console.log('jwt token = ',this.userSubject.value.token);
             let hasExpried = this.tokenExpired(this.userSubject.value.token);
-            console.log('token expired = ',hasExpried);
+            // console.log('token expired = ',hasExpried);
             // if(hasExpried)
             //     return true;
             // else

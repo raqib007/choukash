@@ -1,0 +1,58 @@
+<div class="card alternative accounting">
+	<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>General</span>
+				</div>
+            </ng-template>
+            <mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndexChild" animationDuration="0ms" style="padding: 0 2rem;">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                            <span class="badge primary">1</span>
+                            <span>General</span>
+                        </div>
+                    </ng-template>
+                    <accounting-general></accounting-general>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                            <span class="badge primary">2</span>
+                            <span>Rounding Off</span>
+                        </div>
+                    </ng-template>
+                    <accounting-rounding-off></accounting-rounding-off>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-tab>
+        
+        <mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Sales</span>
+				</div>
+			</ng-template>
+			<accounting-sales></accounting-sales>
+		</mat-tab>
+		
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Advanced</span>
+				</div>
+			</ng-template>
+			<accounting-advanced></accounting-advanced>
+		</mat-tab>
+		
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Integrations Setup</span>
+				</div>
+			</ng-template>
+			<accounting-integration-setup></accounting-integration-setup>
+        </mat-tab>
+	</mat-tab-group>
+</div>

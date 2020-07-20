@@ -75,4 +75,40 @@ export class LocationService {
             })
         );
     }
+    saveLocationGroupData(data : Location) {
+        return this.http.post(`${environment.apiUrl}${this.baseUrlLgroup}/save`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    updateLocationGroupData(data : Location) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlLgroup}/update`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    deleteLocationGroup(id: string) {
+        const options = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            }),
+            body: {
+                user_group_id:id,
+                is_active : false
+            }
+        };
+        return this.http.delete(`${environment.apiUrl}${this.baseUrlLgroup}/delete/`,options)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
 }

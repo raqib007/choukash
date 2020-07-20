@@ -13,6 +13,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LocationGroupData } from '../../../dummy-data/location-group';
 import { LocationGroupCreateFormComponent } from '../location-group-create-form/location-group-create-form.component';
 import { ConfirmationDialogComponent } from '../../dialog/confirmation-dialog/confirmation-dialog.component';
+import { LocationService, NotificationService } from 'src/app/_services';
 
 @Component({
 	selector: 'erp-location-group-list',
@@ -30,21 +31,22 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 	locations: LocationGroup[];
 
 	formData = {
-		id : -1,
-		locationName : '',
+		location_group_id : '',
+		location_group_name : '',
+		location_type_id : '',
+		location_type_name : '',
 		description : '',
-		type: '',
-		shortName: '',
+		is_active: true,
+		short_name: '',
 		users:''
 	};
 
 	@Input()
 	columns: ListColumn[] = [
-		{ name: 'ID', property: 'id', visible: true, isModelProperty: true,width:'5%' },
-		{ name: 'Location Group', property: 'locationName', visible: true, isModelProperty: true ,width:'15%'},
-		{ name: 'Description', property: 'description', visible: true, isModelProperty: true ,width:'10%'},
-		{ name: 'Location Type', property: 'type', visible: true, isModelProperty: true,width:'10%' },
-		{ name: 'Location Short Name', property: 'shortName', visible: true, isModelProperty: true,width:'15%' },
+		{ name: 'Location Group', property: 'location_group_name', visible: true, isModelProperty: true ,width:'18%'},
+		{ name: 'Description', property: 'description', visible: true, isModelProperty: true ,width:'12%'},
+		{ name: 'Location Type', property: 'location_type_name', visible: true, isModelProperty: true,width:'10%' },
+		{ name: 'Location Short Name', property: 'short_name', visible: true, isModelProperty: true,width:'15%' },
 		{ name: 'Users', property: 'users', visible: true, isModelProperty: true ,width:'35%'},
 		{ name: 'Actions', property: 'actions', visible: true}
 	] as ListColumn[];
@@ -58,14 +60,48 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
-	constructor(private dialog: MatDialog) {}
+	constructor(
+		private dialog: MatDialog,
+		private locationService: LocationService,
+		private notifyService : NotificationService
+	) {}
 	
 	get visibleColumns() {
 		return this.columns.filter(column => column.visible).map(column => column.property);
 	}
-  
 	ngOnInit() {
-		this.locations = LocationGroupData.map(l => new LocationGroup(l));
+		this.locationService.getAllLocationGroup()
+		.subscribe(
+			res => {
+				res = res.filter((item : any) => item.is_active == true);
+				this.locations = res.map(l => {
+					let data = {
+						location_group_id : l.location_group_id,
+						location_group_name : l.location_group_name,
+						location_type_id : l.location_type_id,
+						location_type_name : "No location name",
+						description : l.description,
+						short_name : l.short_name,
+						is_active : l.is_active,
+						// properties : l.properties,
+						// created_on : l.created_on,
+						// created_by : l.created_by,
+						// updated_on : l.updated_on,
+						// updated_by : l.updated_by,
+						users : ''
+					};
+					return new LocationGroup(data);
+				});
+			},
+			err => {
+				this.notifyService.showError(err, "User Group");
+			},
+			() => {
+				this.prepareData();
+			}
+		);
+	}
+	prepareData(){
 		this.subject$.next(this.locations);
 		this.data$ = this.subject$.asObservable();
 		this.database = new ListDatabase<LocationGroup>();
@@ -79,13 +115,6 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 		});
 		this.dataSource = new ListDataSource<LocationGroup>(this.database, this.sort, this.paginator, this.columns);
 	}
-  
-	indexNumber:number = 0;  
-	
-	indexItem(indexValue){
-		this.indexNumber =  Number(indexValue);
-	}
-	
 	/* Add and Edit Funtion For Location Group */
 	editGroup(location){
 		const dialogConfig = new MatDialogConfig();
@@ -98,16 +127,20 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
         dialogRef.afterClosed().subscribe(
             val => console.log("Dialog output:", val)
 		);
-		
-		// this.dialog.open(LocationGroupCreateFormComponent, {
-		// 	data: location
-		// }).afterClosed().subscribe(resp => {
-		// if (resp) {
-		// 	const index = this.locations.findIndex((existinglocation) => existinglocation.id === resp.id);
-		// 	this.locations[index] = new LocationGroup(resp);
-		// 	this.subject$.next(this.locations);
-		// }
-		// });
+		dialogRef.afterClosed().subscribe(
+			val => {
+				if(val == 'no'){
+
+				}else{
+					if(location.location_group_id == ''){
+						this.notifyService.showSuccess("Location group data has been successfully saved!!", "Location Group");
+					}else{
+						this.notifyService.showSuccess("Location group data has been successfully updated!!", "Location Group");
+					}
+					this.ngOnInit();
+				}
+			}
+        );
 	}
 	/* Delete Funtion For Location Group */
 	deleteGroup(row){
@@ -116,10 +149,17 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 			data: {id: row.id, msg: 'Are you sure want to delete this record?'}
 		});
 		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed');
+			if(result == 'yes'){
+				this.locationService.updateLocationGroupData(row.location_group_id).subscribe((res : any) =>{
+					if(res.code == 200){
+						this.notifyService.showSuccess("Location group data has been successfully deleted!!", "Location Group");
+						this.ngOnInit();
+					}else{
+						this.notifyService.showError(res.message, "Location Group");
+					}
+				});
+			}
 		});
-		// this.locations.splice(this.locations.findIndex((existinglocation) => existinglocation.id === location.id), 1);
-		// this.subject$.next(this.locations);
 	}
 	onFilterChange(value) {
 		if (!this.dataSource) {

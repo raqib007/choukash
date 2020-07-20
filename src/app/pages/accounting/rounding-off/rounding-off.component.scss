@@ -1,0 +1,23 @@
+@import "../../../../styles/_var.scss";
+
+.card{
+	.content{
+		max-height: calc(100vh - 329px)!important;
+        overflow: auto;
+	}
+	padding: 0px!important;
+	@include responsivePadding();
+	.move-inventory{
+		.mat-raised-button.mat-warn{
+			background-color: #f48e36db!important;
+		}
+		table.mat-table{
+			width: 100%!important;
+		}
+    }
+    
+    // .mat-table{
+    //     height: calc(80vh - 269px)!important;
+    //     overflow: auto!important;
+    // }
+}
