@@ -31,57 +31,45 @@
                 </div>
             </div>
 
-            <div fxLayout="row wrap" fxLayoutGap="25px" style="margin-top: 15px;margin-bottom: 15px;">
-                <button mat-icon-button matTooltip="Add Attribute">Add New Payment Term<mat-icon>add</mat-icon></button>
+            <div fxLayout="row wrap" fxLayoutGap="25px">
+                <button mat-icon-button>Add New Payment Term<mat-icon>add</mat-icon></button>
             </div>
 
-            <div fxLayout="row" fxLayout.gt-sm="row" style="margin-top: 15px;margin-bottom: 15px;">
-
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef>Payment Term Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                <ng-container class="checkbox1" *ngFor="let column of columns">
+                    <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+                        <mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
                     </ng-container>
-                  
-                    <ng-container matColumnDef="condition">
-                        <th mat-header-cell *matHeaderCellDef> Condition </th>
-                        <td mat-cell *matCellDef="let element"> {{element.condition}} </td>
-                    </ng-container>
-                  
-                    <ng-container matColumnDef="dueNoDate">
-                        <th mat-header-cell *matHeaderCellDef> Due After No of Days </th>
-                        <td mat-cell *matCellDef="let element"> {{element.dueNoDate}} </td>
-                    </ng-container>
-                  
-                    <ng-container matColumnDef="dueDateMonth">
-                        <th mat-header-cell *matHeaderCellDef> Due on Fixed Date of Month </th>
-                        <td mat-cell *matCellDef="let element"> {{element.dueDateMonth}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="actions">
-                        <th mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header>Action</th>
-                        <td class="actions-cell" *matCellDef="let row">
-                            <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
-                                <mat-icon>more_horiz</mat-icon>
+                </ng-container>
+                
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+                    <mat-cell class="actions-cell" *matCellDef="let row">
+                        <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+    
+                        <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+                            <button mat-menu-item>
+                                <span>Active</span>
                             </button>
-
-                            <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
-                                <button mat-menu-item>
-                                    <span>Set as Inactive</span>
-                                </button>
-                                <button mat-menu-item>
-                                    <span>Set as Active</span>
-                                </button>
-                            </mat-menu>
-                        </td>
-                    </ng-container>
-                  
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-            </div>
+                            <button mat-menu-item>
+                                <span>Inactive</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+            </mat-table>
         </div>
 
-
+        
+    </div>
+    <div class="div-right-end">
+        <button mat-button color="primary">SAVE</button>
+        <button mat-button color="primary">EDIT</button>
     </div>
 </div>
