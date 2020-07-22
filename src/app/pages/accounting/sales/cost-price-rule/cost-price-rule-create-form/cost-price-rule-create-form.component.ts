@@ -246,4 +246,7 @@ export class CostPriceRuleCreateFormComponent implements OnInit{
 		this.dataSource.filter = value;
 	}
 	ngOnDestroy() {}
+	deleteProduct(row){
+
+	}
 }

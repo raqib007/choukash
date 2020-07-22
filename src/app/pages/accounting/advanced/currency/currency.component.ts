@@ -16,6 +16,7 @@ export class CurrencyComponent implements OnInit {
 		{id:3,value:'GBP'},
 		{id:4,value:'BDT'}
 	];
+	strategyList = [];
 	groupOptions: SortablejsOptions = {
 		group: 'testGroup',
 		handle: '.drag-handle',
