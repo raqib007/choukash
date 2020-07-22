@@ -1,0 +1,105 @@
+
+<div class="card border space">
+    <div class="content sales-price-rule" fxLayout="row">
+        <div fxFlex="100%">
+            <div fxLayout="row wrap" fxLayoutGap="25px" style="margin-bottom: 15px;">
+                <button mat-raised-button color="primary" (click)="addPayment()">CREATE PRICE RULE<mat-icon>add</mat-icon></button>
+            </div>
+
+            <!-- <div fxLayout.gt-sm="row wrap" fxLayoutGap="25px" class="div-search">
+                <div fxFlex.xs="calc(33.3%-25px)" fxFlex="calc(33.3%-25px)" fxLayout="column">
+                    <label fxFlex>Category</label>
+                    <div fxFlex>
+                        <div class="ng-autocomplete">
+                            <ng-autocomplete [data]="locationType"
+                                placeHolder="Enter location type" 
+                                [searchKeyword]="searchKeyword" 
+                                (selected)='selectEvent($event)'
+                                (inputChanged)='onChangeSearch($event)' 
+                                (inputFocused)='onFocused($event)' 
+                                [itemTemplate]="itemTemplate"
+                                [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.value"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div fxFlex.xs="calc(33.3%-25px)" fxFlex="calc(33.3%-25px)" fxLayout="column">
+                    <label fxFlex>Brand</label>
+                    <div fxFlex>
+                        <div class="ng-autocomplete">
+                            <ng-autocomplete [data]="locationName" 
+                                placeHolder="Enter location" 
+                                [searchKeyword]="searchKeyword" 
+                                (selected)='selectEvent($event)'
+                                (inputChanged)='onChangeSearch($event)' 
+                                (inputFocused)='onFocused($event)' 
+                                [itemTemplate]="itemTemplate"
+                                [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.value"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div fxFlex.xs="calc(33.3%-25px)" fxFlex="calc(33.3%-25px)" fxLayout="column">
+                    <label fxFlex>Search Product</label>
+                    <div fxFlex>
+                        <div class="ng-autocomplete">
+                            <ng-autocomplete [data]="contactType"
+                                placeHolder="Enter contact type"  
+                                [searchKeyword]="searchKeyword" 
+                                (selected)='selectEvent($event)'
+                                (inputChanged)='onChangeSearch($event)' 
+                                (inputFocused)='onFocused($event)' 
+                                [itemTemplate]="itemTemplate"
+                                [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.value"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                <ng-container class="checkbox1" *ngFor="let column of columns">
+                    <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+                        <mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
+                    </ng-container>
+                </ng-container>
+                
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header width="10%">Action</mat-header-cell>
+                    <mat-cell class="actions-cell" *matCellDef="let row">
+                        <button  mat-icon-button color="primary" (click)="editRule(row)"><mat-icon>edit</mat-icon></button>
+                        <button  mat-icon-button color="primary" (click)="deleteRule(row)"><mat-icon>delete</mat-icon></button>
+                    </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+</div>

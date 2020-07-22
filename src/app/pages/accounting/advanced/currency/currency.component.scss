@@ -1,0 +1,71 @@
+@import "../../../../../styles/_var.scss";
+
+.advanced-currency{
+	.info-msg{
+		margin: 0!important;
+		font-size: 12px!important;
+		color:#616161 !important;
+		text-align: center!important;
+	}
+	.end-msg p{
+		color: #adadad;
+		display: block;
+		font-size: 10px;
+		margin: 0;
+	}
+	.p-drag{
+		color: #adadad;
+		font-size: 13px;
+    	margin: 0;
+	}
+	.list-container {
+		margin: 12px;
+		.list {
+			margin: 24px;
+		}
+		mat-list {
+			padding-top: 0;
+			max-width: 100%;
+		}
+		.mat-toolbar-row, .mat-toolbar-single-row{
+			font-size: 16px!important;
+			height: 50px!important;
+		}
+		.info-msg{
+			margin: 0!important;
+			font-size: 12px!important;
+			color:#616161 !important;
+			text-align: center!important;
+		}
+	}
+	mat-icon.left-right-compare {
+		text-shadow: 0px 0px 20px #444;
+		font-size: 60px;
+		width: 60px;
+		height: 60px;
+		color: white;
+	}
+	
+	.small-list-item {
+		padding-left: 6px;
+		padding-right: 16px;
+	}
+	
+	.draggable {
+		cursor: move;
+		cursor: -webkit-grabbing;
+	}
+	
+	.drag-handle {
+		cursor: move;
+		cursor: -webkit-grabbing;
+		vertical-align: middle;
+		margin-right: 8px;
+	}
+	
+	.sortable-ghost {
+		opacity: .5;
+	}
+}
+
+  

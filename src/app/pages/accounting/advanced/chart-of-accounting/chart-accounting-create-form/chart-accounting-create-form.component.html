@@ -1,0 +1,48 @@
+
+<h2 mat-dialog-title>{{title}}</h2>
+<form [formGroup]="form" >
+    <mat-dialog-content class="mat-typography">
+        <label *ngIf="showErrMsg" class="text-danger">{{errMsg}}</label>
+        <div fxFlex="60%" fxFlexOffset="20%">
+            <div fxLayout="row wrap">
+
+                <mat-form-field fxFlex.xs="100%" fxFlex="100%">
+                    <mat-label>Account Type</mat-label>
+                    <mat-select formControlName="type">
+                        <mat-option *ngFor="let l of strategyList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="100%" fxFlex="100%">
+                    <input matInput placeholder="Account Name" type="text" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="100%" fxFlex="100%">
+                    <mat-label>Detail Type</mat-label>
+                    <mat-select formControlName="detail">
+                        <mat-option *ngFor="let l of methodList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="100%" fxFlex="calc(100%-25px)">
+                    <mat-label>Sub Account of</mat-label>
+                    <mat-select formControlName="sub_account">
+                        <mat-option *ngFor="let l of adjustList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close='no'>CANCEL</button>
+        <button mat-raised-button color="primary" cdkFocusInitial [disabled]="form.invalid" (click)="saveData()">{{btnTitle}}</button>
+    </mat-dialog-actions>
+</form>

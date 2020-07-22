@@ -1,83 +1,17 @@
 
 <div class="card border space">
     <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
-        <div class="name">Location</div>
+        <div class="name">Vendor Information</div>
     </div>
     <div class="content product-location">
-
-        <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-            <mat-form-field>
-                <mat-label>No Default Vendor</mat-label>
-                <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Select Default Vendor for This Product</mat-label>
-                <mat-select [(ngModel)] = "formData.location" name="formData.location">
-                    <mat-option *ngFor="let l of locationGroup" [value]="l.id">
-                        {{l.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-            <mat-form-field>
-                <mat-label>Insert Vendor Part Number (For this product)</mat-label>
-                <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Insert Lead Time (For this vendor)</mat-label>
-                <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
-            </mat-form-field>
-        </div>
-
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-            <mat-form-field>
-                <mat-label>Insert Last Cost (For this vendor)</mat-label>
-                <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
-            </mat-form-field>
-            
-            <mat-form-field>
-                <mat-label>Insert Unit of Measurement (For this vendor)</mat-label>
-                <mat-select [(ngModel)] = "formData.location" name="formData.location">
-                    <mat-option *ngFor="let l of locationGroup" [value]="l.id">
-                        {{l.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-            <mat-form-field>
-                <mat-label>Insert Last Date of Purchase (For this vendor)</mat-label>
-                <mat-select [(ngModel)] = "formData.location" name="formData.location">
-                    <mat-option *ngFor="let l of locationGroup" [value]="l.id">
-                        {{l.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-            <div fxFlex="50">
-                <label>Add Multiple Vendor for This Product</label>
-                <button (click)="addVendor()" matTooltip="Add" mat-icon-button color="primary">
-					<mat-icon>add</mat-icon>
-				</button>
-            </div>
-        </div> -->
-
         <div *ngFor="let vendor of vendorList;let i = index">
             <div fxLayout="column" fxLayout.gt-sm="row">
-                <!-- <label>Vendor {{vendor.id}}</label> -->
-                <mat-checkbox color="primary" matTooltip="Select as Default Vendor Vendor">Vendor {{vendor.id}}</mat-checkbox>
+                <mat-checkbox color="primary" matTooltip="Select as Default Vendor">Vendor {{vendor.id}}</mat-checkbox>
             </div>
             
             <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
                 <mat-form-field>
-                    <mat-label>Select Default Vendor for This Product</mat-label>
+                    <mat-label>Select Vendor for This Product</mat-label>
                     <mat-select [(ngModel)] = "formData.location" name="formData.location">
                         <mat-option *ngFor="let l of locationGroup" [value]="l.id">
                             {{l.name}}

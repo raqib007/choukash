@@ -1,29 +1,27 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { List } from '../../../../core/list/list.interface';
 import { ListColumn } from '../../../../core/list/list-column.model';
-import { ListDataSource } from '../../../../core/list/list-datasource';
-import { ListDatabase } from '../../../../core/list/list-database';
-import { componentDestroyed } from '../../../../core/utils/component-destroyed';
-import { filter, takeUntil } from 'rxjs/operators';
-import { Observable, ReplaySubject } from 'rxjs';
-import { StockControl } from '../../../../model/stock-control';
 import { FormGroup } from '@angular/forms';
 import { SortablejsOptions } from 'ngx-sortablejs';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { NotificationService } from 'src/app/_services';
+import { PaymentItemsCreateFormComponent } from './payment-items-create-form/payment-items-create-form.component';
 
-export interface PeriodicElement {
+export interface PaymentTerm {
 	name: string;
 	condition: string;
 	dueNoDate: string;
 	dueDateMonth: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: PaymentTerm[] = [
 	{name: '', condition: '', dueNoDate: '', dueDateMonth: ''},
 	{name: '', condition: '', dueNoDate: '', dueDateMonth: ''},
 	{name: '', condition: '', dueNoDate: '', dueDateMonth: ''},
 	{name: '', condition: '', dueNoDate: '', dueDateMonth: ''}
 ];
+
+const form_data: PaymentTerm = {name: '', condition: '', dueNoDate: '', dueDateMonth: ''};
+
 
 @Component({
 	selector: 'sales-payment-items',
@@ -58,12 +56,38 @@ export class PaymentItemsComponent implements OnInit {
 	] as ListColumn[];
 
     constructor(
+		public dialog: MatDialog,
+		private notifyService : NotificationService
 	) {
+		
 	}
 	get visibleColumns() {
 		return this.columns.filter(column => column.visible).map(column => column.property);
 	}
     ngOnInit(): void {
 		
+	}
+	addPayment(){
+		const dialogConfig = new MatDialogConfig();
+		dialogConfig.disableClose = true;
+		dialogConfig.autoFocus = true;
+		dialogConfig.maxWidth = '100vw';
+		dialogConfig.width = '60vw';
+		dialogConfig.data = form_data;
+		const dialogRef = this.dialog.open(PaymentItemsCreateFormComponent,dialogConfig);
+        dialogRef.afterClosed().subscribe(
+			val => {
+				if(val == 'no'){
+
+				}else{
+					if(form_data.name == ''){
+						this.notifyService.showSuccess("User data has been successfully saved!!", "User");
+					}else{
+						this.notifyService.showSuccess("User data has been successfully updated!!", "User");
+					}
+					this.ngOnInit();
+				}
+			}
+		);
 	}
 }

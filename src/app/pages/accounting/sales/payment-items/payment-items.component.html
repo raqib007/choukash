@@ -1,6 +1,6 @@
 
 <div class="card border space">
-    <div class="content sales-cost-price" fxLayout="row">
+    <div class="content sales-payment-term" fxLayout="row">
         <div fxFlex="100%">
 
             <div fxLayout="row">
@@ -31,8 +31,8 @@
                 </div>
             </div>
 
-            <div fxLayout="row wrap" fxLayoutGap="25px">
-                <button mat-icon-button>Add New Payment Term<mat-icon>add</mat-icon></button>
+            <div fxLayout="row wrap" fxLayoutGap="25px" style="margin-bottom: 15px;">
+                <button mat-button (click)="addPayment()">Add New Payment Term<mat-icon>add</mat-icon></button>
             </div>
 
             <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -52,10 +52,10 @@
     
                         <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
                             <button mat-menu-item>
-                                <span>Active</span>
+                                <span>Set as Inactive</span>
                             </button>
                             <button mat-menu-item>
-                                <span>Inactive</span>
+                                <span>Set as Active</span>
                             </button>
                         </mat-menu>
                     </mat-cell>

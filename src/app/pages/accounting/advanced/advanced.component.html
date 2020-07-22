@@ -1,1 +1,38 @@
-<p>advanced works!</p>
+<mat-tab-group class="form-wizard" [(selectedIndex)]="tabIndex" animationDuration="0ms" style="padding: 0 2rem;">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">1</span>
+                <span>Chart of Accounting</span>
+            </div>
+        </ng-template>
+        <advanced-chart-of-accounting></advanced-chart-of-accounting>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">2</span>
+                <span>Currency</span>
+            </div>
+        </ng-template>
+        <advanced-currency></advanced-currency>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">3</span>
+                <span>Payment Method</span>
+            </div>
+        </ng-template>
+        <advanced-payment-method></advanced-payment-method>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                <span class="badge primary">4</span>
+                <span>Customs Duty Codes</span>
+            </div>
+        </ng-template>
+        <advanced-customs-duty-codes></advanced-customs-duty-codes>
+    </mat-tab>
+</mat-tab-group>

@@ -28,5 +28,13 @@
 		table.mat-table{
 			width: 100%!important;
 		}
+		.mat-table{
+			width: 100%!important;
+			height: calc(50vh - 75px) !important;
+    		overflow: auto !important;
+		}
+		.elastic{
+			width: 100%!important;
+		}
 	}
 }

@@ -1,0 +1,89 @@
+<div class="card border space">
+    <div class="content advanced-currency" fxLayout="row">
+        <div fxFlex="100%">
+            <p style="margin-top: 0;font-size: 14px;">Select Currency</p> 
+
+            <div fxLayout="row wrap" fxLayoutGap="25px">
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Home Currency</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let l of strategyList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Multicurrency</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let l of strategyList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div fxFlex.xs="calc(20%-25px)" fxFlex="calc(20%-25px)" style='display: flex;align-items: center;font-size: 13px;'>
+                    <label>Use Currency Conversion For</label>
+                </div>
+                <!-- <mat-form-field fxFlex.xs="calc(20%-25px)" fxFlex="calc(20%-25px)">
+                    <mat-checkbox [checked]="false" color="primary">Sales</mat-checkbox>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(20%-25px)" fxFlex="calc(20%-25px)">
+                    <mat-checkbox [checked]="false" color="primary">Purchase</mat-checkbox>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(20%-25px)" fxFlex="calc(20%-25px)">
+                    <mat-checkbox [checked]="false" color="primary">None</mat-checkbox>
+                </mat-form-field> -->
+
+                <mat-radio-group fxLayout="row" fxLayoutGap="50px" color="accent" fxFlex.xs="calc(80%-25px)" fxFlex="calc(80%-25px)">
+                    <mat-checkbox [checked]="false" color="primary">Sales</mat-checkbox>
+                    <mat-checkbox [checked]="false" color="primary">Purchase</mat-checkbox>
+                    <mat-checkbox [checked]="false" color="primary">None</mat-checkbox>
+                </mat-radio-group>
+
+                <span class="cdk-visually-hidden"></span>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="end end" class="end-msg" style="margin-top: 15px;margin-right:25px;">
+                <p fxFlex.gt-sm>ONCE YOU TURN ON MULTICURRENCY : </p>
+                <p fxFlex.gt-sm>a. You can not undo Multicurrency.</p>
+                <p fxFlex.gt-sm>b. You can not change your home currency.</p>
+                <p fxFlex.gt-sm>c. Multi Currency options are shown in different forms.</p>
+            </div>
+
+            <div fxLayout="column">
+                <p fxFlex class="p-drag">If Multicurrency is selected then select others currencies to be added from the list : </p>
+
+                <div fxFlex="100">
+                    <div class="list-container" fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center">
+                        <!-- <p style="text-align: center;">List of Currencies</p> -->
+                        <div class="list mat-elevation-z4">
+                            <mat-toolbar>Select  Currencies</mat-toolbar>
+                            <mat-list [sortablejs]="currencyList" [sortablejsOptions]="groupOptions">
+                                <mat-list-item class="small-list-item" *ngFor="let list of currencyList">
+                                    <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.value }} </h3>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+                    
+                        <mat-icon class="left-right-compare">compare_arrows</mat-icon>
+
+                        <!-- <p>Multicurrency Added</p> -->
+                        <div class="list mat-elevation-z4">
+                            <mat-toolbar>My Currencies</mat-toolbar>
+                                <mat-list [sortablejs]="assignContactList" [sortablejsOptions]="groupOptions">
+                                <mat-list-item class="small-list-item" *ngFor="let list of assignContactList">
+                                    <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.value }} </h3>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

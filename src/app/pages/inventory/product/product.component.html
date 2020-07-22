@@ -12,7 +12,7 @@
 			</div>
 
 			<div fxLayout="column" fxFlex="100%" fxFlex.gt-sm="85%" >
-				<elastic-breadcrumbs [currentPage]="'General'" [names]="['Inventory']"  [header]="'primary'"></elastic-breadcrumbs>
+				<elastic-breadcrumbs [currentPage]="subHeaderName" [names]="['Inventory']"  [header]="'primary'"></elastic-breadcrumbs>
 				<div class="div-product-details">
 					<div class="div-fixed-button" fxLayout.gt-sm="row" fxLayoutGap="24px" fxLayoutAlign="center center">
 						<button mat-raised-button>SAVE</button>
@@ -64,31 +64,27 @@
 						</div>
 
 						<div *ngIf="seletedIndex == 10">
-							<inventory-product-add-initial-inventory></inventory-product-add-initial-inventory>
+							<inventory-product-general></inventory-product-general>
 						</div>
 
 						<div *ngIf="seletedIndex == 11">
-							<inventory-move-inventory></inventory-move-inventory>
+							<inventory-product-add-initial-inventory></inventory-product-add-initial-inventory>
 						</div>
 
 						<div *ngIf="seletedIndex == 12">
-							<inventory-product-replenishment></inventory-product-replenishment>
-						</div>
-
-						<div *ngIf="seletedIndex == 13">
 							<inventory-move-inventory></inventory-move-inventory>
 						</div>
 
+						<div *ngIf="seletedIndex == 13">
+							<inventory-product-general></inventory-product-general>
+						</div>
+
+						<div *ngIf="seletedIndex == 14">
+							<inventory-product-general></inventory-product-general>
+						</div>
+
 						<div *ngIf="seletedIndex == 15">
-							<inventory-product-replenishment></inventory-product-replenishment>
-						</div>
-
-						<div *ngIf="seletedIndex == 16">
-							<inventory-product-replenishment></inventory-product-replenishment>
-						</div>
-
-						<div *ngIf="seletedIndex == 17">
-							<inventory-product-replenishment></inventory-product-replenishment>
+							<inventory-product-general></inventory-product-general>
 						</div>
 
 					</div>

@@ -1,6 +1,6 @@
 @import "../../../../../styles/_var.scss";
 
-.sales-cost-price{
+.sales-payment-term{
 	.info-msg{
 		margin: 0!important;
 		font-size: 12px!important;
@@ -9,6 +9,9 @@
 	}
 	.mat-table{
 		width: 100%!important;
+	}
+	.div-right-end{
+		margin-top: 0px;
 	}
 }
 .list-container {
@@ -47,14 +50,12 @@ mat-icon.left-right-compare {
 	cursor: move;
 	cursor: -webkit-grabbing;
 }
-
 .drag-handle {
 	cursor: move;
 	cursor: -webkit-grabbing;
 	vertical-align: middle;
 	margin-right: 8px;
 }
-
 .sortable-ghost {
 	opacity: .5;
 }

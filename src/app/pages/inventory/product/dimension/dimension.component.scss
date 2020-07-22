@@ -1,7 +1,8 @@
 .pro-dimension{
-    .mat-form-field{
-        // width: 1px!important;
-    }
+    .content{
+		height: calc(100vh - 329px)!important;
+		overflow: auto;
+	}
     .div-center{
         display: flex;align-items: center;font-size: 13px;
     }

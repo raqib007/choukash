@@ -1,0 +1,142 @@
+
+<h2 mat-dialog-title>{{title}}</h2>
+<form [formGroup]="form" >
+    <mat-dialog-content class="mat-typography">
+        <label *ngIf="showErrMsg" class="text-danger">{{errMsg}}</label>
+        <div fxFlex="100%">
+            <div fxLayout="row wrap" fxLayoutGap="25px">
+                <mat-form-field fxFlex.xs="calc(25%-25px)" fxFlex="calc(25%-25px)">
+                    <input matInput placeholder="Price Group Name" type="text" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(25%-25px)" fxFlex="calc(25%-25px)">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="startpicker" formControlName="startdate">
+                    <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startpicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(25%-25px)" fxFlex="calc(25%-25px)">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="endpicker" formControlName="enddate">
+                    <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endpicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Customers</mat-label>
+                    <mat-select formControlName="customer_id">
+                        <mat-option *ngFor="let l of currencyList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Select Inventory Type</mat-label>
+                    <mat-select formControlName="inventory_type_id">
+                        <mat-option *ngFor="let l of currencyList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(33.3%-25px)" fxFlex="calc(33.3%-25px)">
+                    <mat-label>Select Category</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option *ngFor="let l of categoryList" [value]="l.id">
+                            {{l.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(33.3%-25px)" fxFlex="calc(33.3%-25px)">
+                    <mat-label>Select Brand</mat-label>
+                    <mat-select formControlName="brand">
+                        <mat-option *ngFor="let l of brandList" [value]="l.id">
+                            {{l.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(33.3%-25px)" fxFlex="calc(33.3%-25px)">
+                    <mat-label>Select Product</mat-label>
+                    <mat-select formControlName="product_id">
+                        <mat-option *ngFor="let l of productList" [value]="l.id">
+                            {{l.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Change Sales Price By</mat-label>
+                    <mat-select formControlName="sales_price_id">
+                        <mat-option *ngFor="let l of salesList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Adjustment Type</mat-label>
+                    <mat-select formControlName="adjust_type_id">
+                        <mat-option *ngFor="let l of adjustTypeList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <input matInput placeholder="Fixed Amount" type="text" formControlName="fixed_amount">
+                </mat-form-field>
+
+                <mat-form-field fxFlex.xs="calc(50%-25px)" fxFlex="calc(50%-25px)">
+                    <mat-label>Rounding</mat-label>
+                    <mat-select formControlName="rounding_type_id">
+                        <mat-option *ngFor="let l of roundingList" [value]="l">
+                            {{l}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <span class="cdk-visually-hidden"></span>
+            </div>
+            <div fxLayout="row" *ngIf="true">
+                <mat-table #table class="mat-elevation-z8" matSort cdkFocusInitial [dataSource]="dataSource">
+                    <ng-container class="checkbox1" *ngFor="let column of columns">
+                        <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+                            <mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
+                        </ng-container>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="8%">Action</mat-header-cell>
+                        <mat-cell class="actions-cell" *matCellDef="let row">
+                            <button  mat-icon-button color="primary" (click)="deleteUser(row)"><mat-icon>delete</mat-icon></button>
+                        </mat-cell>
+                    </ng-container>
+                
+                    <mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+                </mat-table>
+                
+                <!-- <mat-paginator class="paginator" 
+                    [pageIndex]="0"
+                    [pageSizeOptions]="[5, 10, 25, 100]"
+                    [length]="resultsLength" 
+                    [pageSize]="pageSize">
+                </mat-paginator>
+                 -->
+                
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close='no'>CANCEL</button>
+        <button mat-raised-button color="primary" cdkFocusInitial [disabled]="form.invalid" (click)="saveData()">{{btnTitle}}</button>
+    </mat-dialog-actions>
+</form>
+
+

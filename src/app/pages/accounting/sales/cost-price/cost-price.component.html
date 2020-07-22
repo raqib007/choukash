@@ -1,0 +1,44 @@
+
+<div class="card border space">
+    <div class="content sales-payment-term" fxLayout="row">
+        <div fxFlex="100%">
+            <div fxLayout="row wrap" fxLayoutGap="25px" style="margin-bottom: 15px;">
+                <button mat-button (click)="addPayment()">CREATE PRICE GROUPS<mat-icon>add</mat-icon></button>
+            </div>
+
+            <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                <ng-container class="checkbox1" *ngFor="let column of columns">
+                    <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+                        <mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
+                    </ng-container>
+                </ng-container>
+                
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header width="15%">Action</mat-header-cell>
+                    <mat-cell class="actions-cell" *matCellDef="let row" width="15%">
+                        <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+    
+                        <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+                            <button mat-menu-item>
+                                <span>Set as Inactive</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Set as Active</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+    <div class="div-right-end">
+        <button mat-button color="primary">SAVE</button>
+        <button mat-button color="primary">EDIT</button>
+    </div>
+</div>

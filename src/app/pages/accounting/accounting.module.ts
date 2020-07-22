@@ -39,6 +39,16 @@ import { RoundingOffComponent } from './rounding-off/rounding-off.component';
 import { RoundingOffCreateFormComponent } from './rounding-off/rounding-off-create-form/rounding-off-create-form.component';
 import { CostMethodComponent } from './sales/cost-method/cost-method.component';
 import { PaymentItemsComponent } from './sales/payment-items/payment-items.component';
+import { PaymentItemsCreateFormComponent } from './sales/payment-items/payment-items-create-form/payment-items-create-form.component';
+import { CostPriceComponent } from './sales/cost-price/cost-price.component';
+import { CostPriceFormComponent } from './sales/cost-price/cost-price-form/cost-price-form.component';
+import { CostPriceRuleComponent } from './sales/cost-price-rule/cost-price-rule.component';
+import { CostPriceRuleCreateFormComponent } from './sales/cost-price-rule/cost-price-rule-create-form/cost-price-rule-create-form.component';
+import { ChartOfAccountingComponent } from './advanced/chart-of-accounting/chart-of-accounting.component';
+import { CurrencyComponent } from './advanced/currency/currency.component';
+import { PaymentMethodComponent } from './advanced/payment-method/payment-method.component';
+import { CustomsDutyCodesComponent } from './advanced/customs-duty-codes/customs-duty-codes.component';
+import { ChartAccountingCreateFormComponent } from './advanced/chart-of-accounting/chart-accounting-create-form/chart-accounting-create-form.component';
 
 @NgModule({
 	imports: [
@@ -84,11 +94,25 @@ import { PaymentItemsComponent } from './sales/payment-items/payment-items.compo
 		RoundingOffComponent, 
 		RoundingOffCreateFormComponent, 
 		CostMethodComponent, 
-		PaymentItemsComponent
+		PaymentItemsComponent, 
+		PaymentItemsCreateFormComponent, 
+		CostPriceComponent, 
+		CostPriceFormComponent, 
+		CostPriceRuleComponent, 
+		CostPriceRuleCreateFormComponent, 
+		ChartOfAccountingComponent, 
+		CurrencyComponent, 
+		PaymentMethodComponent, 
+		CustomsDutyCodesComponent, 
+		ChartAccountingCreateFormComponent
 	],
 	exports: [AccountingComponent],
 	entryComponents: [
-		RoundingOffCreateFormComponent
+		RoundingOffCreateFormComponent,
+		PaymentItemsCreateFormComponent,
+		CostPriceFormComponent,
+		CostPriceRuleCreateFormComponent,
+		ChartAccountingCreateFormComponent
 	]
 })
 export class AccountingModule { }
