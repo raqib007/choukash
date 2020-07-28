@@ -16,8 +16,8 @@
                 <mat-form-field>
                     <mat-label>Select Business Type for Tax Form</mat-label>
                     <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
-                        <mat-option *ngFor="let l of businessTypes" [value]="l">
-                            {{l}}
+                        <mat-option *ngFor="let l of businessTypes" [value]="l.id">
+                            {{l.value}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -35,8 +35,8 @@
                 <mat-form-field>
                     <mat-label>Select Industry Type</mat-label>
                     <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
-                        <mat-option *ngFor="let l of industryType" [value]="l">
-                            {{l}}
+                        <mat-option *ngFor="let l of industryType" [value]="l.id">
+                            {{l.value}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

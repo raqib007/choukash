@@ -1,12 +1,20 @@
 <div class="card alternative">
 	<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
-        <mat-tab>
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Location Type</span>
+				</div>
+			</ng-template>
+			<erp-location-type *ngIf="selectedIndex == 0"></erp-location-type>
+        </mat-tab>
+		<mat-tab>
 			<ng-template mat-tab-label>
 				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
 					<span>Location Group</span>
 				</div>
 			</ng-template>
-			<erp-location-group-list></erp-location-group-list>
+			<erp-location-group-list *ngIf="selectedIndex == 1"></erp-location-group-list>
         </mat-tab>
         <mat-tab>
 			<ng-template mat-tab-label>
@@ -14,7 +22,7 @@
 					<span>Location</span>
 				</div>
 			</ng-template>
-			<erp-location-list></erp-location-list>
+			<erp-location-list *ngIf="selectedIndex == 2"></erp-location-list>
         </mat-tab>
 	</mat-tab-group>
 </div>

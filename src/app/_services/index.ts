@@ -4,3 +4,4 @@ export * from './user.service';
 export * from './location.service';
 export * from './contact.service';
 export * from './notification.service';
+export * from './dropdownlist.service';

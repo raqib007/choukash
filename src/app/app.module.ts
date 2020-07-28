@@ -35,7 +35,7 @@ import { JwtInterceptor,ErrorInterceptor } from './_helpers';
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 		EffectsModule.forRoot([]),
 		AgmCoreModule.forRoot({
-		apiKey: environment.googleMapsApiKey
+			apiKey: environment.googleMapsApiKey
 		}),
 		AppRoutingModule,
 		CoreModule,

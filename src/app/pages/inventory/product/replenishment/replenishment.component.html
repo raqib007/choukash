@@ -105,6 +105,17 @@
                 <div fxFlex="100%" fxFlex.gt-sm>
                     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
                         <mat-form-field fxFlex.gt-sm>
+                            <mat-label>Location Group</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let l of locationGroups" [value]="l.value" >
+                                        {{l.value}}
+                                    </mat-option>
+                                </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
                             <input matInput placeholder="Insert Order Up to Level(OUL)" type="text">
                         </mat-form-field>
 
@@ -127,7 +138,21 @@
                 </ng-template>
 
                 <p style="margin-top: 0;font-size: 14px;">Auto Reorder Point Tool</p>
+
+
                 <div fxFlex="100%" fxFlex.gt-sm>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
+                        <mat-form-field fxFlex.gt-sm>
+                            <mat-label>Location Group</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let l of locationGroups" [value]="l.value" >
+                                        {{l.value}}
+                                    </mat-option>
+                                </mat-select>
+                        </mat-form-field>
+                    </div>
+
                     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px">
 
                         <mat-form-field fxFlex.gt-sm>

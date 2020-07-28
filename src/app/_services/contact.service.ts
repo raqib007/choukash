@@ -11,16 +11,38 @@ import { Contact,ContactGroup } from '../model';
 
 export class ContactService {
 
-    baseUrlLtype = "/masterSetup-1.0.0/setup/contact_type";
+    baseUrlCtype = "/masterSetup-1.0.0/setup/contact_type";
+    baseUrlCgroup = "/masterSetup-1.0.0/setup/contact_type_sub_group";
+    baseUrlContact = "/contactManagement-1.0.0/setup/contacts";
     
     constructor(
         private router: Router,
         private http: HttpClient
     ) {
     }
+    getAllContactType() {
+        return this.http.get<ContactGroup[]>(`${environment.apiUrl}${this.baseUrlCtype}/get/all`).pipe(
+            map((res : any) => {
+                return res.body;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    saveAllContactType(data : any) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlCtype}/update_all`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
 
-    getAllContactGroup() {
-        return this.http.get<ContactGroup[]>(`${environment.apiUrl}${this.baseUrlLtype}/get/all`).pipe(
+
+    /*** contact sub group CRUD functionality start ***/
+    getAllContactGroup(): Observable<ContactGroup[]> {
+        return this.http.get<ContactGroup[]>(`${environment.apiUrl}${this.baseUrlCgroup}/get/all`).pipe(
             map((res : any) => {
                 return res.body;
             }),catchError( error => {
@@ -29,7 +51,7 @@ export class ContactService {
         );
     }
     saveContactGroupData(data : ContactGroup) {
-        return this.http.post(`${environment.apiUrl}${this.baseUrlLtype}/save`, data)
+        return this.http.post(`${environment.apiUrl}${this.baseUrlCgroup}/save`, data)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {
@@ -38,7 +60,7 @@ export class ContactService {
         );
     }
     updateContactGroupData(data : ContactGroup) {
-        return this.http.put(`${environment.apiUrl}${this.baseUrlLtype}/update`, data)
+        return this.http.put(`${environment.apiUrl}${this.baseUrlCgroup}/update`, data)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {
@@ -52,11 +74,11 @@ export class ContactService {
               'Content-Type': 'application/json'
             }),
             body: {
-                user_group_id:id,
+                contact_sub_group_id:id,
                 is_active : false
             }
         };
-        return this.http.delete(`${environment.apiUrl}${this.baseUrlLtype}/delete/`,options)
+        return this.http.delete(`${environment.apiUrl}${this.baseUrlCgroup}/delete/`,options)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {
@@ -64,4 +86,55 @@ export class ContactService {
             })
         );
     }
+    /*** contact sub group CRUD functionality end ***/
+
+
+    /*** contact CRUD functionality start ***/
+    getAllDefaultContact(): Observable<Contact[]> {
+        return this.http.get<Contact[]>(`${environment.apiUrl}${this.baseUrlContact}/get/all`).pipe(
+            map((res : any) => {
+                return res.body;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    saveContactData(data : Contact) {
+        return this.http.post(`${environment.apiUrl}${this.baseUrlContact}/save`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    updateContactData(data : Contact) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlContact}/update`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    deleteContact(id: string) {
+        const options = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            }),
+            body: {
+                contact_id:id,
+                is_active : false
+            }
+        };
+        return this.http.delete(`${environment.apiUrl}${this.baseUrlContact}/delete/`,options)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    /*** contact CRUD functionality end ***/
+
 }

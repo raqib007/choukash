@@ -26,36 +26,30 @@
 						<button mat-menu-item>
 							<span>Add to Group</span>
 						</button>
-						<button mat-menu-item>
-							<span>Add to Sub Group</span>
-						</button>
-						<button mat-menu-item>
-							<span>Assign to Location</span>
-						</button>
 					</mat-menu>
 				</section>
 			</div>
 			
 			<div fxFlex="47%">
-				<button (click)="createLocation()" matTooltip="Print File" mat-icon-button color="primary">
+				<button matTooltip="Print File" mat-icon-button color="primary">
 					<mat-icon>local_printshop</mat-icon>
 				</button>
-				<button (click)="createLocation()" matTooltip="Download File" mat-icon-button color="primary">
+				<button matTooltip="Download File" mat-icon-button color="primary">
 					<mat-icon>file_download</mat-icon>
 				</button>
-				<button (click)="createLocation()" matTooltip="Upload File" mat-icon-button color="primary">
+				<button matTooltip="Upload File" mat-icon-button color="primary">
 					<mat-icon>file_upload</mat-icon>
 				</button>
-				<button (click)="createLocation()" matTooltip="Add To Group" mat-icon-button color="primary">
+				<button matTooltip="Add To Group" mat-icon-button color="primary">
 					<mat-icon>add_to_photos</mat-icon>
 				</button>
-				<button (click)="createLocation()" matTooltip="Delete" mat-icon-button color="primary">
+				<button matTooltip="Delete" mat-icon-button color="primary">
 					<mat-icon>delete</mat-icon>
 				</button>
 			</div>
 
 			<div fxFlex="30%">
-				<button class="create" (click)="createLocation()" mat-raised-button color="primary">
+				<button class="create" (click)="editLocation(formData)" mat-raised-button color="primary">
 					ADD NEW LOCATION
 				</button>
 			</div>
@@ -64,7 +58,7 @@
 		</div>
 
 		<div class="actions" fxFlexAlign="center">
-			<button class="create" (click)="createLocation()" type="button" mat-mini-fab color="primary">
+			<button class="create" (click)="editLocation(formData)" type="button" mat-mini-fab color="primary">
 				<mat-icon>add</mat-icon>
 			</button>
 		</div>
@@ -92,7 +86,7 @@
 					</button>
 
 					<mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
-					<button (click)="updateLocation(row)" mat-menu-item>
+					<button (click)="editLocation(row)" mat-menu-item>
 						<span>Modify</span>
 					</button>
 					<button (click)="deleteLocation(row)" mat-menu-item>

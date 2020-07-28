@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { LocationService, NotificationService } from 'src/app/_services';
 
 @Component({
   selector: 'app-location-default-address',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location-default-address.component.scss']
 })
 export class LocationDefaultAddressComponent implements OnInit {
+	@Input() dropdownList: any;
+	@Input() locationData: any;
+	@Output() changeName = new EventEmitter();
+
     formData = {
 		bname: '',
 		authority: '',
@@ -24,13 +29,16 @@ export class LocationDefaultAddressComponent implements OnInit {
 		cstype: '',
 	};
     selectedItem = [];
-    locations = ['Head Office','Branch','Consignment','Warehouse','In Transit','Shipping','Vendor (VMI)'];
-	country = ['USA','Bangladesh'];
-	serverName = 'TestServer';
+    locations = [];
+    locationGroups = [];
+	country = [];
+
 	alignmentType = 1;
-    constructor() {
-		this.locations.push('USA');
-		this.locations.push('Dhaka');
+
+    constructor(
+		private locationService: LocationService,
+        private notifyService : NotificationService,
+	) {
 		this.selectedItem = [
 			{checked:true,value:"Gononet LLC"},
 			{checked:false,value:"bname"},
@@ -51,13 +59,17 @@ export class LocationDefaultAddressComponent implements OnInit {
 		];
     }
     ngOnInit(): void {
-
 	}
+
 	pussCheckedItem(index,value){
 		this.selectedItem[index].checked = !this.selectedItem[index].checked;
 		console.log(this.selectedItem);
 	}
 	changeAlingment(val){
 		this.alignmentType = val;
+	}
+
+	updateName() {
+		this.changeName.emit();
 	}
 }

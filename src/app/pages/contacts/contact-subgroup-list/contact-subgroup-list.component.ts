@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { List } from '../../../core/list/list.interface';
-import { ContactGroup } from '../../../model/contact-group';
+import { ContactGroup } from '../../../model';
 import { ListColumn } from '../../../core/list/list-column.model';
 import { ListDataSource } from '../../../core/list/list-datasource';
 import { ListDatabase } from '../../../core/list/list-database';
@@ -10,10 +10,9 @@ import { componentDestroyed } from '../../../core/utils/component-destroyed';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ContactGroupData } from '../../../dummy-data/contact-subgroup';
-import { ContactSubGroupCreateFormComponent } from '../contact-sub-group-create-form/contact-sub-group-create-form.component';
-import { ContactManagmentFormComponent} from '../contact-managment-form/contact-managment-form.component';
 import { ConfirmationDialogComponent } from '../../dialog/confirmation-dialog/confirmation-dialog.component';
+import { ContactService, NotificationService } from 'src/app/_services';
+import { ContactSubGroupCreateFormComponent } from '../contact-sub-group-create-form/contact-sub-group-create-form.component';
 
 @Component({
 	selector: 'erp-contact-subgroup-list',
@@ -27,16 +26,19 @@ export class ContactSubgroupListComponent implements List<ContactGroup>, OnInit,
 	contacts: ContactGroup[];
 
 	formData = {
-		id : -1,
-		contactType : '',
-		name : ''
+		contact_sub_group_id : '',
+		contact_sub_group_name : '',
+		contact_type_id : '',
+		contact_type_name : '',
+		is_active : true,
+		description : '',
+		properties : '',
 	};
-
+	
 	@Input()
 	columns: ListColumn[] = [
-		{ name: 'ID', property: 'id', visible: true, isModelProperty: true,width:'10%' },
-		{ name: 'Sub Group Name', property: 'name', visible: true, isModelProperty: true ,width:'40%'},
-		{ name: 'Contact Type', property: 'contactType', visible: true, isModelProperty: true ,width:'40%'},
+		{ name: 'Sub Group Name', property: 'contact_sub_group_name', visible: true, isModelProperty: true ,width:'50%'},
+		{ name: 'Contact Type', property: 'contact_type_name', visible: true, isModelProperty: true ,width:'40%'},
 		{ name: 'Actions', property: 'actions', visible: true}
 	] as ListColumn[];
 
@@ -49,15 +51,32 @@ export class ContactSubgroupListComponent implements List<ContactGroup>, OnInit,
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
-	constructor(private dialog: MatDialog) {}
+	constructor(
+		private dialog: MatDialog,
+		private contactService : ContactService,
+		private notifyService : NotificationService
+	) {}
 	
 	get visibleColumns() {
 		return this.columns.filter(column => column.visible).map(column => column.property);
 	}
   
 	ngOnInit() {
-		console.log(ContactGroupData);
-		this.contacts = ContactGroupData.map(l => new ContactGroup(l));
+		this.contactService.getAllContactGroup()
+		.subscribe(
+			res => {
+				res = res.filter((item : any) => item.is_active == true);
+				this.contacts = res.map(l => new ContactGroup(l));
+			},
+			err => {
+				this.notifyService.showError(err, "Contact Sub Group");
+			},
+			() => {
+				this.prepareData();
+			}
+		);
+	}
+	prepareData(){
 		this.subject$.next(this.contacts);
 		this.data$ = this.subject$.asObservable();
 		this.database = new ListDatabase<ContactGroup>();
@@ -71,7 +90,7 @@ export class ContactSubgroupListComponent implements List<ContactGroup>, OnInit,
 		});
 		this.dataSource = new ListDataSource<ContactGroup>(this.database, this.sort, this.paginator, this.columns);
 	}
-	
+
 	/* Add and Edit Funtion For Contact Group */
 	editGroup(contact){
 		this.dialog.open(ContactSubGroupCreateFormComponent, { 
@@ -80,34 +99,37 @@ export class ContactSubgroupListComponent implements List<ContactGroup>, OnInit,
 			autoFocus : true,
 			maxWidth : '100vw',
 			width : '50vw'
-		}).afterClosed().subscribe((contact: ContactGroup) => {
-			if(contact) {
-				this.contacts.unshift(new ContactGroup(contact));
-				this.subject$.next(this.contacts);
+		}).afterClosed().subscribe(
+			val => {
+				if(val == 'no'){
+
+				}else{
+					if(contact.contact_sub_group_id == ''){
+						this.notifyService.showSuccess("Contact sub group data has been successfully saved!!", "Contact Sub Group");
+					}else{
+						this.notifyService.showSuccess("Contact sub groups data has been successfully updated!!", "Contact Sub Group");
+					}
+					this.ngOnInit();
+				}
 			}
-		});
+		);
 	}
 	/* Delete Funtion For Contact Group */
 	deleteGroup(row){
 		const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
 			width: '250px',
-			data: {id: row.id, msg: 'Are you sure want to delete this record?'}
+			data: {id: row.contact_sub_group_id, msg: 'Are you sure want to delete this record?'}
 		});
 		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed');
-		});
-	}
-	manageContact(){
-		this.dialog.open(ContactManagmentFormComponent, { 
-			panelClass: 'custom-dialog-container',
-			// data: contact,
-			autoFocus : true,
-			maxWidth : '100vw',
-			width : '50vw'
-		}).afterClosed().subscribe((contact: ContactGroup) => {
-			if(contact) {
-				this.contacts.unshift(new ContactGroup(contact));
-				this.subject$.next(this.contacts);
+			if(result == 'yes'){
+				this.contactService.deleteContactGroup(row.contact_sub_group_id).subscribe((res : any) =>{
+					if(res.code == 200){
+						this.notifyService.showSuccess("Contact sub group data has been successfully deleted!!", "Contact sub Group");
+						this.ngOnInit();
+					}else{
+						this.notifyService.showError(res.message, "Contact sub Group");
+					}
+				});
 			}
 		});
 	}

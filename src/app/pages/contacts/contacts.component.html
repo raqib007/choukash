@@ -1,12 +1,21 @@
 <div class="card alternative">
 	<mat-tab-group class="form-wizard" [(selectedIndex)]="selectedIndex" animationDuration="0ms">
+		<mat-tab>
+			<ng-template mat-tab-label>
+				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+					<span>Contact Type</span>
+				</div>
+			</ng-template>
+			<erp-contact-type *ngIf="selectedIndex == 0"></erp-contact-type>
+		</mat-tab>
+
         <mat-tab>
 			<ng-template mat-tab-label>
 				<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-					<span>Contact Group</span>
+					<span>Contact Sub Group</span>
 				</div>
 			</ng-template>
-			<erp-contact-subgroup-list></erp-contact-subgroup-list>
+			<erp-contact-subgroup-list *ngIf="selectedIndex == 1"></erp-contact-subgroup-list>
 		</mat-tab>
         <mat-tab>
 			<ng-template mat-tab-label>
@@ -14,7 +23,7 @@
 					<span>Contact</span>
 				</div>
 			</ng-template>
-			<erp-contact-list></erp-contact-list>
+			<erp-contact-list *ngIf="selectedIndex == 2"></erp-contact-list>
 		</mat-tab>
 		
 		<mat-tab>
@@ -23,7 +32,7 @@
 					<span>CRM</span>
 				</div>
 			</ng-template>
-			<erp-contact-subgroup-list></erp-contact-subgroup-list>
+			<erp-contact-subgroup-list *ngIf="selectedIndex == 3"></erp-contact-subgroup-list>
 		</mat-tab>
 		
 		<mat-tab>
@@ -32,7 +41,7 @@
 					<span>Emails</span>
 				</div>
 			</ng-template>
-			<erp-contact-list></erp-contact-list>
+			<erp-contact-list *ngIf="selectedIndex == 4"></erp-contact-list>
         </mat-tab>
 	</mat-tab-group>
 </div>

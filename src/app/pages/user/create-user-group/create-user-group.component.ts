@@ -59,7 +59,6 @@ export class CreateUserGroupComponent implements List<UserGroup>, OnInit, OnDest
   
 	ngOnInit() {
 		this.userService.getAll()
-		// .pipe(first())
 		.subscribe(
 			res => {
 				res = res.filter((item : any) => item.is_active == true);
@@ -74,7 +73,6 @@ export class CreateUserGroupComponent implements List<UserGroup>, OnInit, OnDest
 				});
 			},
 			err => {
-				alert('HTTP Error'+err);
 				this.notifyService.showError(err, "User Group");
 			},
 			() => {

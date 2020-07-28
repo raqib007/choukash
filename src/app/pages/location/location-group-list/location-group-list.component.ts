@@ -37,17 +37,15 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 		location_type_name : '',
 		description : '',
 		is_active: true,
-		short_name: '',
-		users:''
+		short_name: ''
 	};
 
 	@Input()
 	columns: ListColumn[] = [
-		{ name: 'Location Group', property: 'location_group_name', visible: true, isModelProperty: true ,width:'18%'},
-		{ name: 'Description', property: 'description', visible: true, isModelProperty: true ,width:'12%'},
-		{ name: 'Location Type', property: 'location_type_name', visible: true, isModelProperty: true,width:'10%' },
-		{ name: 'Location Short Name', property: 'short_name', visible: true, isModelProperty: true,width:'15%' },
-		{ name: 'Users', property: 'users', visible: true, isModelProperty: true ,width:'35%'},
+		{ name: 'Location Group', property: 'location_group_name', visible: true, isModelProperty: true ,width:'25%'},
+		{ name: 'Description', property: 'description', visible: true, isModelProperty: true ,width:'25%'},
+		{ name: 'Location Type', property: 'location_type_name', visible: true, isModelProperty: true,width:'20%' },
+		{ name: 'Location Short Name', property: 'short_name', visible: true, isModelProperty: true,width:'20%' },
 		{ name: 'Actions', property: 'actions', visible: true}
 	] as ListColumn[];
 
@@ -79,22 +77,16 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 						location_group_id : l.location_group_id,
 						location_group_name : l.location_group_name,
 						location_type_id : l.location_type_id,
-						location_type_name : "No location name",
+						location_type_name : l.location_type_name,
 						description : l.description,
 						short_name : l.short_name,
-						is_active : l.is_active,
-						// properties : l.properties,
-						// created_on : l.created_on,
-						// created_by : l.created_by,
-						// updated_on : l.updated_on,
-						// updated_by : l.updated_by,
-						users : ''
+						is_active : l.is_active
 					};
 					return new LocationGroup(data);
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Location Group");
 			},
 			() => {
 				this.prepareData();
@@ -121,7 +113,7 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
 		dialogConfig.maxWidth = '100vw';
-		dialogConfig.width = '750px';
+		dialogConfig.width = '50vw';
 		dialogConfig.data = location;
 		const dialogRef = this.dialog.open(LocationGroupCreateFormComponent,dialogConfig);
         dialogRef.afterClosed().subscribe(
@@ -150,7 +142,7 @@ export class LocationGroupListComponent implements List<LocationGroup>, OnInit, 
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			if(result == 'yes'){
-				this.locationService.updateLocationGroupData(row.location_group_id).subscribe((res : any) =>{
+				this.locationService.deleteLocationGroup(row.location_group_id).subscribe((res : any) =>{
 					if(res.code == 200){
 						this.notifyService.showSuccess("Location group data has been successfully deleted!!", "Location Group");
 						this.ngOnInit();

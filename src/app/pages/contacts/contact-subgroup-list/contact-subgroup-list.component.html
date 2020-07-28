@@ -5,11 +5,6 @@
 			<div fxFlex>
 				<button mat-raised-button (click)="editGroup(formData)" color="primary">CREATE</button>
 			</div>
-			<div fxFlex>
-				<button class="create" (click)="manageContact()" mat-raised-button color="accent">
-					MANAGE CONTACT
-				</button>
-			</div>
 		</div>
 		
 		<mat-table #table [dataSource]="dataSource" matSort>

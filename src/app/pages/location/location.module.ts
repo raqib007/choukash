@@ -39,6 +39,9 @@ import { LocationShippingAddressComponent } from './location-create-form/locatio
 import { LocationDefaultAddressComponent } from './location-create-form/location-default-address/location-default-address.component';
 import { LocationDetailsComponent } from './location-create-form/location-details/location-details.component';
 import { LocationWithLocationComponent } from './location-create-form/location-with-location/location-with-location.component';
+import { LocationTypeComponent } from './location-type/location-type.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { SortablejsModule } from 'ngx-sortablejs';
 
 
 @NgModule({
@@ -69,9 +72,12 @@ import { LocationWithLocationComponent } from './location-create-form/location-w
 		MatPaginatorModule,
 		MatSortModule,
 		MatProgressSpinnerModule,
+		MatToolbarModule,
+		MatListModule,
 		CdkTableModule,
 		MatMenuModule,
-		ListModule
+		ListModule,
+		SortablejsModule
   	],
   	declarations: [
         LocationComponent,
@@ -83,7 +89,8 @@ import { LocationWithLocationComponent } from './location-create-form/location-w
         LocationShippingAddressComponent,
         LocationDefaultAddressComponent,
         LocationDetailsComponent,
-        LocationWithLocationComponent
+        LocationWithLocationComponent,
+        LocationTypeComponent
 	],
 	exports: [LocationComponent],
 	entryComponents: [

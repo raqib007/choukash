@@ -29,7 +29,7 @@
 				<label fxFlex>Location</label>
 				<div fxFlex>
 					<div class="ng-autocomplete">
-						<ng-autocomplete [data]="locationName" 
+						<ng-autocomplete [data]="locationGroup" 
 							placeHolder="Enter location" 
 							[searchKeyword]="searchKeyword" 
 							(selected)='selectEvent($event)'
@@ -158,14 +158,14 @@
 			</div>
 
 			<div fxFlex="30%">
-				<button class="create" (click)="createContact()" mat-raised-button color="primary">
+				<button class="create" (click)="updateContact(formData)" mat-raised-button color="primary">
 					ADD CONTACT
 				</button>
 			</div>
 		</div>
 
 		<div class="actions" fxFlexAlign="center">
-			<button class="create" (click)="createContact()" type="button" mat-mini-fab color="primary">
+			<button class="create" (click)="updateContact(formData)" type="button" mat-mini-fab color="primary">
 				<mat-icon>add</mat-icon>
 			</button>
 		</div>
@@ -177,13 +177,6 @@
 					<mat-checkbox color="primary" (click)="$event.stopPropagation()"></mat-checkbox>
 				</mat-cell>
 			</ng-container>
-
-			<!-- <ng-container matColumnDef="image">
-				<mat-header-cell class="image-cell" *matHeaderCellDef></mat-header-cell>
-				<mat-cell class="image-cell" *matCellDef="let row">
-					<img src="//placehold.it/40x40">
-				</mat-cell>
-			</ng-container> -->
 
 			<ng-container class="checkbox1" *ngFor="let column of columns">
 				<ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">

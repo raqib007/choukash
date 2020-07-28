@@ -10,7 +10,6 @@ export class LocationGroup {
     created_by:string;
     updated_on:string;
     updated_by:string;
-    users:string;
 
     constructor(l) {
         this.location_group_id = l.location_group_id;
@@ -20,10 +19,5 @@ export class LocationGroup {
         this.description = l.description;
         this.is_active = l.is_active;
         this.short_name = l.short_name;
-        // this.created_on = l.created_on;
-        // this.created_by = l.created_by;
-        // this.updated_on = l.updated_on;
-        // this.updated_by = l.updated_by;
-        this.users = l.users;
     }
 }

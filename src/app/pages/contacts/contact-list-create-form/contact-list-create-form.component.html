@@ -1,9 +1,10 @@
+
 <h2 mat-dialog-title>{{title}}</h2>
 <mat-dialog-content [formGroup]="form" class="mat-typography">
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field fxFlex="100%" fxFlex.gt-sm>
             <mat-label>Contact Type</mat-label>
-            <mat-select formControlName="contactType">
+            <mat-select formControlName="contact_type_id">
                 <mat-option *ngFor="let l of contactType" [value]="l.id">
                     {{l.value}}
                 </mat-option>
@@ -12,7 +13,7 @@
 
         <mat-form-field fxFlex="100%" fxFlex.gt-sm>
             <mat-label>Sub Group</mat-label>
-            <mat-select formControlName="subContactType">
+            <mat-select formControlName="contact_sub_group_id">
                 <mat-option *ngFor="let l of subContactType" [value]="l.id">
                     {{l.value}}
                 </mat-option>
@@ -23,42 +24,42 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field fxFlex="100%" fxFlex.gt-sm>
             <mat-label>Business Name</mat-label>
-            <input matInput formControlName="bname">
+            <input matInput formControlName="business_name">
         </mat-form-field>
 
         <mat-form-field fxFlex="100%" fxFlex.gt-sm>
             <mat-label>Job Title</mat-label>
-            <input matInput formControlName="jobTitle">
+            <input matInput formControlName="job_title">
         </mat-form-field>
     </div>
                 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field>
             <mat-label>First Name</mat-label>
-            <input matInput formControlName="fname">
+            <input matInput formControlName="first_name">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lname">
+            <input matInput formControlName="last_name">
         </mat-form-field>
     </div>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field>
             <mat-label>Location Type</mat-label>
-            <mat-select formControlName="ltype">
-                <mat-option *ngFor="let l of locationType" [value]="l">
-                    {{l}}
+            <mat-select formControlName="location_type_id">
+                <mat-option *ngFor="let l of locationType" [value]="l.id">
+                    {{l.value}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Location Group</mat-label>
-            <mat-select formControlName="locationName">
-                <mat-option *ngFor="let l of LocationName" [value]="l">
-                    {{l}}
+            <mat-select formControlName="location_group_id">
+                <mat-option *ngFor="let l of locationGroup" [value]="l.id">
+                    {{l.value}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -67,7 +68,7 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field>
             <mat-label>Address</mat-label>
-            <input matInput formControlName="address">
+            <input matInput formControlName="open_address">
         </mat-form-field>
 
         <mat-form-field>
@@ -79,14 +80,14 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field>
             <mat-label>Zip Code</mat-label>
-            <input matInput formControlName="zipCode">
+            <input matInput formControlName="zip">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Country</mat-label>
             <mat-select formControlName="country">
-                <mat-option *ngFor="let l of country" [value]="l">
-                    {{l}}
+                <mat-option *ngFor="let l of country" [value]="l.name">
+                    {{l.name}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -95,7 +96,7 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
         <mat-form-field>
             <mat-label>Phone</mat-label>
-            <input matInput formControlName="phone">
+            <input matInput formControlName="telephone">
         </mat-form-field>
 
         <mat-form-field>
@@ -111,13 +112,13 @@
 
         <mat-form-field>
             <mat-label>Name Initials or Description</mat-label>
-            <input matInput formControlName="description">
+            <input matInput formControlName="note">
         </mat-form-field>
     </div>
 </mat-dialog-content>
 
 
 <mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>CANCEL</button>
+    <button mat-raised-button mat-dialog-close="no">CANCEL</button>
     <button mat-raised-button color="primary" cdkFocusInitial (click)="save()">{{btnTitle}}</button>
 </mat-dialog-actions>

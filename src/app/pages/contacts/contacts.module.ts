@@ -34,9 +34,9 @@ import { SortablejsModule } from 'ngx-sortablejs';
 
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactListCreateFormComponent } from './contact-list-create-form/contact-list-create-form.component';
-import { ContactSubGroupCreateFormComponent } from './contact-sub-group-create-form/contact-sub-group-create-form.component';
 import { ContactSubgroupListComponent } from './contact-subgroup-list/contact-subgroup-list.component';
-import { ContactManagmentFormComponent } from './contact-managment-form/contact-managment-form.component';
+import { ContactTypeComponent } from './contact-type/contact-type.component';
+import { ContactSubGroupCreateFormComponent } from './contact-sub-group-create-form/contact-sub-group-create-form.component';
 
 
 @NgModule({
@@ -78,15 +78,14 @@ import { ContactManagmentFormComponent } from './contact-managment-form/contact-
         ContactsComponent,
         ContactListComponent,
         ContactListCreateFormComponent,
-        ContactSubGroupCreateFormComponent,
         ContactSubgroupListComponent,
-        ContactManagmentFormComponent
+		ContactSubGroupCreateFormComponent,
+        ContactTypeComponent
 	],
 	exports: [ContactsComponent],
 	entryComponents: [
 		ContactListCreateFormComponent,
-		ContactSubGroupCreateFormComponent,
-		ContactManagmentFormComponent
+		ContactSubGroupCreateFormComponent
 	],
 })
 export class ContactsModule { }

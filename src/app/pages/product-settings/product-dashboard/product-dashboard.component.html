@@ -1,161 +1,150 @@
-
-<div fxLayout="column" class="product-dashboard">
-    <div fxFlex>
-        <h4>General</h4>
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxflex.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(1,formData.bname)" color="primary">Show Alternative UOM</mat-checkbox>
-            </div>
-            <div fxflex="25" fxflex.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(2,formData.authority)" color="primary">Enable Image Upload</mat-checkbox>
-            </div>
-
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(7,formData.zip)" color="primary">Show Accounting Relations</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(8,formData.city)" color="primary">Show Product Dimensions</mat-checkbox>
+<div class="product-dashboard">
+    <div fxLayout="column">
+        <div fxFlex>
+            <h4>General</h4>
+            <div fxLayout="row wrap" fxLayoutGap="5px">
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(1,formData.bname)" color="primary">Show Alternative UOM</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(2,formData.authority)" color="primary">Enable Image Upload</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(7,formData.zip)" color="primary">Show Accounting Relations</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(8,formData.city)" color="primary">Show Product Dimensions</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(10,formData.phone)" color="primary">Enable B2B Website Options</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(11,formData.mobile)" color="primary">Enable Channel Sales Options</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(11,formData.mobile)" color="primary">Use Reorder Level for Each Location Group</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                </div>
+                <span class="cdk-visually-hidden"></span>
             </div>
         </div>
-
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(10,formData.phone)" color="primary">Enable B2B Website Options</mat-checkbox>
+        <div fxFlex>
+            <h4>Customize Product Search Option Using</h4>
+            <div fxLayout="row wrap" fxLayoutGap="5px">
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Name</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Code</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Barcode</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Brand</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Vendor</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Channel</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Style Code</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Allergy Proof</mat-checkbox>
+                </div>
+                <div fxFlex="calc(0%" fxFlex.md="calc(0%" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(0%)">
+                </div>
+                <span class="cdk-visually-hidden"></span>
             </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(11,formData.mobile)" color="primary">Enable Channel Sales Options</mat-checkbox>
+        </div>
+        <div fxFlex>
+            <h4>Customize Columns in the List</h4>
+            <div fxLayout="row wrap" fxLayoutGap="5px">
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Name</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Display Option</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Image</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Name</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Type</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Code</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Barcode</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Brand</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Channel</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Variant 1</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Variant 2</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Unit of Measurement</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Stock Control</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Retail Price</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Wholesale Price</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">VIP Price</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Special Price</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Price in USD</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Price in GBP</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Price in AUD</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Price in NZD</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Cost in USD</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Cost in GBP</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Cost in EUR</mat-checkbox>
+                </div>
+                <div fxFlex="calc(25%-5px)" fxFlex.md="calc(25%-5px)" fxFlex.sm="calc(33.3%-5px)" fxFlex.xs="calc(50%-5px)">
+                    <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Cost in BDT</mat-checkbox>
+                </div>
             </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group"></div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group"></div>
         </div>
     </div>
-    <div fxFlex>
-        <h4>Customize Product Search Option Using</h4>
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxFlex.gt-sm="50%" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Name</mat-checkbox>
-            </div>
-            <div fxflex="25" fxFlex.gt-sm="50%" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Code</mat-checkbox>
-            </div>
 
-            <div fxflex="25" fxFlex.gt-sm="50%" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Barcode</mat-checkbox>
-            </div>
-            <div fxflex="25" fxFlex.gt-sm="50%" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Brand</mat-checkbox>
-            </div>
-        </div>
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Vendor</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Channel</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Style Code</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Allergy Proof</mat-checkbox>
-            </div>
-		</div>
+    <div class="div-right-end">
+        <button mat-button color="primary">SAVE</button>
+        <button mat-button color="primary">EDIT</button>
     </div>
-    <div fxFlex>
-        <h4>Customize Columns in the List</h4>
-		<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Display Option</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Image</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Name</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Type</mat-checkbox>
-            </div>
-        </div>
-        
-		<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Code</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Barcode</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Brand</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Channel</mat-checkbox>
-            </div>
-        </div>
-        
-		<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Product Variant 1</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Product Variant 2</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Unit of Measurement</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Stock Control</mat-checkbox>
-            </div>
-        </div>
-        
-		<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Retail Price</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Wholesale Price</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">VIP Price</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Special Price</mat-checkbox>
-            </div>
-        </div>
-        
-		<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Price in USD</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Price in GBP</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Price in AUD</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Price in NZD</mat-checkbox>
-            </div>
-        </div>
-        
-		<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Cost in USD</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Cost in GBP</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(12,formData.email)" color="primary">Cost in EUR</mat-checkbox>
-            </div>
-            <div fxflex="25" fxLayout.gt-sm="50" class="form-group">
-                <mat-checkbox fxFlex (click)="pussCheckedItem(13,formData.website)" color="primary">Cost in BDT</mat-checkbox>
-            </div>
-		</div>
-    </div>
-</div>
-
-<div class="div-right-end">
-    <button mat-button color="primary">SAVE</button>
-    <button mat-button color="primary">EDIT</button>
 </div>

@@ -1,6 +1,20 @@
+
+@media (max-width: 600px) {
+    .cdk-overlay-pane {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+}
 .mat-tab-body-wrapper{
     height: calc(100vh - 300px)!important;
     overflow: auto;
 }
-
-
+.mat-dialog-container {
+    width: 50vw !important;
+}
+.mat-form-field {
+    display: block;
+}
+.mat-dialog-actions{
+    justify-content: flex-end;
+}

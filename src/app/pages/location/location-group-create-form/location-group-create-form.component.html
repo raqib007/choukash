@@ -1,50 +1,37 @@
 <h2 mat-dialog-title>{{title}}</h2>
 
-<mat-dialog-content [formGroup]="form" class="mat-typography">
-    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
-            <input matInput placeholder="Location Name" formControlName="location_group_name">
+<form [formGroup]="form" >
+    <mat-dialog-content class="mat-typography">
+        <mat-form-field>
+            <input matInput
+                placeholder="Location Name" 
+                formControlName="location_group_name">
         </mat-form-field>
-    </div>
 
-
-    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
-            <input matInput placeholder="Description"  formControlName="description">
+        <mat-form-field>
+            <input matInput
+                    placeholder="Description"
+                    formControlName="description">
         </mat-form-field>
-    </div>
 
-    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-        <mat-form-field fxFlex="100%" fxFlex.gt-sm="100%">
+        <mat-form-field>
             <mat-select placeholder="Location Type"  formControlName="location_type_id">
                 <mat-option *ngFor="let l of locationTypes" [value]="l.id">
-                  {{l.value}}
+                {{l.value}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
-    </div>
 
-    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
-            <input matInput placeholder="Location Short Name" formControlName="short_name">
+
+        <mat-form-field>
+            <input matInput
+                    placeholder="Location Short Name"
+                    formControlName="short_name">
         </mat-form-field>
-    </div>
+    </mat-dialog-content>
 
-    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-        <mat-form-field fxFlex="100%" fxFlex.gt-sm="100%">
-            <mat-select placeholder="Assign User Group"  formControlName="users" multiple>
-                <mat-option *ngFor="let l of userGroups" [value]="l.id">
-                  {{l.value}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close="no">CANCEL</button>
-    <button mat-raised-button color="primary" cdkFocusInitial (click)="saveData()">{{btnTitle}}</button>
-</mat-dialog-actions>
-
-<!-- [disabled]="form.invalid"  -->
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close="no">CANCEL</button>
+        <button mat-raised-button color="primary" cdkFocusInitial [disabled]="form.invalid" (click)="saveData()">{{btnTitle}}</button>
+    </mat-dialog-actions>
+</form>
