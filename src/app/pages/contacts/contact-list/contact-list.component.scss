@@ -4,7 +4,7 @@
 	padding-left: $padding__page!important;
 }
 .mat-table{
-	height: calc(80vh - 269px)!important;
+    max-height: calc(80vh - 316px) !important;
     overflow: auto!important;
 }
 .ng-autocomplete {

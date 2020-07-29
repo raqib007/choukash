@@ -1,34 +1,65 @@
 
-<div class="card border space location-type">
-    <div class="content" fxLayout="row">
-        <div fxFlex="60%" fxFlexOffset="20%">
-            <p>Assign Contact Type for This Business</p>
-            <div class="list-container" fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center">
-                <div class="list mat-elevation-z4">
-                    <mat-toolbar>Contact Type</mat-toolbar>
-                    <mat-list [sortablejs]="allContactList" [sortablejsOptions]="groupOptions">
-                        <mat-list-item class="small-list-item" *ngFor="let list of allContactList">
-                            <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.contact_type_name }} </h3>
-                        </mat-list-item>
-                    </mat-list>
-                </div>
-          
-                <mat-icon class="left-right-compare">compare_arrows</mat-icon>
-          
-                <div class="list mat-elevation-z4">
-                    <mat-toolbar>Assign Group</mat-toolbar>
-                        <mat-list [sortablejs]="activeContactList" [sortablejsOptions]="groupOptions">
-                        <mat-list-item class="small-list-item" *ngFor="let list of activeContactList">
-                            <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.contact_type_name }} </h3>
-                        </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
+<div class="elastic">
+	<elastic-list name="" [columns]="columns" (filterChange)="onFilterChange($event)">
+
+		<div class="extra-actions" fxLayout="row" fxLayoutAlign="start baseline" >
+			<div fxFlex>
+				<button mat-raised-button (click)="editContact(formData)" color="primary">CREATE</button>
+			</div>
+		</div>
+		
+		<mat-table #table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="is_active">
+				<mat-header-cell *matHeaderCellDef fxFlex="10%">
+					<mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+									[checked]="selection.hasValue() && isAllSelected()"
+									[indeterminate]="selection.hasValue() && !isAllSelected()">
+					</mat-checkbox>
+					<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="expand_more" no-margin no-padding>
+						<mat-icon>expand_more</mat-icon>
+					</button>
+				</mat-header-cell>
+				<mat-cell *matCellDef="let row" fxFlex="10%">
+					<mat-checkbox color="primary" (click)="$event.stopPropagation()"
+									(change)="$event ? selection.toggle(row) : null"
+									[checked]="selection.isSelected(row)">
+					</mat-checkbox>
+				</mat-cell>
+            </ng-container>
             
-        </div>
-    </div>
-    <div class="div-right-end">
-        <button mat-button color="primary" (click)="save_location_type()">SAVE</button>
-        <!-- <button mat-button color="primary">EDIT</button> -->
-    </div>
+			<ng-container class="checkbox1" *ngFor="let column of columns">
+				<ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+					<mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+					<mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
+				</ng-container>
+			</ng-container>
+
+			<ng-container matColumnDef="actions">
+				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="10%">Action</mat-header-cell>
+				<mat-cell class="actions-cell" *matCellDef="let row">
+					<button  mat-icon-button color="primary" (click)="editContact(row)"><mat-icon>edit</mat-icon></button>
+                    <button  mat-icon-button color="primary" (click)="deleteContact(row)"><mat-icon>delete</mat-icon></button>
+				</mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+		</mat-table>
+
+        <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
+        
+        <mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="masterToggle()">
+				<span *ngIf="!allSelected">Select All</span>
+				<span *ngIf="allSelected">Unselect All</span>
+			</button>
+			<button mat-menu-item>
+				<span>Show Latest</span>
+			</button>
+			<button mat-menu-item>
+				<span>Set as Active</span>
+			</button>
+		</mat-menu>
+	</elastic-list>
 </div>

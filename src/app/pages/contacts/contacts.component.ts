@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
-	selectedIndex = 2;
+	selectedIndex = 0;
 	constructor() { }
 
 	ngOnInit(): void {

@@ -38,8 +38,8 @@ export class Contact {
         this.job_title = contact.job_title;
         this.location_type_id = contact.location_type_id;
         this.location_type_name = contact.location_type_name;
-        this.location_group_id = (contact.location_group_id)? undefined : '';
-        this.location_group_name = (contact.location_group_name) ? undefined : '';
+        this.location_group_id = contact.location_group_id;
+        this.location_group_name = contact.location_group_name;
         this.open_address = contact.open_address;
         this.zip = contact.zip;
         this.city = contact.city;

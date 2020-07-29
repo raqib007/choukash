@@ -12,22 +12,22 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { filter, takeUntil,startWith, map } from 'rxjs/operators';
 import { ContactListCreateFormComponent } from '../contact-list-create-form/contact-list-create-form.component';
 import { ConfirmationDialogComponent } from '../../dialog/confirmation-dialog/confirmation-dialog.component';
-import { ContactData } from '../../../dummy-data/contact';
-import { FormControl } from '@angular/forms';
 import { ContactSubGroupCreateFormComponent } from '../contact-sub-group-create-form/contact-sub-group-create-form.component';
 import { ContactService, NotificationService, DropdownListService } from 'src/app/_services';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
 	selector: 'erp-contact-list',
 	templateUrl: './contact-list.component.html',
 	styleUrls: ['./contact-list.component.scss']
 })
-export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
+export class ContactListComponent implements OnInit {
 	// disabled = false;
 	// labelPosition = 1;
 	// checked = false;
 	// indeterminate = 3;
-
+	contacts: Contact[];
 	searchKeyword = 'value';
 	formData = {
 		contact_id: '',
@@ -61,9 +61,7 @@ export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
 		contactType: '',
 		name: ''
 	};
-	subject$: ReplaySubject<Contact[]> = new ReplaySubject<Contact[]>(1);
-	data$: Observable<Contact[]>;
-	contacts: Contact[];
+	
 	@Input()
 	columns: ListColumn[] = [
 		{ name: 'Checkbox', property: 'checkbox', visible: true },
@@ -74,7 +72,7 @@ export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
 		{ name: 'First Name', property: 'first_name', visible: false, isModelProperty: true },
 		{ name: 'Last Name', property: 'last_name', visible: false, isModelProperty: true },
 		{ name: 'Location Type', property: 'location_type_name', visible: true, isModelProperty: true },
-		{ name: 'Location Group', property: 'location_type_id', visible: true, isModelProperty: true },
+		{ name: 'Location Group', property: 'location_group_name', visible: true, isModelProperty: true },
 		{ name: 'Address', property: 'open_address', visible: true, isModelProperty: true },
 		{ name: 'City', property: 'city', visible: true, isModelProperty: true },
 		{ name: 'Zipcode', property: 'zip', visible: true, isModelProperty: true },
@@ -86,12 +84,6 @@ export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
 		{ name: 'Actions', property: 'actions', visible: true },
 	] as ListColumn[];
 
-	pageSize = 5;
-	resultsLength: number;
-	tabIndex: number;
-	dataSource: ListDataSource<Contact> | null;
-	database: ListDatabase<Contact>;
-
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -99,64 +91,15 @@ export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
 	selectedLoc = '';
 	selectedConType = '';
 	selectedSubConType = '';
-
-	// locationType = [
-	// 	{id:1,value:'Customers'},
-	// 	{id:2,value:'Consignment Contact'},
-	// 	{id:3,value:'Branch Contact'},
-	// 	{id:4,value:'Vendor Contact'},
-	// 	{id:5,value:'Warehouse Contact'},
-	// 	{id:6,value:'Shipping Contact'},
-	// 	{id:7,value:'Head Office Contact'}
-	// ];
-	// locationName = [
-	// 	{id:1,value:'Customers'},
-	// 	{id:2,value:'Consignment Contact'},
-	// 	{id:3,value:'Branch Contact'},
-	// 	{id:4,value:'Vendor Contact'},
-	// 	{id:5,value:'Warehouse Contact'},
-	// 	{id:6,value:'Shipping Contact'},
-	// 	{id:7,value:'Head Office Contact'}
-	// ];
-	// contactType = [
-	// 	{id:1,value:'Customers'},
-	// 	{id:2,value:'Consignment Contact'},
-	// 	{id:3,value:'Branch Contact'},
-	// 	{id:4,value:'Vendor Contact'},
-	// 	{id:5,value:'Warehouse Contact'},
-	// 	{id:6,value:'Shipping Contact'},
-	// 	{id:7,value:'Head Office Contact'}
-	// ];
-	// subContactType = [
-	// 	{id:1,value:'Retail'},
-	// 	{id:2,value:'Wholesale'},
-	// 	{id:3,value:'VIP'},
-	// 	{id:4,value:'Manager'},
-	// 	{id:5,value:'POS Operator'},
-	// 	{id:6,value:'Inventory Supervisor'},
-	// 	{id:7,value:'Delivery'},
-	// 	{id:8,value:'Suplier'},
-	// 	{id:9,value:'Consignments'},
-	// 	{id:10,value:'Warehouse Manager'},
-	// 	{id:11,value:'Picker'},
-	// 	{id:12,value:'Delivery'},
-	// 	{id:13,value:'Receiver'},
-	// 	{id:14,value:'Contact Person'},
-	// 	{id:15,value:'Accountant'},
-	// 	{id:16,value:'Inventory Manager'},
-	// 	{id:17,value:'Marketing Manager'},
-	// 	{id:18,value:'Delivery Fleet Manager'},
-	// 	{id:19,value:'Finance Manager'},
-	// 	{id:20,value:'Purchase Manager'},
-	// 	{id:21,value:'Sales Manager'},
-	// 	{id:22,value:'HR Manager'}
-	// ];
-
 	locationType = [];
 	locationGroup = [];
 	contactType = [];
 	subContactType = [];
 	country = [];
+	allSelected = false;
+
+	selection = new SelectionModel<Contact>(true, []);
+	dataSource = new MatTableDataSource<Contact>(this.contacts);
 
 	constructor(
 		private dialog: MatDialog,
@@ -186,9 +129,11 @@ export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
 				this.notifyService.showError(err, "Contact Sub Group");
 			},
 			() => {
-				this.prepareData();
+				this.dataSource = new MatTableDataSource<Contact>(this.contacts);
+				this.dataSource.paginator = this.paginator;
 			}
 		);
+
 	}
 
 	/** get location type list **/
@@ -291,36 +236,19 @@ export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
 			}
 		);
 	}
-
-	prepareData(){
-		this.subject$.next(this.contacts);
-		this.data$ = this.subject$.asObservable();
-		this.database = new ListDatabase<Contact>();
-		this.data$.pipe(
-			takeUntil(componentDestroyed(this)),
-			filter<Contact[]>(Boolean)
-		).subscribe((contacts) => {
-			this.contacts = contacts;
-			this.database.dataChange.next(contacts);
-			this.resultsLength = contacts.length;
-		});
-		this.dataSource = new ListDataSource<Contact>(this.database, this.sort, this.paginator, this.columns);
+	/** Whether the number of selected elements matches the total number of rows. */
+	isAllSelected() {
+		const numSelected = this.selection.selected.length;
+		const numRows = this.dataSource.data.length;
+		return numSelected === numRows;
 	}
-
-	createContact() { 
-		this.dialog.open(ContactListCreateFormComponent, { 
-			panelClass: 'custom-dialog-container',
-			data: this.formData,
-			autoFocus : true,
-			maxWidth : '100vw',
-			width : '60vw'
-		}).afterClosed().subscribe((contact: Contact) => {
-			if(contact) {
-				this.contacts.unshift(new Contact(contact));
-				this.subject$.next(this.contacts);
-			}
-		});
-	} 
+	/** Selects all rows if they are not all selected; otherwise clear selection. */
+	masterToggle() {
+		this.allSelected = !this.isAllSelected();
+		this.isAllSelected() ?
+		this.selection.clear() :
+		this.dataSource.data.forEach(row => this.selection.select(row));
+	}
 	
 	updateContact(contact) {
 		// this.dialog.open(ContactListCreateFormComponent, {
@@ -414,7 +342,6 @@ export class ContactListComponent implements List<Contact>, OnInit, OnDestroy {
 	onFocused(e){
 		// do something when input is focused
 	}
-
 	createContactSubGroup() { 
 		this.dialog.open(ContactSubGroupCreateFormComponent, { 
 			panelClass: 'custom-dialog-container',

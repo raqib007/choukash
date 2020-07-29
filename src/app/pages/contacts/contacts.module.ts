@@ -37,6 +37,7 @@ import { ContactListCreateFormComponent } from './contact-list-create-form/conta
 import { ContactSubgroupListComponent } from './contact-subgroup-list/contact-subgroup-list.component';
 import { ContactTypeComponent } from './contact-type/contact-type.component';
 import { ContactSubGroupCreateFormComponent } from './contact-sub-group-create-form/contact-sub-group-create-form.component';
+import { ContactTypeCreateFormComponent } from './contact-type/contact-type-create-form/contact-type-create-form.component';
 
 
 @NgModule({
@@ -80,12 +81,14 @@ import { ContactSubGroupCreateFormComponent } from './contact-sub-group-create-f
         ContactListCreateFormComponent,
         ContactSubgroupListComponent,
 		ContactSubGroupCreateFormComponent,
-        ContactTypeComponent
+        ContactTypeComponent,
+        ContactTypeCreateFormComponent
 	],
 	exports: [ContactsComponent],
 	entryComponents: [
 		ContactListCreateFormComponent,
-		ContactSubGroupCreateFormComponent
+		ContactSubGroupCreateFormComponent,
+		ContactTypeCreateFormComponent
 	],
 })
 export class ContactsModule { }

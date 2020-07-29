@@ -106,9 +106,12 @@ export class ContactListCreateFormComponent implements OnInit {
     ngOnInit(): void {
 	}
 	save() {
-        this.form.value.is_active = true;
-        if(this.form.value.contact_sub_group_id == ''){
-            this.contactService.saveContactData(this.form.value).subscribe((res : any) => {
+		this.form.value.is_active = true;
+		const pass_data = [];
+		pass_data.push(this.form.value);
+		console.log(pass_data);
+        if(this.form.value.contact_id == ''){
+            this.contactService.saveContactData(pass_data).subscribe((res : any) => {
                 if(res.code == 200){
                     this.dialogRef.close(this.form.value);
                 }else{
@@ -117,7 +120,7 @@ export class ContactListCreateFormComponent implements OnInit {
                 }
             });
         }else{
-            this.contactService.updateContactData(this.form.value).subscribe((res : any) => {
+            this.contactService.updateContactData(pass_data).subscribe((res : any) => {
                 if(res.code == 200){
                     this.dialogRef.close(this.form.value);
                 }else{

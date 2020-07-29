@@ -42,6 +42,7 @@ import { LocationWithLocationComponent } from './location-create-form/location-w
 import { LocationTypeComponent } from './location-type/location-type.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SortablejsModule } from 'ngx-sortablejs';
+import { LocationTypeCreateFormComponent } from './location-type/location-type-create-form/location-type-create-form.component';
 
 
 @NgModule({
@@ -90,12 +91,14 @@ import { SortablejsModule } from 'ngx-sortablejs';
         LocationDefaultAddressComponent,
         LocationDetailsComponent,
         LocationWithLocationComponent,
-        LocationTypeComponent
+        LocationTypeComponent,
+        LocationTypeCreateFormComponent
 	],
 	exports: [LocationComponent],
 	entryComponents: [
 		LocationCreateFormComponent,
-		LocationGroupCreateFormComponent
+		LocationGroupCreateFormComponent,
+		LocationTypeCreateFormComponent
 	],
 })
 export class LocationModule { }

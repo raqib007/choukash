@@ -38,6 +38,42 @@ export class ContactService {
             })
         );
     }
+    saveContactTypeData(data : any) {
+        return this.http.post(`${environment.apiUrl}${this.baseUrlCtype}/save`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    updateContactTypeData(data : any) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlCtype}/update`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
+    deleteContactType(id: string) {
+        const options = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            }),
+            body: {
+                contact_type_id:id,
+                is_active : false
+            }
+        };
+        return this.http.delete(`${environment.apiUrl}${this.baseUrlCtype}/delete/`,options)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
 
 
     /*** contact sub group CRUD functionality start ***/
@@ -99,8 +135,8 @@ export class ContactService {
             })
         );
     }
-    saveContactData(data : Contact) {
-        return this.http.post(`${environment.apiUrl}${this.baseUrlContact}/save`, data)
+    saveContactData(data : any) {
+        return this.http.post(`${environment.apiUrl}${this.baseUrlContact}/save_all`, data)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {
@@ -108,8 +144,8 @@ export class ContactService {
             })
         );
     }
-    updateContactData(data : Contact) {
-        return this.http.put(`${environment.apiUrl}${this.baseUrlContact}/update`, data)
+    updateContactData(data : any) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlContact}/update_all`, data)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {

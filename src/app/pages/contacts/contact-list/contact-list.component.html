@@ -2,6 +2,30 @@
 	<div class="div-search">
 		<div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px" style="border:0px solid red;">
 			<div fxFlex="23%" fxLayout="column">
+				<label fxFlex>Location Group</label>
+				<div fxFlex>
+					<div class="ng-autocomplete">
+						<ng-autocomplete [data]="locationGroup" 
+							placeHolder="Enter location" 
+							[searchKeyword]="searchKeyword" 
+							(selected)='selectEvent($event)'
+							(inputChanged)='onChangeSearch($event)' 
+							(inputFocused)='onFocused($event)' 
+							[itemTemplate]="itemTemplate"
+							[notFoundTemplate]="notFoundTemplate">
+						</ng-autocomplete>
+					
+						<ng-template #itemTemplate let-item>
+							<a [innerHTML]="item.value"></a>
+						</ng-template>
+					
+						<ng-template #notFoundTemplate let-notFound>
+							<div [innerHTML]="notFound"></div>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+			<div fxFlex="23%" fxLayout="column">
 				<label fxFlex>Location Type</label>
 				<div fxFlex>
 					<div class="ng-autocomplete">
@@ -25,30 +49,7 @@
 					</div>
 				</div>
 			</div>
-			<div fxFlex="23%" fxLayout="column">
-				<label fxFlex>Location</label>
-				<div fxFlex>
-					<div class="ng-autocomplete">
-						<ng-autocomplete [data]="locationGroup" 
-							placeHolder="Enter location" 
-							[searchKeyword]="searchKeyword" 
-							(selected)='selectEvent($event)'
-							(inputChanged)='onChangeSearch($event)' 
-							(inputFocused)='onFocused($event)' 
-							[itemTemplate]="itemTemplate"
-							[notFoundTemplate]="notFoundTemplate">
-						</ng-autocomplete>
-					
-						<ng-template #itemTemplate let-item>
-							<a [innerHTML]="item.value"></a>
-						</ng-template>
-					
-						<ng-template #notFoundTemplate let-notFound>
-							<div [innerHTML]="notFound"></div>
-						</ng-template>
-					</div>
-				</div>
-			</div>
+			
 			<div fxFlex="23%" fxLayout="column">
 				<label fxFlex>Contact Type</label>
 				<div fxFlex>
@@ -107,38 +108,22 @@
 	
 	<elastic-list name="Location" [columns]="columns" (filterChange)="onFilterChange($event)">
 		<div class="extra-actions" fxLayout="row" fxLayoutAlign="start baseline" fxLayoutGap="0px">
-			<div fxFlex="17%">
+			<!-- <div fxFlex="17%">
 				<section class="checkbox" no-margin no-padding>
-					<!-- <mat-checkbox class="example-margin" color="primary" 
-						[(ngModel)]="checked" [(indeterminate)]="indeterminate"
-						[labelPosition]="labelPosition" 
-						[disabled]="disabled" 
+					<mat-checkbox 
+						class="example-margin"
+						color="primary" 
+						(change)="$event ? masterToggle() : null"
+						[checked]="selection.hasValue() && isAllSelected()"
+						[indeterminate]="selection.hasValue() && !isAllSelected()"
 						no-margin no-padding>
-					</mat-checkbox> -->
-					<mat-checkbox class="example-margin" color="primary" no-margin no-padding></mat-checkbox>
+					</mat-checkbox>
 					<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="expand_more" no-margin no-padding>
 						<mat-icon>expand_more</mat-icon>
 					</button>
-					<mat-menu #menu="matMenu">
-						<button mat-menu-item>
-							<span>Select All</span>
-						</button>
-						<button mat-menu-item>
-							<span>Show Latest</span>
-						</button>
-						<button mat-menu-item>
-							<span>Add to Group</span>
-						</button>
-						<button mat-menu-item>
-							<span>Add to Sub Group</span>
-						</button>
-						<button mat-menu-item>
-							<span>Assign to Location</span>
-						</button>
-					</mat-menu>
 				</section>
 			</div>
-			
+			 -->
 			<div fxFlex="47%">
 				<button (click)="createContact()" matTooltip="Print File" mat-icon-button color="primary">
 					<mat-icon>local_printshop</mat-icon>
@@ -172,9 +157,20 @@
 
 		<mat-table #table [dataSource]="dataSource" matSort>
 			<ng-container matColumnDef="checkbox">
-				<mat-header-cell class="actions-cell" *matHeaderCellDef></mat-header-cell>
-				<mat-cell class="actions-cell" *matCellDef="let row">
-					<mat-checkbox color="primary" (click)="$event.stopPropagation()"></mat-checkbox>
+				<mat-header-cell *matHeaderCellDef>
+					<mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+									[checked]="selection.hasValue() && isAllSelected()"
+									[indeterminate]="selection.hasValue() && !isAllSelected()">
+					</mat-checkbox>
+					<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="expand_more" no-margin no-padding>
+						<mat-icon>expand_more</mat-icon>
+					</button>
+				</mat-header-cell>
+				<mat-cell *matCellDef="let row">
+					<mat-checkbox color="primary" (click)="$event.stopPropagation()"
+									(change)="$event ? selection.toggle(row) : null"
+									[checked]="selection.isSelected(row)">
+					</mat-checkbox>
 				</mat-cell>
 			</ng-container>
 
@@ -189,29 +185,43 @@
 				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header></mat-header-cell>
 				<mat-cell class="actions-cell" *matCellDef="let row">
 					<button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
-					<mat-icon>more_horiz</mat-icon>
+						<mat-icon>more_horiz</mat-icon>
 					</button>
 
 					<mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
-					<button (click)="updateContact(row)" mat-menu-item>
-						<span>Modify</span>
-					</button>
-					<button (click)="deleteContact(row)" mat-menu-item>
-						<span>Delete</span>
-					</button>
+						<button (click)="updateContact(row)" mat-menu-item>
+							<span>Modify</span>
+						</button>
+						<button (click)="deleteContact(row)" mat-menu-item>
+							<span>Delete</span>
+						</button>
 					</mat-menu>
 				</mat-cell>
 			</ng-container>
 
 			<mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
-			<mat-row *matRowDef="let row; columns: visibleColumns;" (click)="updateContact(row)" class="clickable">
-			</mat-row>
+			<mat-row *matRowDef="let row; columns: visibleColumns;" (click)="selection.toggle(row)"></mat-row>
 		</mat-table>
-		<mat-paginator class="paginator" 
-			[pageIndex]="0"
-			[pageSizeOptions]="[5, 10, 20, 100]"
-			[length]="resultsLength" 
-			[pageSize]="pageSize">
-		</mat-paginator>
+		<mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
+		
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="masterToggle()">
+				<span *ngIf="!allSelected">Select All</span>
+				<span *ngIf="allSelected">Unselect All</span>
+			</button>
+			<button mat-menu-item>
+				<span>Show Latest</span>
+			</button>
+			<button mat-menu-item>
+				<span>Add to Group</span>
+			</button>
+			<button mat-menu-item>
+				<span>Add to Sub Group</span>
+			</button>
+			<button mat-menu-item>
+				<span>Assign to Location</span>
+			</button>
+		</mat-menu>
+
 	</elastic-list>
 </div>

@@ -1,18 +1,15 @@
 <h2 mat-dialog-title>{{title}}</h2>
 
 <mat-dialog-content [formGroup]="form" class="mat-typography">
+    <label *ngIf="showErrMsg" class="text-danger">{{errMsg}}</label>
     <mat-form-field>
-        <mat-label>Contact Type</mat-label>
-        <mat-select formControlName="contact_type_id">
-            <mat-option *ngFor="let l of contactType" [value]="l.id">
-                {{l.value}}
-            </mat-option>
-        </mat-select>
+        <mat-label>Contat Type</mat-label>
+        <input matInput formControlName="contact_type_name">
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Sub Group Name</mat-label>
-        <input matInput formControlName="contact_sub_group_name">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description">
     </mat-form-field>
 </mat-dialog-content>
 
