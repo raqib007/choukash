@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Contact } from 'src/app/model';
 
 @Component({
 	selector: 'owner-default-address',
@@ -6,31 +7,14 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./default-address.component.scss']
 })
 export class DefaultAddressComponent implements OnInit {
-    formData = {
-		bname: '',
-		authority: '',
-		fname: '',
-		lname: '',
-		lgroup: '',
-		address: '',
-		zip: '',
-		city: '',
-		country: '',
-		phone: '',
-		mobile: '',
-		email: '',
-		website: '',
-		ctype: '',
-		cstype: '',
-	};
+	@Input() dropdownList: any;
+	// @Output() changeName = new EventEmitter();
+
+    formData : Contact;
     selectedItem = [];
-    locations = [];
-	country = ['USA','Bangladesh'];
-	serverName = 'TestServer';
 	alignmentType = 1;
+
     constructor() {
-		this.locations.push('USA');
-		this.locations.push('Dhaka');
 		this.selectedItem = [
 			{checked:true,value:"Gononet LLC"},
 			{checked:false,value:"bname"},
@@ -51,7 +35,7 @@ export class DefaultAddressComponent implements OnInit {
 		];
     }
     ngOnInit(): void {
-
+		this.formData = this.dropdownList.addressList[0];
 	}
 	pussCheckedItem(index,value){
 		this.selectedItem[index].checked = !this.selectedItem[index].checked;

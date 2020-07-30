@@ -6,7 +6,7 @@
 				<span>Default Address</span>
 			</div>
 		</ng-template>
-		<owner-default-address></owner-default-address>
+		<owner-default-address [dropdownList]="allData"></owner-default-address>
 	</mat-tab>
 
 	<mat-tab>
@@ -16,9 +16,8 @@
 			<span>Invoice Address</span>
 			</div>
 		</ng-template>
-		<owner-invoice-address></owner-invoice-address>
+		<owner-invoice-address [dropdownListInvoice]="allData"></owner-invoice-address>
 	</mat-tab>
-
 
 	<mat-tab>
 		<ng-template mat-tab-label>
@@ -27,6 +26,11 @@
 			<span>Shipping Address</span>
 			</div>
 		</ng-template>
-		<owner-shipping-address></owner-shipping-address>
+		<owner-shipping-address [dropdownListShipping]="allData"></owner-shipping-address>
 	</mat-tab>
 </mat-tab-group>
+
+<div align="end">
+    <button mat-button color="primary" mat-dialog-close mat-dialog-close = "no">CANCEL</button>
+    <button mat-button color="primary" cdkFocusInitial (click)="saveAddress()">CREATE CONTACT</button>
+</div>

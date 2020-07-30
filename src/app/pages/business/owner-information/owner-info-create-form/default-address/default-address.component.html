@@ -3,20 +3,20 @@
     <div fxflex="70" fxflex.gt-sm="50" class="fxflex-div"> 
         <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
             <div fxflex="50" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(1,formData.bname)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(1,formData.business_name)" color="primary"></mat-checkbox>
                 <div fxFlex="90%">
                     <mat-form-field>
                         <mat-label>Business Name</mat-label>
-                        <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                        <input matInput [(ngModel)] = "formData.business_name" name="formData.business_name">
                     </mat-form-field>
                 </div>
             </div>
             <div fxflex="50" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(2,formData.authority)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(2,formData.job_title)" color="primary"></mat-checkbox>
                 <div fxFlex="90%">
                     <mat-form-field>
                         <mat-label>Job Title</mat-label>
-                        <input matInput [(ngModel)] = "formData.authority" name="formData.authority">
+                        <input matInput [(ngModel)] = "formData.job_title" name="formData.job_title">
                     </mat-form-field>
                 </div>
             </div>
@@ -24,20 +24,20 @@
 
         <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
             <div fxflex="50" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(3,formData.fname)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(3,formData.first_name)" color="primary"></mat-checkbox>
                 <div fxFlex="90%">
                     <mat-form-field>
                         <mat-label>First Name</mat-label>
-                        <input matInput [(ngModel)] = "formData.fname" name="formData.fname">
+                        <input matInput [(ngModel)] = "formData.first_name" name="formData.first_name">
                     </mat-form-field>
                 </div>
             </div>
             <div fxflex="50" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(4,formData.lname)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(4,formData.last_name)" color="primary"></mat-checkbox>
                 <div fxFlex="90%">
                     <mat-form-field>
                         <mat-label>Last Name</mat-label>
-                        <input matInput [(ngModel)] = "formData.lname" name="formData.lname">
+                        <input matInput [(ngModel)] = "formData.last_name" name="formData.last_name">
                     </mat-form-field>
                 </div>
             </div>
@@ -45,13 +45,13 @@
 
         <div fxLayout="row" fxLayout.gt-sm="row">
             <div fxflex="100" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(5,formData.lgroup)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(5,formData.location_group_id)" color="primary"></mat-checkbox>
                 <div fxFlex="95%">
                     <mat-form-field class="mat-select">
                         <mat-label>Location Group</mat-label>
-                        <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
-                            <mat-option *ngFor="let l of locations" [value]="l">
-                            {{l}}
+                        <mat-select [(ngModel)] = "formData.location_group_id" name="formData.location_group_id">
+                            <mat-option *ngFor="let l of dropdownList.locationType" [value]="l.id">
+                                {{l.value}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -61,11 +61,11 @@
 
         <div fxLayout="row" fxLayout.gt-sm="row">
             <div fxflex="100" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(6,formData.address)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(6,formData.open_address)" color="primary"></mat-checkbox>
                 <div fxFlex="95%">
                     <mat-form-field class="mat-select">
                         <mat-label>Address</mat-label>
-                        <input matInput [(ngModel)] = "formData.address" name="formData.address">
+                        <input matInput [(ngModel)] = "formData.open_address" name="formData.open_address">
                     </mat-form-field>
                 </div>
             </div>
@@ -99,8 +99,8 @@
                     <mat-form-field class="mat-select">
                     <mat-label>Country</mat-label>
                         <mat-select [(ngModel)] = "formData.country" name="formData.country">
-                            <mat-option *ngFor="let l of country" [value]="l" >
-                            {{l}}
+                            <mat-option *ngFor="let l of dropdownList.countryList" [value]="l.name" >
+                                {{l.name}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -110,11 +110,11 @@
 
         <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
             <div fxflex="50" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(10,formData.phone)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="8%" (click)="pussCheckedItem(10,formData.telephone)" color="primary"></mat-checkbox>
                 <div fxFlex="90%">
                     <mat-form-field>
                         <mat-label>Phone Number</mat-label>
-                        <input matInput placeholder="" [(ngModel)] = "formData.phone" name="formData.phone">
+                        <input matInput placeholder="" [(ngModel)] = "formData.telephone" name="formData.telephone">
                     </mat-form-field>
                 </div>
             </div>
@@ -152,13 +152,13 @@
 
         <div fxLayout="row" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
             <div fxflex="100" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(14,formData.ctype)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(14,formData.contact_type_id)" color="primary"></mat-checkbox>
                 <div fxFlex="95%">
                     <mat-form-field class="mat-select">
                         <mat-label>Contact Type</mat-label>
-                        <mat-select [(ngModel)] = "formData.ctype" name="formData.ctype">
-                            <mat-option *ngFor="let l of country" [value]="l" >
-                            {{l}}
+                        <mat-select [(ngModel)] = "formData.contact_type_id" name="formData.contact_type_id">
+                            <mat-option *ngFor="let l of dropdownList.contactType" [value]="l.id" >
+                                {{l.value}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -168,13 +168,13 @@
 
         <div fxLayout="row" fxLayout.gt-sm="row">
             <div fxflex="100" fxflex.gt-sm="100" class="form-group">
-                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(15,formData.cstype)" color="primary"></mat-checkbox>
+                <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(15,formData.contact_sub_group_id)" color="primary"></mat-checkbox>
                 <div fxFlex="95%">
                     <mat-form-field class="mat-select">
                         <mat-label>Contact Sub Group</mat-label>
-                        <mat-select [(ngModel)] = "formData.cstype" name="formData.cstype">
-                            <mat-option *ngFor="let l of country" [value]="l" >
-                                {{l}}
+                        <mat-select [(ngModel)] = "formData.contact_sub_group_id" name="formData.contact_sub_group_id">
+                            <mat-option *ngFor="let l of dropdownList.subContactType" [value]="l.id" >
+                                {{l.value}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -191,7 +191,6 @@
             </div>
         </div>
     </div>
-
 
     <div fxflex="5" fxflex.gt-sm="50" class="fxflex-div2"> 
         <mat-button-toggle-group #group="matButtonToggleGroup">
@@ -213,9 +212,4 @@
             <span *ngIf = 'item.checked && i > 0'>{{formData[item.value]}}</span>
         </div> 
     </div>
-</div>
-
-<div align="end">
-    <button mat-button color="primary" mat-dialog-close>CANCEL</button>
-    <button mat-button color="primary" cdkFocusInitial>CREATE CONTACT</button>
 </div>

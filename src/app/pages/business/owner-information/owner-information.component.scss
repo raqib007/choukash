@@ -1,139 +1,138 @@
 @import "../../../../styles/_var.scss";
 
-.profile-overview {
-	padding: 24px 0px!important;
-	@include responsivePadding();
-	.main {
-		background: white;
-		padding: 0 32px 32px;
-
-		@include cardBorder;
-
-		.section {
-			padding-top: 32px;
-			padding-bottom: 16px;
-			.heading {
-				font-weight: 600;
-				margin-bottom: 10px;
-			}
-			.founder{
-				font-weight: 500;
-				font-size: 14px;
-				color:#6669;
-			}
-			.businame{
-				font-weight: 500;
-				font-size: 15px;
-				color: #414141;
-				margin-bottom: 25px;
-			}
-			.ofc{
-				font-weight: 500;
-				font-size: 15px;
-				color: #666;
-			}
-			.content {
-				color: $color__text-dark;
-				font-size: 12px;
-				p{
-					line-height: 1;
-				}
-				.company-name{
-					font-size: 13px;
-					font-weight: 600;
-				}
-			}
-		}
-	}
-    .aside {
-		background: #f4f4f4;
-		padding: 32px 32px 0;
-		// @include cardBorder;
-
-		.heading {
-		font-weight: 500;
-		margin-bottom: 24px;
-		}
-
-		.upload {
-			.picture {
-				width: 150px;
-				height: 150px;
-				border-radius: 50%;
-				@include mat-elevation(4);
-			}
-			.mat-icon{
-				font-size: 80px!important;
-				height: 80px!important;
-				width: 80px!important;
-				transform: scale(2);
-			}
-			p{
-				font-size: 12px;
-				color:rgba(0, 0, 0, 0.54);
-				text-align: center;
-			}
-		}
-
-		.footer {
-			border-top: 0px solid #E0E0E0;
-			padding: 16px 0;
-		}
-	}
-	
-	.filelabel {
-		width: 120px;
-		border-radius: 5px;
-		display: block;
-		padding: 5px;
-		transition: border 300ms ease;
-		cursor: pointer;
-		text-align: center;
-		margin: 0;
-	}
-	.filelabel i {
-		display: block;
-		font-size: 30px;
-		padding-bottom: 5px;
-	}
-	.filelabel i,
-	.filelabel .title {
-		color: grey;
-		transition: 200ms color;
-	}
-	.filelabel:hover i,
-	.filelabel:hover .title {
-		color: #1665c4;
-	}
-	#FileInput{
-		display:none;
-	}
-
-	.info {
-		font-size: 14px;
-
-		.names {
-			.name {
-			font-weight: 500;
-			}
-		}
-
-		.values {
-			margin-left: 24px;
-		}
-
-		.name, .value {
-			padding: 8px 0;
-		}
-
-
-	}
-}
 
 .addess-overview {
-	padding: 0 0 24px 0!important;
+	padding: 30px 0 0 0!important;
 	@include responsivePadding();
-	.main {
+	
+	.profile-overview {
+		padding: 24px 0px!important;
+		@include responsivePadding();
+		.main {
+			background: white;
+			padding: 0 32px 32px;
+	
+			@include cardBorder;
+	
+			.section {
+				padding-top: 32px;
+				padding-bottom: 16px;
+				.heading {
+					font-weight: 600;
+					margin-bottom: 10px;
+				}
+				.founder{
+					font-weight: 500;
+					font-size: 14px;
+					color:#6669;
+				}
+				.businame{
+					font-weight: 500;
+					font-size: 15px;
+					color: #414141;
+					margin-bottom: 25px;
+				}
+				.ofc{
+					font-weight: 500;
+					font-size: 15px;
+					color: #666;
+				}
+				.content {
+					color: $color__text-dark;
+					font-size: 12px;
+					p{
+						line-height: 1;
+					}
+					.company-name{
+						font-size: 13px;
+						font-weight: 600;
+					}
+				}
+			}
+		}
+		.aside {
+			background: #f4f4f4;
+			padding: 32px 32px 0;
+			.heading {
+			font-weight: 500;
+			margin-bottom: 24px;
+			}
+	
+			.upload {
+				.picture {
+					width: 150px;
+					height: 150px;
+					border-radius: 50%;
+					@include mat-elevation(4);
+				}
+				.mat-icon{
+					font-size: 80px!important;
+					height: 80px!important;
+					width: 80px!important;
+					transform: scale(2);
+				}
+				p{
+					font-size: 12px;
+					color:rgba(0, 0, 0, 0.54);
+					text-align: center;
+				}
+			}
+	
+			.footer {
+				border-top: 0px solid #E0E0E0;
+				padding: 16px 0;
+			}
+		}
+		
+		.filelabel {
+			width: 120px;
+			border-radius: 5px;
+			display: block;
+			padding: 5px;
+			transition: border 300ms ease;
+			cursor: pointer;
+			text-align: center;
+			margin: 0;
+		}
+		.filelabel i {
+			display: block;
+			font-size: 30px;
+			padding-bottom: 5px;
+		}
+		.filelabel i,
+		.filelabel .title {
+			color: grey;
+			transition: 200ms color;
+		}
+		.filelabel:hover i,
+		.filelabel:hover .title {
+			color: #1665c4;
+		}
+		#FileInput{
+			display:none;
+		}
+	
+		.info {
+			font-size: 14px;
+	
+			.names {
+				.name {
+				font-weight: 500;
+				}
+			}
+	
+			.values {
+				margin-left: 24px;
+			}
+	
+			.name, .value {
+				padding: 8px 0;
+			}
+	
+	
+		}
+	}
+	.preview-address {
 		background: white;
 		padding: 0 32px 32px;
 

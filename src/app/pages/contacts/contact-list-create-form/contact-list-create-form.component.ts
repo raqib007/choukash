@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, Validators, FormGroup} from "@angular/forms";
-import { Contact } from '../../../model/contact';
 import { ContactService, DropdownListService, NotificationService } from 'src/app/_services';
 
 @Component({

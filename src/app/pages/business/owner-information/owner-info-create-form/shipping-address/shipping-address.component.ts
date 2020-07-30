@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Contact } from 'src/app/model';
 
 @Component({
     selector: 'owner-shipping-address',
@@ -6,31 +7,12 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./shipping-address.component.scss']
 })
 export class ShippingAddressComponent implements OnInit {
-	formData = {
-		bname: '',
-		authority: '',
-		fname: '',
-		lname: '',
-		lgroup: '',
-		address: '',
-		zip: '',
-		city: '',
-		country: '',
-		phone: '',
-		mobile: '',
-		email: '',
-		website: '',
-		ctype: '',
-		cstype: '',
-	};
+	@Input() dropdownListShipping: any;
+	formData : Contact;
     selectedItem = [];
-    locations = [];
-	country = ['USA','Bangladesh'];
-	serverName = 'TestServer';
 	alignmentType = 1;
+
     constructor() {
-		this.locations.push('USA');
-		this.locations.push('Dhaka');
 		this.selectedItem = [
 			{checked:true,value:"Gononet LLC"},
 			{checked:false,value:"bname"},
@@ -51,7 +33,7 @@ export class ShippingAddressComponent implements OnInit {
 		];
     }
     ngOnInit(): void {
-
+		this.formData = this.dropdownListShipping.addressList[1];
 	}
 	pussCheckedItem(index,value){
 		this.selectedItem[index].checked = !this.selectedItem[index].checked;

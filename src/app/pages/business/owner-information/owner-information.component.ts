@@ -10,18 +10,16 @@ import { Contact } from 'src/app/model';
 	styleUrls: ['./owner-information.component.scss']
 })
 export class OwnerInformationComponent implements OnInit {
-	showAddress = true;
+	showAddress = false;
 	fileData: File = null;
 	previewUrl:any = null;
 
-	contacts: Contact[];
+	addressList: Contact[];
 	locationType = [];
 	locationGroup = [];
 	contactType = [];
 	subContactType = [];
 	country = [];
-
-	addressList = [];
 
 	constructor(
 		private dialog: MatDialog,
@@ -31,29 +29,29 @@ export class OwnerInformationComponent implements OnInit {
 	) {
 	}
 	ngOnInit(): void {
+		this.getOwnerInfo();
 		this.getLocationType();
 		this.getLocationGroup();
 		this.getContactType();
 		this.getContactGroup();
 		this.getCountry();
-
+	}
+	getOwnerInfo(){
 		this.contactService.getAllDefaultContact()
 		.subscribe(
 			res => {
-				res = res.filter((item : any) => item.is_active == true);
-				this.contacts = res.map(l => new Contact(l));
+				res = res.filter((item : any) => item.is_active == true && item.is_owner == true);
+				this.addressList = res.map(l => new Contact(l));
 			},
 			err => {
-				this.notifyService.showError(err, "Contact Sub Group");
+				this.notifyService.showError(err, "Contact");
 			},
 			() => {
-				if(this.contacts.length > 0){
-					this.addressList.push(this.contacts[0]);
+				if(this.addressList.length > 0){
+					this.showAddress = true;
 				}
-				console.log(this.addressList);
 			}
 		);
-
 	}
 	/** get location type list **/
 	getLocationType(){
@@ -156,6 +154,8 @@ export class OwnerInformationComponent implements OnInit {
 		);
 	}
 
+
+
 	onSelectFile(event) {
 		if (event.target.files && event.target.files[0]) {
 			var reader = new FileReader();
@@ -169,14 +169,27 @@ export class OwnerInformationComponent implements OnInit {
 
 	}
 	createContact(){
-		const dialogConfig = new MatDialogConfig();
-		dialogConfig.disableClose = false;
-		dialogConfig.autoFocus = true;
-		dialogConfig.maxWidth = '100vw';
-		dialogConfig.width = '60vw';
-		const dialogRef = this.dialog.open(OwnerInfoCreateFormComponent,dialogConfig);
-        dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
+		const pass_data = {
+			addressList : this.addressList,
+			locationType : this.locationType,
+			locationGroup : this.locationGroup,
+			contactType : this.contactType,
+			subContactType : this.subContactType,
+			countryList : this.country
+		};
+		this.dialog.open(OwnerInfoCreateFormComponent, { 
+			panelClass: 'custom-dialog-container',
+			data: pass_data,
+			autoFocus : true,
+			maxWidth : '100vw',
+			width : '80vw'
+		}).afterClosed().subscribe(
+			val => {
+				if(val != 'no'){
+					this.notifyService.showSuccess("Owner's contact inforamtion has been successfully saved!!", "Owner's Information");
+					// this.ngOnInit();
+				}
+			}
 		);
 	}
 }

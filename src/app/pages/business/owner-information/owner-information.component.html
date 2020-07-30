@@ -1,15 +1,16 @@
 
 
-<div *ngIf="showAddress" fxLayout="row" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" style="margin-top: 30px;">
-    <button mat-button color="primary" (click)="createContact()">
-        CREATE CONTACT
-        <mat-icon>add</mat-icon>
-    </button>
-</div>
+<div fxFlex="100%" class="addess-overview">
+    <div *ngIf="!showAddress" align="center">
+        <button mat-button color="primary" (click)="createContact()">
+            CREATE CONTACT
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 
-<div *ngIf="showAddress">
-    <div class="profile-overview" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
-        <div class="main" fxFlex.gt-sm>
+    <div fxLayout="row wrap" fxLayoutGap="16px" class="profile-overview" *ngIf="showAddress">
+        <div fxFlex="calc(66.6%-16px)" fxFlex.xs="calc(66.6%-16px)" class="main">
+
             <div class="section">
                 <div class="heading">First Name Last Name</div>
                 <div class="heading founder">Founder</div>
@@ -40,11 +41,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
-        <div class="aside" fxFlex.gt-sm="320px">
-    
+        <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(33.3%-16px)" class="aside">
             <div class="upload" fxLayout="column" fxLayoutAlign="center center">
-    
                 <label class="filelabel" *ngIf="!previewUrl">
                     <mat-icon>cloud_upload</mat-icon>
                     <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="onSelectFile($event)"/>
@@ -57,18 +57,17 @@
                 <div *ngIf="!previewUrl">
                     <p>You can drag and drop the file or click here to browse</p>
                 </div>
-    
+
             </div>
     
             <div class="footer" fxLayout="row" fxLayoutAlign="center center">
                 <button type="button" mat-button (click)="onSubmit()">UPLOAD IMAGE</button>
             </div>
-    
         </div>
     </div>
-    
-    <div class="addess-overview" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" fxLayoutGap="24px">
-        <div class="main" fxFlex.gt-sm>
+
+    <div fxLayout="row wrap" fxLayoutGap="16px" *ngIf="showAddress">
+        <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
             <div class="section">
                 <div class="heading">Default Address</div>
                 <div class="content">
@@ -84,7 +83,8 @@
                 </div>
             </div>
         </div>
-        <div class="main" fxFlex.gt-sm>
+
+        <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
             <div class="section">
                 <div class="heading">Invoice Address</div>
                 <div class="content">
@@ -100,7 +100,8 @@
                 </div>
             </div>
         </div>
-        <div class="main" fxFlex.gt-sm>
+
+        <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
             <div class="section">
                 <div class="heading">Shipping Address</div>
                 <div class="content">
@@ -116,10 +117,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div align="end">
-        <button mat-button color="primary">SAVE</button>
-        <button mat-button color="primary">EDIT</button>
     </div>
 </div>

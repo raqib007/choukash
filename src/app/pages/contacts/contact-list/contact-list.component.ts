@@ -273,7 +273,6 @@ export class ContactListComponent implements OnInit {
 		console.log('pass data in list = ',pass_data);
 		this.dialog.open(ContactListCreateFormComponent, { 
 			panelClass: 'custom-dialog-container',
-			// data: contact,
 			data: pass_data,
 			autoFocus : true,
 			maxWidth : '100vw',

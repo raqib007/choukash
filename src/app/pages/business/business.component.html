@@ -6,7 +6,7 @@
 					<span>Business Information</span>
 				</div>
 			</ng-template>
-			<app-business-information></app-business-information>
+			<app-business-information *ngIf="selectedIndex == 0"></app-business-information>
         </mat-tab>
         <mat-tab>
 			<ng-template mat-tab-label>
@@ -14,7 +14,7 @@
 					<span>Owner's Contact Information</span>
 				</div>
 			</ng-template>
-			<app-owner-information></app-owner-information>
+			<app-owner-information *ngIf="selectedIndex == 1"></app-owner-information>
         </mat-tab>
 	</mat-tab-group>
 </div>
