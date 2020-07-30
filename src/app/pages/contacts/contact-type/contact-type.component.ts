@@ -142,7 +142,14 @@ export class ContactTypeComponent implements OnInit {
 		this.allSelected = !this.isAllSelected();
 		this.isAllSelected() ?
 		this.selection.clear() :
+		// this.dataSource.data.forEach(row => this.selection.select(row));
 		this.dataSource.data.forEach(row => this.selection.select(row));
+	}
+	/** Set active all selected rows. */
+	setActive() {
+		this.dataSource.data.forEach(row => {
+			console.log('name = '+row.contact_type_name+" checked = ",row.is_active);
+		});
 	}
 	onFilterChange(value) {
 		if (!this.dataSource) {

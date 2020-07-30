@@ -356,4 +356,7 @@ export class ContactListComponent implements OnInit {
 			// }
 		});
 	}
+	searchContact(){
+		
+	}
 }
