@@ -23,15 +23,11 @@ import { MatTableDataSource } from '@angular/material/table';
 	styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent implements OnInit {
-	// disabled = false;
-	// labelPosition = 1;
-	// checked = false;
-	// indeterminate = 3;
 	contacts: Contact[];
 	searchKeyword = 'value';
 	formData = {
 		contact_id: '',
-		address_type: '',
+		address_type: 'Default',
 		contact_type_id: '',
 		contact_type_name: '',
 		contact_sub_group_id: '',
@@ -54,7 +50,8 @@ export class ContactListComponent implements OnInit {
 		website: '',
 		is_active: '',
 		company_id: '',
-		note: ''
+		note: '',
+		is_owner : false
 	};
 	groupformData = {
 		id: -1,
@@ -118,22 +115,7 @@ export class ContactListComponent implements OnInit {
 		this.getContactType();
 		this.getContactGroup();
 		this.getCountry();
-
-		this.contactService.getAllDefaultContact()
-		.subscribe(
-			res => {
-				res = res.filter((item : any) => item.is_active == true);
-				this.contacts = res.map(l => new Contact(l));
-			},
-			err => {
-				this.notifyService.showError(err, "Contact Sub Group");
-			},
-			() => {
-				this.dataSource = new MatTableDataSource<Contact>(this.contacts);
-				this.dataSource.paginator = this.paginator;
-			}
-		);
-
+		this.getContactData();
 	}
 
 	/** get location type list **/
@@ -236,6 +218,23 @@ export class ContactListComponent implements OnInit {
 			}
 		);
 	}
+	/** get all contact data */
+	getContactData(){
+		this.contactService.getAllDefaultContact()
+		.subscribe(
+			res => {
+				res = res.filter((item : any) => item.is_active == true && item.is_owner == false);
+				this.contacts = res.map(l => new Contact(l));
+			},
+			err => {
+				this.notifyService.showError(err, "Contact Sub Group");
+			},
+			() => {
+				this.dataSource = new MatTableDataSource<Contact>(this.contacts);
+				this.dataSource.paginator = this.paginator;
+			}
+		);
+	}
 	/** Whether the number of selected elements matches the total number of rows. */
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
@@ -312,10 +311,10 @@ export class ContactListComponent implements OnInit {
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			if(result == 'yes'){
-				this.contactService.deleteContactGroup(contact.contact_id).subscribe((res : any) =>{
+				this.contactService.deleteContact(contact.contact_id).subscribe((res : any) =>{
 					if(res.code == 200){
 						this.notifyService.showSuccess("Contact data has been successfully deleted!!", "Contact");
-						this.ngOnInit();
+						this.getContactData();
 					}else{
 						this.notifyService.showError(res.message, "Contact");
 					}

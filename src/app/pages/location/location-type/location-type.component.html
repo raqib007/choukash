@@ -1,43 +1,10 @@
-<!-- 
-<div class="card border space location-type">
-    <div class="content" fxLayout="row">
-        <div fxFlex="60%" fxFlexOffset="20%">
-            <p>Assign Location Types for This Business</p>
-            <div class="list-container" fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center">
-                <div class="list mat-elevation-z4">
-                    <mat-toolbar>Location Types</mat-toolbar>
-                    <mat-list [sortablejs]="alllocationList" [sortablejsOptions]="groupOptions">
-                        <mat-list-item class="small-list-item" *ngFor="let list of alllocationList">
-                            <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.location_type_name }} </h3>
-                        </mat-list-item>
-                    </mat-list>
-                </div>
-          
-                <mat-icon class="left-right-compare">compare_arrows</mat-icon>
-          
-                <div class="list mat-elevation-z4">
-                    <mat-toolbar>My Location Types</mat-toolbar>
-                        <mat-list [sortablejs]="activelocationList" [sortablejsOptions]="groupOptions">
-                        <mat-list-item class="small-list-item" *ngFor="let list of activelocationList">
-                            <h3 class="middle" matLine> <mat-icon class="drag-handle">drag_handle</mat-icon> {{ list.location_type_name }} </h3>
-                        </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-    <div class="div-right-end">
-        <button mat-button color="primary" (click)="save_location_type()">SAVE</button>
-    </div>
-</div> -->
 
 <div class="elastic">
 	<elastic-list name="" [columns]="columns" (filterChange)="onFilterChange($event)">
 
 		<div class="extra-actions" fxLayout="row" fxLayoutAlign="start baseline" >
 			<div fxFlex>
-				<button mat-raised-button (click)="editContact(formData)" color="primary">CREATE</button>
+				<button mat-raised-button (click)="editLocation(formData)" color="primary">CREATE</button>
 			</div>
 		</div>
 		
@@ -55,8 +22,8 @@
 				</mat-header-cell>
 				<mat-cell *matCellDef="let row" fxFlex="10%">
 					<mat-checkbox color="primary" (click)="$event.stopPropagation()"
-									(change)="$event ? selection.toggle(row) : null"
-									[checked]="selection.isSelected(row)">
+									(change)="singleChkClick(row)"
+									[checked]="row.is_active">
 					</mat-checkbox>
 				</mat-cell>
             </ng-container>
@@ -71,8 +38,8 @@
 			<ng-container matColumnDef="actions">
 				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="10%">Action</mat-header-cell>
 				<mat-cell class="actions-cell" *matCellDef="let row">
-					<button  mat-icon-button color="primary" (click)="editContact(row)"><mat-icon>edit</mat-icon></button>
-                    <button  mat-icon-button color="primary" (click)="deleteContact(row)"><mat-icon>delete</mat-icon></button>
+					<button  mat-icon-button color="primary" (click)="editLocation(row)"><mat-icon>edit</mat-icon></button>
+                    <button  mat-icon-button color="primary" (click)="deleteLocation(row)"><mat-icon>delete</mat-icon></button>
 				</mat-cell>
 			</ng-container>
 
@@ -80,17 +47,14 @@
 			<mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
 		</mat-table>
 
-        <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator class="paginator" [pageSizeOptions]="[10, 20, 50,100]" showFirstLastButtons></mat-paginator>
         
         <mat-menu #menu="matMenu">
 			<button mat-menu-item (click)="masterToggle()">
 				<span *ngIf="!allSelected">Select All</span>
 				<span *ngIf="allSelected">Unselect All</span>
 			</button>
-			<button mat-menu-item>
-				<span>Show Latest</span>
-			</button>
-			<button mat-menu-item>
+			<button mat-menu-item (click)="setActive()">
 				<span>Set as Active</span>
 			</button>
 		</mat-menu>

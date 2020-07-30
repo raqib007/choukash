@@ -517,9 +517,74 @@ $margin__page__small__half: $padding__page__small / 2;
 	text-transform: uppercase;
 }
 .mat-tab-body-wrapper{
-    max-height: calc(100vh - 282px);
+    height: calc(100vh - 282px);
     overflow: auto;
 }
+@media screen and (max-width: 992px) {
+	.mat-tab-body-wrapper {
+    height: calc(67vh - 5px);
+    overflow: auto;
+  }
+}
+.mat-table {
+  max-height: calc(43vh - 1px);
+  overflow: auto;
+}
+
+@media only screen and (min-width: 960px) {
+  /* styles for browsers larger than 960px; */
+  .mat-table {
+    max-height: calc(47vh - 1px)!important;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  /* styles for browsers larger than 1440px; */
+  .mat-table {
+    max-height: calc(43vh - 1px)!important;
+  }
+}
+@media only screen and (min-width: 2000px) {
+  /* for sumo sized (mac) screens */
+  .mat-table {
+    max-height: calc(47vh - 1px)!important;
+  }
+}
+@media only screen and (max-device-width: 480px) {
+  /* styles for mobile browsers smaller than 480px; (iPhone) */
+  .mat-table {
+    max-height: calc(47vh - 1px)!important;
+  }
+}
+@media only screen and (device-width: 768px) {
+  /* default iPad screens */
+  .mat-table {
+    max-height: calc(47vh - 1px)!important;
+  }
+}
+/* different techniques for iPad screening */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+  /* For portrait layouts only */
+  .mat-table {
+    max-height: calc(47vh - 1px)!important;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+  /* For landscape layouts only */
+  .mat-table {
+    max-height: calc(47vh - 1px)!important;
+  }
+}
+@media screen and (max-width: 600px) {
+	.mat-table {
+    max-height: calc(80vh - 232px);
+  }
+}
+
+
+
+
+
 .mat-dialog-container .mat-tab-body-wrapper{
     height: auto!important;
     max-height: calc(100vh - 127px)!important;
@@ -630,3 +695,8 @@ $margin__page__small__half: $padding__page__small / 2;
   color:red;
   margin-bottom: 20px;
 }
+.elastic-list .mat-cell.actions-cell, .elastic-list .mat-header-cell.actions-cell{
+  max-width: 10%!important;
+  min-width: 10%!important;
+}
+

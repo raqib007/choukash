@@ -99,7 +99,8 @@ export class ContactListCreateFormComponent implements OnInit {
 			website: [name, Validators.required],
 			is_active: [],
 			company_id: [],
-			note: [name, Validators.required]
+			note: [],
+			is_owner: []
 		});
 		this.form.setValue(contact);
     }

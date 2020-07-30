@@ -70,16 +70,19 @@ export class LocationTypeComponent implements OnInit {
 		.subscribe(
 			res => {
 				this.locations = res.map(m => {
-					return {
+					const row = {
 						location_type_id : m.location_type_id,
 						location_type_name : m.location_type_name,
 						description : m.description,
 						is_active : m.is_active
-					}
+					};
+					if(m.is_active)
+						this.selection.select(row);
+					return row;
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "Contact Type");
+				this.notifyService.showError(err, "Location Type");
 			},
 			() => {
 				this.dataSource = new MatTableDataSource<Location>(this.locations);
@@ -87,8 +90,8 @@ export class LocationTypeComponent implements OnInit {
 			}
 		);
 	}
-	/* Add and Edit Funtion For Contact Group */
-	editContact(location){
+	/* Add and Edit Funtion For Location Type */
+	editLocation(location){
 		this.dialog.open(LocationTypeCreateFormComponent, { 
 			panelClass: 'custom-dialog-container',
 			data: location,
@@ -111,7 +114,7 @@ export class LocationTypeComponent implements OnInit {
 		);
 	}
 	/* Delete Funtion For Location Type */
-	deleteContact(row){
+	deleteLocation(row){
 		const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
 			width: '250px',
 			data: {id: row.contact_sub_group_id, msg: 'Are you sure want to delete this record?'}
@@ -133,14 +136,39 @@ export class LocationTypeComponent implements OnInit {
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
 		const numRows = this.dataSource.data.length;
+		this.allSelected = (numSelected === numRows);
 		return numSelected === numRows;
 	}
 	/** Selects all rows if they are not all selected; otherwise clear selection. */
 	masterToggle() {
-		this.allSelected = !this.isAllSelected();
-		this.isAllSelected() ?
-		this.selection.clear() :
-		this.dataSource.data.forEach(row => this.selection.select(row));
+		if(this.isAllSelected()){
+			this.selection.clear();
+			this.dataSource.data.forEach(row => {
+				row.is_active = false;
+			});
+		}else{
+			this.dataSource.data.forEach(row => {
+				this.selection.select(row);
+				row.is_active = true;
+			});
+		}
+		this.allSelected = !this.allSelected;
+	}
+	singleChkClick(row){
+		this.selection.toggle(row);
+		row.is_active = !row.is_active;
+	}
+	/** Set active all selected rows. */
+	setActive() {
+		this.locationService.saveAllLocationType(this.dataSource.data).subscribe((res : any) =>{
+			if(res.code == 200){
+				this.notifyService.showSuccess("Successfully activated!", "Location Type");
+				this.selection.clear();
+				this.ngOnInit();
+			}else{
+				this.notifyService.showError(res.message, "Location Type");
+			}
+		});
 	}
 	onFilterChange(value) {
 		if (!this.dataSource) {

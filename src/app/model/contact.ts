@@ -24,6 +24,7 @@ export class Contact {
     is_active : boolean;
     company_id: string;
     note: string;
+    is_owner: boolean;
 
     constructor(contact) {
         this.contact_id = contact.contact_id;
@@ -51,5 +52,6 @@ export class Contact {
         this.is_active = contact.is_active;
         this.company_id = contact.company_id;
         this.note = contact.note;
+        this.is_owner = contact.is_owner;
     }
 }

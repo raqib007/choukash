@@ -62,7 +62,6 @@ export class ContactTypeComponent implements OnInit {
 		private contactService: ContactService,
 		private notifyService: NotificationService,
 	) { 
-		console.log(this.formData);
 	}
 	get visibleColumns() {
 		return this.columns.filter(column => column.visible).map(column => column.property);
@@ -72,12 +71,15 @@ export class ContactTypeComponent implements OnInit {
 		.subscribe(
 			res => {
 				this.contacts = res.map(m => {
-					return {
+					const row = {
 						contact_type_id : m.contact_type_id,
 						contact_type_name : m.contact_type_name,
 						description : m.description,
 						is_active : m.is_active
-					}
+					};
+					if(m.is_active)
+						this.selection.select(row);
+					return row;
 				});
 			},
 			err => {
@@ -135,20 +137,38 @@ export class ContactTypeComponent implements OnInit {
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
 		const numRows = this.dataSource.data.length;
+		this.allSelected = (numSelected === numRows);
 		return numSelected === numRows;
 	}
 	/** Selects all rows if they are not all selected; otherwise clear selection. */
 	masterToggle() {
-		this.allSelected = !this.isAllSelected();
-		this.isAllSelected() ?
-		this.selection.clear() :
-		// this.dataSource.data.forEach(row => this.selection.select(row));
-		this.dataSource.data.forEach(row => this.selection.select(row));
+		if(this.isAllSelected()){
+			this.selection.clear();
+			this.dataSource.data.forEach(row => {
+				row.is_active = false;
+			});
+		}else{
+			this.dataSource.data.forEach(row => {
+				this.selection.select(row);
+				row.is_active = true;
+			});
+		}
+		this.allSelected = !this.allSelected;
+	}
+	singleChkClick(row){
+		this.selection.toggle(row);
+		row.is_active = !row.is_active;
 	}
 	/** Set active all selected rows. */
 	setActive() {
-		this.dataSource.data.forEach(row => {
-			console.log('name = '+row.contact_type_name+" checked = ",row.is_active);
+		this.contactService.saveAllContactType(this.dataSource.data).subscribe((res : any) =>{
+			if(res.code == 200){
+				this.notifyService.showSuccess("Successfully activated!", "Contact Type");
+				this.selection.clear();
+				this.ngOnInit();
+			}else{
+				this.notifyService.showError(res.message, "Contact Type");
+			}
 		});
 	}
 	onFilterChange(value) {
