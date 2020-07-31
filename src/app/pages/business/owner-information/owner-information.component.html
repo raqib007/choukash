@@ -3,10 +3,11 @@
 <div fxFlex="100%" class="addess-overview">
     <div *ngIf="!showAddress" align="center">
         <button mat-button color="primary" (click)="createContact()">
-            CREATE CONTACT NOW
+            CREATE CONTACT
             <mat-icon>add</mat-icon>
         </button>
     </div>
+    
     <div fxLayout="row wrap" fxLayoutGap="16px" class="profile-overview" *ngIf="showAddress">
         <div fxFlex="calc(66.6%-16px)" fxFlex.xs="calc(66.6%-16px)" class="main">
             <div class="section">
