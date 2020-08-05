@@ -46,7 +46,7 @@
         <div fxLayout="row" fxLayout.gt-sm="row">
             <div fxflex="100" fxflex.gt-sm="100" class="form-group">
                 <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(5,formData.location_group_id)" color="primary"></mat-checkbox>
-                <div fxFlex="95%">
+                <div fxFlex="85%">
                     <mat-form-field class="mat-select">
                         <mat-label>Location Group</mat-label>
                         <mat-select [(ngModel)] = "formData.location_group_id" name="formData.location_group_id">
@@ -55,6 +55,14 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+                </div>
+                <div fxFlex="10%" fxLayoutAlign="center center">
+                    <button mat-icon-button color="primary" (click)="addLocationType()">
+                        <mat-icon class="icon">add</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" matTooltip="Please Add Location Type">
+                        <mat-icon class="icon">info</mat-icon>
+                    </button>
                 </div>
             </div>
         </div>
@@ -150,10 +158,10 @@
             </div>
         </div>
 
-        <div fxLayout="row" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="5px">
+        <div fxLayout="row" fxLayout.gt-sm="row">
             <div fxflex="100" fxflex.gt-sm="100" class="form-group">
                 <mat-checkbox fxFlex="4%" (click)="pussCheckedItem(14,formData.contact_type_id)" color="primary"></mat-checkbox>
-                <div fxFlex="95%">
+                <div fxFlex="85%">
                     <mat-form-field class="mat-select">
                         <mat-label>Contact Type</mat-label>
                         <mat-select [(ngModel)] = "formData.contact_type_id" name="formData.contact_type_id">
@@ -162,6 +170,14 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+                </div>
+                <div fxFlex="10%" fxLayoutAlign="center center">
+                    <button mat-icon-button color="primary" (click)="addContactType()">
+                        <mat-icon class="icon">add</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" matTooltip="Please Add Contact Type">
+                        <mat-icon class="icon">info</mat-icon>
+                    </button>
                 </div>
             </div>
         </div>
@@ -179,15 +195,23 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
+                <div fxFlex="10%" fxLayoutAlign="center center">
+                    <button mat-icon-button color="primary" (click)="addContactSubGroup()">
+                        <mat-icon class="icon">add</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" matTooltip="Please Add Cintact Sub Group">
+                        <mat-icon class="icon">info</mat-icon>
+                    </button>
+                </div>
             </div>
         </div>
 
         <div fxLayout="row" fxLayout.gt-sm="row">
             <div fxflex="100" fxflex.gt-sm="100" class="form-group">
                 <mat-label class="lbl-footer"> Use This Address for Invoice</mat-label>
-                <mat-checkbox style="margin-left: .5rem!important;cursor: pointer;" color="primary"></mat-checkbox>
+                <mat-checkbox style="margin-left: .5rem!important;cursor: pointer;" color="primary" (change)="checkInvoice($event)" ></mat-checkbox>
                 <mat-label class="lbl-footer" style="margin-left: 1rem;">Shipping</mat-label>
-                <mat-checkbox  style="margin-left: .5rem!important;cursor: pointer!important;" color="primary"></mat-checkbox>
+                <mat-checkbox  style="margin-left: .5rem!important;cursor: pointer!important;" color="primary" (change)="checkShipping($event)"></mat-checkbox>
             </div>
         </div>
     </div>

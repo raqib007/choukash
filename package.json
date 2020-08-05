@@ -35,6 +35,7 @@
     "countup.js-angular2": "^7.3.0",
     "font-awesome": "^4.7.0",
     "highlight.js": "^10.1.1",
+    "lodash": "^4.17.19",
     "mat-multiselect": "^1.0.4",
     "moment": "^2.27.0",
     "ng-multiselect-dropdown": "^0.2.10",

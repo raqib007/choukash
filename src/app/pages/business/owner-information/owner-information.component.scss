@@ -134,13 +134,18 @@
 	}
 	.preview-address {
 		background: white;
-		padding: 0 32px 32px;
+		// padding: 0 32px 32px;
 
 		@include cardBorder;
-
+		.title{
+			font-weight: 500;
+			padding-left: 32px;
+			padding-top: 20px;
+		}
 		.section {
-			padding-top: 32px;
-			padding-bottom: 16px;
+			// padding-top: 32px;
+			// padding-bottom: 16px;
+			padding: 0 32px 32px;
 			.heading {
 				font-weight: 500;
 				margin-bottom: 24px;
@@ -155,6 +160,9 @@
 					font-size: 13px;
 					font-weight: 600;
 				}
+			}
+			.div-right-end{
+				margin-top: 0;
 			}
 		}
 	}

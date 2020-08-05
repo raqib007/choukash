@@ -1,11 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
-import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { NgModule } from '@angular/core';
+import { DialogComponent } from './dialog.component';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: ConfirmationDialogComponent
+		component: DialogComponent
 	}
 ];
 

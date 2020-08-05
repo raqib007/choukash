@@ -6,7 +6,7 @@ export class Bussiness{
     ssn : string;
     tax_id : string;
     industry : string;
-    date_of_establishment : string;
+    date_of_establishment : Date;
     company_logo : string;
     created_by : string;
     created_on : string;
@@ -14,20 +14,20 @@ export class Bussiness{
     updated_on : string;
     is_active : string;
 
-    constructor(contact) {
-        this.company_id = contact.company_id;
-        this.business_name = contact.business_name;
-        this.business_legal_name = contact.business_legal_name;
-        this.business_type = contact.business_type;
-        this.ssn = contact.ssn;
-        this.tax_id = contact.tax_id;
-        this.industry = contact.industry;
-        this.date_of_establishment = contact.date_of_establishment;
-        this.company_logo = contact.company_logo;
-        this.created_by = contact.created_by;
-        this.created_on = contact.created_on;
-        this.updated_by = contact.updated_by;
-        this.updated_by = contact.updated_by;
-        this.is_active = contact.is_active;
+    constructor(business? : any) {
+        this.company_id = business && business.company_id || '';
+        this.business_name = business && business.business_name || '';
+        this.business_legal_name = business && business.business_legal_name || '';
+        this.business_type = business && business.business_type || '';
+        this.ssn = business && business.ssn || '';
+        this.tax_id = business && business.tax_id || '';
+        this.industry = business && business.industry || '';
+        this.date_of_establishment = business && business.date_of_establishment || '';
+        this.company_logo = business && business.company_logo || '';
+        this.created_by = business && business.created_by || '';
+        this.created_on = business && business.created_on || '';
+        this.updated_by = business && business.updated_by || '';
+        this.updated_by = business && business.updated_by || '';
+        this.is_active = business && business.is_active || true;
     }
 }

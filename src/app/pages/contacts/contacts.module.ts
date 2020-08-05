@@ -84,7 +84,11 @@ import { ContactTypeCreateFormComponent } from './contact-type/contact-type-crea
         ContactTypeComponent,
         ContactTypeCreateFormComponent
 	],
-	exports: [ContactsComponent],
+	exports: [
+		ContactsComponent,
+		ContactTypeComponent,
+		ContactSubgroupListComponent
+	],
 	entryComponents: [
 		ContactListCreateFormComponent,
 		ContactSubGroupCreateFormComponent,

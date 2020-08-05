@@ -3,15 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable,throwError  } from 'rxjs';
-import { map,catchError } from 'rxjs/operators';
+import { map,catchError,take } from 'rxjs/operators';
 import { Bussiness } from '../model';
 
 @Injectable({ providedIn : 'root' })
 
 export class BusinessService {
-
-    baseUrl = "/masterSetup-1.0.0/setup";
-    baseUrlCompany = "/masterSetup-1.0.0/setup";
+    baseUrlCompany = "/masterSetup-1.0.0/setup/company";
 
     constructor(
         private router: Router,
@@ -21,7 +19,7 @@ export class BusinessService {
     }
 
     getBusinessInfo() {
-        return this.http.get<Bussiness>(`${environment.apiUrl}${this.baseUrl}/company/get/all`).pipe(
+        return this.http.get<Bussiness>(`${environment.apiUrl}${this.baseUrlCompany}/get/all`).pipe(
             map((res : any) => {
                 return res.body;
             }),catchError( error => {
@@ -29,8 +27,8 @@ export class BusinessService {
             })
         );
     }
-    saveUserGroupData(data : Bussiness) {
-        return this.http.post(`${environment.apiUrl}${this.baseUrl}/save`, data)
+    saveBusinessData(data : Bussiness) {
+        return this.http.post(`${environment.apiUrl}${this.baseUrlCompany}/save`, data)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {
@@ -39,8 +37,8 @@ export class BusinessService {
         );
     }
    
-    updateUserGroupData(data : Bussiness) {
-        return this.http.put(`${environment.apiUrl}${this.baseUrl}/update`, data)
+    updateBusinessData(data : Bussiness) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlCompany}/update`, data)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {
@@ -49,17 +47,17 @@ export class BusinessService {
         );
     }
 
-    deleteUserGroup(id: string) {
+    deleteCompany(id: string) {
         const options = {
             headers: new HttpHeaders({
               'Content-Type': 'application/json'
             }),
             body: {
-                user_group_id:id,
+                company_id:id,
                 is_active : false
             }
         };
-        return this.http.delete(`${environment.apiUrl}${this.baseUrl}/delete/`,options)
+        return this.http.delete(`${environment.apiUrl}${this.baseUrlCompany}/delete/`,options)
             .pipe(map(x => {
                 return x;
             }),catchError( error => {

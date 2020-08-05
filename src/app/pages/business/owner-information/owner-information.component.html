@@ -1,5 +1,3 @@
-
-
 <div fxFlex="100%" class="addess-overview">
     <div *ngIf="!showAddress" align="center">
         <button mat-button color="primary" (click)="createContact()">
@@ -7,13 +5,12 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
-    
     <div fxLayout="row wrap" fxLayoutGap="16px" class="profile-overview" *ngIf="showAddress">
         <div fxFlex="calc(66.6%-16px)" fxFlex.xs="calc(66.6%-16px)" class="main">
             <div class="section">
-                <div class="heading">First Name Last Name</div>
+                <div class="heading">{{addressList[0].first_name}} {{addressList[0].last_name}}</div>
                 <div class="heading founder">Founder</div>
-                <div class="heading businame">Business Name</div>
+                <div class="heading businame">{{addressList[0].business_name}}</div>
                 <div class="heading ofc">Head Office</div>
                 <div class="content" fxLayout="column" fxLayoutAlign="start start">
                     <div class="info" fxLayout="row">
@@ -28,14 +25,14 @@
                             <div class="name">Website :</div>
                         </div>
                         <div class="values">
-                            <div class="value">93 Kazi Nazrul Islam Avenue, Tejgaon</div>
-                            <div class="value">1212</div>
-                            <div class="value">Dhaka</div>
-                            <div class="value">Bangladesh</div>
-                            <div class="value">+880255012000</div>
-                            <div class="value">+8801911344133</div>
-                            <div class="value">shawkat@gononet.net</div>
-                            <div class="value">www.gononet.net</div>
+                            <div class="value">{{addressList[0].open_address}}</div>
+                            <div class="value">{{addressList[0].zip}}</div>
+                            <div class="value">{{addressList[0].city}}</div>
+                            <div class="value">{{addressList[0].country}}</div>
+                            <div class="value">{{addressList[0].telephone}}</div>
+                            <div class="value">{{addressList[0].mobile}}</div>
+                            <div class="value">{{addressList[0].email}}</div>
+                            <div class="value">{{addressList[0].website}}</div>
                         </div>
                     </div>
                 </div>
@@ -67,52 +64,98 @@
 
     <div fxLayout="row wrap" fxLayoutGap="16px" *ngIf="showAddress">
         <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
-            <div class="section">
-                <div class="heading">Default Address</div>
+            <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">Default Address</div>
+                <div class="actions" fxLayout="row">
+                    <button type="button" mat-icon-button
+                        matTooltip="Edit Default Address" (click)="editDefault(1)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="section" *ngIf="!showDefaultForm">
                 <div class="content">
-                    <p class="company-name">GONONET LLC</p>
-                    <p>Shawkat Islam</p>
-                    <p>93 Kazi Nazrul Islam Avenue</p>
-                    <p>Dhaka 1215</p>
-                    <p>Bangladesh (BD)</p>
-                    <p>+880255012000</p>
-                    <p>+8801911344133</p>
-                    <p>shawkat@gononet.net</p>
-                    <p>www.gononet.net</p>
+                    <p class="company-name">{{addressList[0].business_name}}</p>
+                    <p>{{addressList[0].first_name}} {{addressList[0].last_name}}</p>
+                    <p>{{addressList[0].open_address}}</p>
+                    <p>{{addressList[0].city}} {{addressList[0].zip}}</p>
+                    <p>{{addressList[0].country}}</p>
+                    <p>{{addressList[0].telephone}}</p>
+                    <p>{{addressList[0].mobile}}</p>
+                    <p>{{addressList[0].email}}</p>
+                    <p>{{addressList[0].website}}</p>
+                </div>
+            </div>
+            <div class="section" *ngIf="showDefaultForm">
+                <edit-business-default-address [dropdownList]="allData"></edit-business-default-address>
+                <div class="div-right-end">
+                    <button mat-button color="primary" (click)="editDefault(1)">CANCEL</button>
+                    <button mat-button color="primary" (click)="updateAddress(1)">UPDATE</button>
                 </div>
             </div>
         </div>
 
         <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
-            <div class="section">
-                <div class="heading">Invoice Address</div>
+            <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">Invoice Address</div>
+                <div class="actions" fxLayout="row">
+                    <button type="button" mat-icon-button
+                        matTooltip="Edit Invoice Address" (click)="editDefault(2)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="section" *ngIf="!showInvoicetForm">
                 <div class="content">
-                    <p class="company-name">GONONET LLC</p>
-                    <p>Shawkat Islam</p>
-                    <p>93 Kazi Nazrul Islam Avenue</p>
-                    <p>Dhaka 1215</p>
-                    <p>Bangladesh (BD)</p>
-                    <p>+880255012000</p>
-                    <p>+8801911344133</p>
-                    <p>shawkat@gononet.net</p>
-                    <p>www.gononet.net</p>
+                    <p class="company-name">{{addressList[1].business_name}}</p>
+                    <p>{{addressList[1].first_name}} {{addressList[1].last_name}}</p>
+                    <p>{{addressList[1].open_address}}</p>
+                    <p>{{addressList[1].city}} {{addressList[1].zip}}</p>
+                    <p>{{addressList[1].country}}</p>
+                    <p>{{addressList[1].telephone}}</p>
+                    <p>{{addressList[1].mobile}}</p>
+                    <p>{{addressList[1].email}}</p>
+                    <p>{{addressList[1].website}}</p>
+                </div>
+            </div>
+            <div class="section" *ngIf="showInvoicetForm">
+                <edit-business-default-address [dropdownList]="allData"></edit-business-default-address>
+                <div class="div-right-end">
+                    <button mat-button color="primary" (click)="editDefault(2)">CANCEL</button>
+                    <button mat-button color="primary" (click)="updateAddress(2)">UPDATE</button>
                 </div>
             </div>
         </div>
 
         <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
-            <div class="section">
-                <div class="heading">Shipping Address</div>
+            <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">Shipping Address</div>
+                <div class="actions" fxLayout="row">
+                    <button type="button" mat-icon-button
+                        matTooltip="Edit Shipping Address" (click)="editDefault(3)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="section" *ngIf="!showShippingForm">
                 <div class="content">
-                    <p class="company-name">GONONET LLC</p>
-                    <p>Shawkat Islam</p>
-                    <p>93 Kazi Nazrul Islam Avenue</p>
-                    <p>Dhaka 1215</p>
-                    <p>Bangladesh (BD)</p>
-                    <p>+880255012000</p>
-                    <p>+8801911344133</p>
-                    <p>shawkat@gononet.net</p>
-                    <p>www.gononet.net</p>
+                    <p class="company-name">{{addressList[2].business_name}}</p>
+                    <p>{{addressList[2].first_name}} {{addressList[2].last_name}}</p>
+                    <p>{{addressList[2].open_address}}</p>
+                    <p>{{addressList[2].city}} {{addressList[2].zip}}</p>
+                    <p>{{addressList[2].country}}</p>
+                    <p>{{addressList[2].telephone}}</p>
+                    <p>{{addressList[2].mobile}}</p>
+                    <p>{{addressList[2].email}}</p>
+                    <p>{{addressList[2].website}}</p>
+                </div>
+            </div>
+            <div class="section" *ngIf="showShippingForm">
+                <edit-business-default-address [dropdownList]="allData"></edit-business-default-address>
+                <div class="div-right-end">
+                    <button mat-button color="primary" (click)="editDefault(3)">CANCEL</button>
+                    <button mat-button color="primary" (click)="updateAddress(3)">UPDATE</button>
                 </div>
             </div>
         </div>

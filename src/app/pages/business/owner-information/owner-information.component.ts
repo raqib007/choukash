@@ -21,6 +21,11 @@ export class OwnerInformationComponent implements OnInit {
 	subContactType = [];
 	country = [];
 
+
+	showDefaultForm: boolean = false;
+	showInvoicetForm: boolean = false;
+	showShippingForm: boolean = false;
+	allData : any;
 	constructor(
 		private dialog: MatDialog,
 		private contactService : ContactService,
@@ -37,14 +42,14 @@ export class OwnerInformationComponent implements OnInit {
 		this.getCountry();
 	}
 	getOwnerInfo(){
-		this.contactService.getAllDefaultContact()
+		this.contactService.getAllOwnerInfo()
 		.subscribe(
 			res => {
 				res = res.filter((item : any) => item.is_active == true && item.is_owner == true);
 				this.addressList = res.map(l => new Contact(l));
 			},
 			err => {
-				this.notifyService.showError(err, "Contact");
+				this.notifyService.showError(err, "Owner Information");
 			},
 			() => {
 				if(this.addressList.length > 0){
@@ -187,9 +192,48 @@ export class OwnerInformationComponent implements OnInit {
 			val => {
 				if(val != 'no'){
 					this.notifyService.showSuccess("Owner's contact inforamtion has been successfully saved!!", "Owner's Information");
-					// this.ngOnInit();
+					this.getOwnerInfo();
 				}
 			}
 		);
+	}
+
+	editDefault(val){
+		if(val == 1){
+			this.showDefaultForm = !this.showDefaultForm;
+		}else if(val == 2){
+			this.showInvoicetForm = !this.showInvoicetForm;
+		}else{
+			this.showShippingForm = !this.showShippingForm;
+		}
+		this.allData = {
+			type:val,
+			addressList : this.addressList,
+			locationType : this.locationType,
+			locationGroup : this.locationGroup,
+			contactType : this.contactType,
+			subContactType : this.subContactType,
+			countryList : this.country
+		};
+	}
+
+	updateAddress(val){
+		let pass_data = this.addressList[0];
+		if(val == 1){
+			pass_data = this.addressList[0];
+		}else if(val == 2){
+			pass_data = this.addressList[1];
+		}else{
+			pass_data = this.addressList[2];
+		}
+		this.contactService.updateSingleContactData(pass_data).subscribe((res : any) => {
+			if(res.code == 200){
+				this.showDefaultForm = false;
+				this.notifyService.showSuccess("Owner's contact inforamtion has been successfully updated!!", "Owner's Information");
+				this.getOwnerInfo();
+			}else{
+				this.notifyService.showError("Owner's contact inforamtion has been successfully updated!!", "Owner's Information");
+			}
+		});
 	}
 }

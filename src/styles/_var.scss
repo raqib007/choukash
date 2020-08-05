@@ -592,10 +592,11 @@ $margin__page__small__half: $padding__page__small / 2;
 }
 .div-right-end{
     // border:0px solid red;
-    // position: absolute;
-    // right: 0;bottom: 0;
-    margin-top: 2rem;
+    margin-top: 1rem;
     text-align: end;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .div-search{

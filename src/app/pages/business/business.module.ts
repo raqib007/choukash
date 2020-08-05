@@ -38,6 +38,7 @@ import { OwnerInfoCreateFormComponent } from './owner-information/owner-info-cre
 import { DefaultAddressComponent } from './owner-information/owner-info-create-form/default-address/default-address.component';
 import { InvoiceAddressComponent } from './owner-information/owner-info-create-form/invoice-address/invoice-address.component';
 import { ShippingAddressComponent } from './owner-information/owner-info-create-form/shipping-address/shipping-address.component';
+import { EditDefaultAddressComponent } from './owner-information/edit-default-address/edit-default-address.component';
 
 @NgModule({
   	imports: [
@@ -80,7 +81,8 @@ import { ShippingAddressComponent } from './owner-information/owner-info-create-
         OwnerInfoCreateFormComponent,
         DefaultAddressComponent,
         InvoiceAddressComponent,
-        ShippingAddressComponent
+        ShippingAddressComponent,
+        EditDefaultAddressComponent
 	],
 	exports: [BusinessComponent],
 	entryComponents: [

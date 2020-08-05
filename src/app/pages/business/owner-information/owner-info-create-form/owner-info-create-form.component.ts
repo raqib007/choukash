@@ -27,17 +27,16 @@ export class OwnerInfoCreateFormComponent implements OnInit {
 	) {
 		this.defaultAddress.address_type = "Default";
 		this.invoiceAddress.address_type = "Invoice";
-		this.shippingAddress.address_type = "Shipping";
+		this.shippingAddress.address_type = "Delivery";
 		this.defaultAddress.is_owner = true;
 		this.invoiceAddress.is_owner = true;
 		this.shippingAddress.is_owner = true;
 		this.addressList = [this.defaultAddress,this.invoiceAddress,this.shippingAddress];
 		pass_data.addressList = this.addressList;
 		this.allData = pass_data;
-	 }
+	}
 
     ngOnInit(): void {
-		console.log('in modal parent page = ',this.allData);
 	}
 	saveAddress(){
         this.contactService.saveContactData(this.addressList).subscribe((res : any) => {

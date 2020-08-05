@@ -1,0 +1,97 @@
+
+<div fxFlex="100%" style="margin-top: 25px;">
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Business Name</mat-label>
+            <input matInput [(ngModel)] = "formData.business_name" name="formData.business_name">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Job Title</mat-label>
+            <input matInput [(ngModel)] = "formData.job_title" name="formData.job_title">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)] = "formData.first_name" name="formData.first_name">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)] = "formData.last_name" name="formData.last_name">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(100%-16px)" fxFlex="calc(100%-16px)">
+            <mat-label>Location Group</mat-label>
+            <mat-select [(ngModel)] = "formData.location_group_id" name="formData.location_group_id">
+                <mat-option *ngFor="let l of dropdownList.locationType" [value]="l.id">
+                    {{l.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(100%-16px)" fxFlex="calc(100%-16px)">
+            <mat-label>Address</mat-label>
+            <input matInput [(ngModel)] = "formData.open_address" name="formData.open_address">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Zip Code</mat-label>
+            <input matInput placeholder="" [(ngModel)] = "formData.zip" name="formData.zip">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="" [(ngModel)] = "formData.city" name="formData.city">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(100%-16px)" fxFlex="calc(100%-16px)">
+            <mat-label>Country</mat-label>
+            <mat-select [(ngModel)] = "formData.country" name="formData.country">
+                <mat-option *ngFor="let l of dropdownList.countryList" [value]="l.name" >
+                    {{l.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="" [(ngModel)] = "formData.telephone" name="formData.telephone">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput placeholder="" [(ngModel)] = "formData.mobile" name="formData.mobile">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="" [(ngModel)] = "formData.email" name="formData.email">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(50%-16px)" fxFlex="calc(50%-16px)">
+            <mat-label>Website</mat-label>
+            <input matInput placeholder="" [(ngModel)] = "formData.website" name="formData.website">
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(100%-16px)" fxFlex="calc(100%-16px)">
+            <mat-label>Contact Type</mat-label>
+            <mat-select [(ngModel)] = "formData.contact_type_id" name="formData.contact_type_id">
+                <mat-option *ngFor="let l of dropdownList.contactType" [value]="l.id" >
+                    {{l.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex.xs="calc(100%-16px)" fxFlex="calc(100%-16px)">
+            <mat-label>Contact Sub Group</mat-label>
+            <mat-select [(ngModel)] = "formData.contact_sub_group_id" name="formData.contact_sub_group_id">
+                <mat-option *ngFor="let l of dropdownList.subContactType" [value]="l.id" >
+                    {{l.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <span class="cdk-visually-hidden"></span>
+    </div>
+</div>

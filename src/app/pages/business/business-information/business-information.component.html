@@ -5,18 +5,18 @@
             <div class="result" fxLayout="column" fxLayoutAlign="center center">
                 <mat-form-field>
                     <mat-label>Business Name</mat-label>
-                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                    <input matInput [(ngModel)] = "formData.business_name" name="formData.business_name">
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Business Legal Name</mat-label>
-                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                    <input matInput [(ngModel)] = "formData.business_legal_name" name="formData.business_legal_name">
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Select Business Type for Tax Form</mat-label>
-                    <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
-                        <mat-option *ngFor="let l of businessTypes" [value]="l.id">
+                    <mat-select [(ngModel)] = "formData.business_type" name="formData.business_type">
+                        <mat-option *ngFor="let l of businessTypes" [value]="l.value">
                             {{l.value}}
                         </mat-option>
                     </mat-select>
@@ -24,18 +24,18 @@
 
                 <mat-form-field>
                     <mat-label>Tax ID</mat-label>
-                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                    <input matInput [(ngModel)] = "formData.tax_id" name="formData.tax_id">
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Social Security Number</mat-label>
-                    <input matInput [(ngModel)] = "formData.bname" name="formData.bname">
+                    <input matInput [(ngModel)] = "formData.ssn" name="formData.ssn">
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Select Industry Type</mat-label>
-                    <mat-select [(ngModel)] = "formData.lgroup" name="formData.lgroup">
-                        <mat-option *ngFor="let l of industryType" [value]="l.id">
+                    <mat-select [(ngModel)] = "formData.industry" name="formData.industry">
+                        <mat-option *ngFor="let l of industryType" [value]="l.value">
                             {{l.value}}
                         </mat-option>
                     </mat-select>
@@ -43,7 +43,7 @@
 
                 <mat-form-field>
                     <mat-label>Date of Establishment</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input matInput [matDatepicker]="picker" [(ngModel)] = "formData.date_of_establishment" name="formData.date_of_establishment">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -51,32 +51,43 @@
         </div>
     </div>
     <div class="aside" fxFlex.gt-sm="320px">
-
         <div class="upload" fxLayout="column" fxLayoutAlign="center center">
-
-            <label class="filelabel" *ngIf="!previewUrl">
-                <mat-icon>cloud_upload</mat-icon>
-                <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="onSelectFile($event)"/>
-            </label>
-
-            <div class="image-preview" *ngIf="previewUrl">
-                <img fxFlex="150px" class="picture" [src]="previewUrl" />                 
-            </div>
-
-            <div *ngIf="!previewUrl">
+            <ng-container *ngIf="isImageSaved; else elseTemplate">
+                <img [src]="cardImageBase64" />
+            </ng-container>
+            <ng-template #elseTemplate>
+                <label class="filelabel" *ngIf="!isImageSaved">
+                    <mat-icon>cloud_upload</mat-icon>
+                    <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="fileChangeEvent($event)"/>
+                </label>
                 <p>You can drag and drop the file or click here to browse</p>
-            </div>
+            </ng-template>
+
+
+            <!-- <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+                <div class="img-space">
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" />
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <img src="assets/img/cloud_upload.png" class="img-responsive">
+                        <p>You can drag and drop the file or click here to browse</p>
+                    </ng-template>
+                </div>
+            </div> -->
 
         </div>
-
+        {{imageError}} 
         <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-            <button type="button" mat-button (click)="onSubmit()">UPLOAD LOGO</button>
+            <button type="button" mat-button (click)="onSubmit()" *ngIf="hasValue">UPLOAD LOGO</button>
+            <button type="button" mat-button (click)="removeImage()" *ngIf="isImageSaved">Remove</button>
         </div>
 
     </div>
 </div>
 
-<div align="end">
-    <button mat-button color="primary">SAVE</button>
-    <button mat-button color="primary">EDIT</button>
+<div class="div-right-end">
+    <button mat-button color="primary" *ngIf="!hasValue" (click)="saveData()">SAVE</button>
+    <button mat-button color="primary" *ngIf="hasValue" (click)="updateData()">EDIT</button>
 </div>

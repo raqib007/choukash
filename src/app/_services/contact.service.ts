@@ -153,6 +153,15 @@ export class ContactService {
             })
         );
     }
+    updateSingleContactData(data : any) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlContact}/update`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
     deleteContact(id: string) {
         const options = {
             headers: new HttpHeaders({
@@ -173,4 +182,15 @@ export class ContactService {
     }
     /*** contact CRUD functionality end ***/
 
+
+    /*** get owner information  ***/
+    getAllOwnerInfo(): Observable<Contact[]> {
+        return this.http.get<Contact[]>(`${environment.apiUrl}${this.baseUrlContact}/get/active_owner/all`).pipe(
+            map((res : any) => {
+                return res.body;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
 }
