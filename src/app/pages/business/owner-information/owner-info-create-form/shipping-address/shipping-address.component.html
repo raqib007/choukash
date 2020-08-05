@@ -50,7 +50,7 @@
                     <mat-form-field class="mat-select">
                         <mat-label>Location Group</mat-label>
                         <mat-select [(ngModel)] = "formData.location_group_id" name="formData.location_group_id">
-                            <mat-option *ngFor="let l of dropdownListShipping.locationType" [value]="l.id">
+                            <mat-option *ngFor="let l of dropdownListShipping.locationGroup" [value]="l.id">
                                 {{l.value}}
                             </mat-option>
                         </mat-select>

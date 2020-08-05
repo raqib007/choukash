@@ -80,7 +80,7 @@
         </div>
         {{imageError}} 
         <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-            <button type="button" mat-button (click)="onSubmit()" *ngIf="hasValue">UPLOAD LOGO</button>
+            <button type="button" mat-button (click)="updateData()" *ngIf="hasValue">UPLOAD LOGO</button>
             <button type="button" mat-button (click)="removeImage()" *ngIf="isImageSaved">Remove</button>
         </div>
 

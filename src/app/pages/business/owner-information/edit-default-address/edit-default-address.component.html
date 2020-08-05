@@ -24,7 +24,7 @@
         <mat-form-field fxFlex.xs="calc(100%-16px)" fxFlex="calc(100%-16px)">
             <mat-label>Location Group</mat-label>
             <mat-select [(ngModel)] = "formData.location_group_id" name="formData.location_group_id">
-                <mat-option *ngFor="let l of dropdownList.locationType" [value]="l.id">
+                <mat-option *ngFor="let l of dropdownList.locationGroup" [value]="l.id">
                     {{l.value}}
                 </mat-option>
             </mat-select>
