@@ -12,7 +12,7 @@ export class EditDefaultAddressComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
-		if(this.dropdownList.type == 1){
+		if(this.dropdownList.type == 1 || this.dropdownList.type == 0){
 			this.formData = this.dropdownList.addressList[0];
 		}else if(this.dropdownList.type == 2){
 			this.formData = this.dropdownList.addressList[1];

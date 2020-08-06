@@ -7,7 +7,15 @@
     </div>
     <div fxLayout="row wrap" fxLayoutGap="16px" class="profile-overview" *ngIf="showAddress">
         <div fxFlex="calc(66.6%-16px)" fxFlex.xs="calc(66.6%-16px)" class="main">
-            <div class="section">
+            <div class="header" fxLayout="row" fxLayoutAlign="end end">
+                <div class="actions" fxLayout="row" *ngIf="!showHeadForm"  align="end">
+                    <button type="button" mat-icon-button
+                        matTooltip="Edit Default Address" (click)="editDefault(0)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="section" *ngIf="!showHeadForm">
                 <div class="heading">{{addressList[0].first_name}} {{addressList[0].last_name}}</div>
                 <div class="heading founder">Founder</div>
                 <div class="heading businame">{{addressList[0].business_name}}</div>
@@ -35,6 +43,13 @@
                             <div class="value">{{addressList[0].website}}</div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="section" *ngIf="showHeadForm">
+                <edit-business-default-address [dropdownList]="allData"></edit-business-default-address>
+                <div style="text-align: end;">
+                    <button mat-button color="primary" (click)="editDefault(0)">CANCEL</button>
+                    <button mat-button color="primary" (click)="updateAddress(0)">UPDATE</button>
                 </div>
             </div>
 
@@ -66,7 +81,7 @@
         <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
             <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="title">Default Address</div>
-                <div class="actions" fxLayout="row">
+                <div class="actions" fxLayout="row" *ngIf="!showDefaultForm">
                     <button type="button" mat-icon-button
                         matTooltip="Edit Default Address" (click)="editDefault(1)">
                         <mat-icon>edit</mat-icon>
@@ -98,7 +113,7 @@
         <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
             <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="title">Invoice Address</div>
-                <div class="actions" fxLayout="row">
+                <div class="actions" fxLayout="row" *ngIf="!showInvoicetForm">
                     <button type="button" mat-icon-button
                         matTooltip="Edit Invoice Address" (click)="editDefault(2)">
                         <mat-icon>edit</mat-icon>
@@ -131,7 +146,7 @@
         <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(100%-16px)" class="preview-address">
             <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="title">Shipping Address</div>
-                <div class="actions" fxLayout="row">
+                <div class="actions" fxLayout="row" *ngIf="!showShippingForm">
                     <button type="button" mat-icon-button
                         matTooltip="Edit Shipping Address" (click)="editDefault(3)">
                         <mat-icon>edit</mat-icon>

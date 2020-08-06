@@ -1,4 +1,45 @@
-.mat-table{
-	height: calc(80vh - 269px)!important;
-    overflow: auto!important;
+
+// .mat-table{
+// 	height: calc(80vh - 269px)!important;
+//     overflow: auto!important;
+// }
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    .mat-table {
+        max-height: calc(50vh - 1px) !important;
+        // background: violet;
+    }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .mat-table {
+        max-height: calc(56vh - 1px) !important;
+        // background: blue;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    .mat-table {
+        max-height: calc(56vh - 1px) !important;
+        // background: aquamarine;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    .mat-table {
+        max-height: calc(56vh - 1px) !important;
+        // background: yellow;
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+    .mat-table {
+        max-height: calc(56vh - 1px) !important;
+        // background: black;
+    }
 }

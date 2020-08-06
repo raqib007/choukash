@@ -162,7 +162,27 @@ export class LocationTypeComponent implements OnInit {
 	setActive() {
 		this.locationService.saveAllLocationType(this.dataSource.data).subscribe((res : any) =>{
 			if(res.code == 200){
-				this.notifyService.showSuccess("Successfully activated!", "Location Type");
+				this.notifyService.showSuccess("Successfully saved!", "Location Type");
+				this.selection.clear();
+				this.ngOnInit();
+			}else{
+				this.notifyService.showError(res.message, "Location Type");
+			}
+		});
+	}
+	singleSetActive(row,val){
+		console.log(row);
+		let msg = "";
+		if(val){
+			row.is_active = true;
+			msg = "Successfully activated!";
+		}else{
+			row.is_active = false;
+			msg = "Successfully inactivated!";
+		}
+		this.locationService.activeInactiveLocationType(row).subscribe((res : any) =>{
+			if(res.code == 200){
+				this.notifyService.showSuccess(msg, "Location Type");
 				this.selection.clear();
 				this.ngOnInit();
 			}else{

@@ -4,7 +4,7 @@
 
 		<div class="extra-actions" fxLayout="row" fxLayoutAlign="start baseline" >
 			<div fxFlex>
-				<button mat-raised-button (click)="editLocation(formData)" color="primary">CREATE</button>
+				<!-- <button mat-raised-button (click)="editLocation(formData)" color="primary">CREATE</button> -->
 			</div>
 		</div>
 		
@@ -16,9 +16,9 @@
 									[checked]="selection.hasValue() && isAllSelected()"
 									[indeterminate]="selection.hasValue() && !isAllSelected()">
 					</mat-checkbox>
-					<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="expand_more" no-margin no-padding>
+					<!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="expand_more" no-margin no-padding>
 						<mat-icon>expand_more</mat-icon>
-					</button>
+					</button> -->
 				</mat-header-cell>
 				<mat-cell *matCellDef="let row" fxFlex="10%">
 					<mat-checkbox color="primary" (click)="$event.stopPropagation()"
@@ -35,11 +35,29 @@
 				</ng-container>
 			</ng-container>
 
-			<ng-container matColumnDef="actions">
+			<!-- <ng-container matColumnDef="actions">
 				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="10%">Action</mat-header-cell>
 				<mat-cell class="actions-cell" *matCellDef="let row">
 					<button  mat-icon-button color="primary" (click)="editLocation(row)"><mat-icon>edit</mat-icon></button>
                     <button  mat-icon-button color="primary" (click)="deleteLocation(row)"><mat-icon>delete</mat-icon></button>
+				</mat-cell>
+			</ng-container> -->
+
+			<ng-container matColumnDef="actions">
+				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="10%">Action</mat-header-cell>
+				<mat-cell class="actions-cell" *matCellDef="let row" fxFlex="10%">
+					<button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+						<mat-icon>more_horiz</mat-icon>
+					</button>
+
+					<mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+						<button (click)="singleSetActive(row,true)" mat-menu-item>
+							<span>Set as Active</span>
+						</button>
+						<button (click)="singleSetActive(row,false)" mat-menu-item>
+							<span>Set As Inactve</span>
+						</button>
+					</mat-menu>
 				</mat-cell>
 			</ng-container>
 
@@ -58,5 +76,17 @@
 				<span>Set as Active</span>
 			</button>
 		</mat-menu>
+
+		<!-- <div fxLayout="row" fxLayoutAlign="start baseline" align="end" style="margin-top: 15px;">
+			<div fxFlex>
+				<button mat-raised-button (click)="setActive()" color="primary">SAVE</button>
+			</div>
+		</div> -->
 	</elastic-list>
+
+	<div fxLayout="row" fxLayoutAlign="start baseline" align="end" style="margin-top: 15px;">
+		<div fxFlex>
+			<button mat-raised-button (click)="setActive()" color="primary">SAVE</button>
+		</div>
+	</div>
 </div>

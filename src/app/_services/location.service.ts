@@ -84,6 +84,15 @@ export class LocationService {
             })
         );
     }
+    activeInactiveLocationType(data : any) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlLtype}/update`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
     saveLocationTypeData(data : Location) {
         return this.http.post(`${environment.apiUrl}${this.baseUrlLtype}/save`, data)
             .pipe(map(x => {

@@ -21,7 +21,7 @@ export class OwnerInformationComponent implements OnInit {
 	subContactType = [];
 	country = [];
 
-
+	showHeadForm: boolean = false;
 	showDefaultForm: boolean = false;
 	showInvoicetForm: boolean = false;
 	showShippingForm: boolean = false;
@@ -199,7 +199,9 @@ export class OwnerInformationComponent implements OnInit {
 	}
 
 	editDefault(val){
-		if(val == 1){
+		if(val == 0){
+			this.showHeadForm = !this.showHeadForm;
+		}else if(val == 1){
 			this.showDefaultForm = !this.showDefaultForm;
 		}else if(val == 2){
 			this.showInvoicetForm = !this.showInvoicetForm;
@@ -219,7 +221,9 @@ export class OwnerInformationComponent implements OnInit {
 
 	updateAddress(val){
 		let pass_data = this.addressList[0];
-		if(val == 1){
+		if(val == 0){
+			pass_data = this.addressList[0];
+		}else if(val == 1){
 			pass_data = this.addressList[0];
 		}else if(val == 2){
 			pass_data = this.addressList[1];
@@ -228,7 +232,15 @@ export class OwnerInformationComponent implements OnInit {
 		}
 		this.contactService.updateSingleContactData(pass_data).subscribe((res : any) => {
 			if(res.code == 200){
-				this.showDefaultForm = false;
+				if(val == 0){
+					this.showHeadForm = false;
+				}else if(val == 1){
+					this.showDefaultForm = false;
+				}else if(val == 2){
+					this.showInvoicetForm = false;
+				}else{
+					this.showShippingForm = false;
+				}
 				this.notifyService.showSuccess("Owner's contact inforamtion has been successfully updated!!", "Owner's Information");
 				this.getOwnerInfo();
 			}else{
