@@ -163,7 +163,26 @@ export class ContactTypeComponent implements OnInit {
 	setActive() {
 		this.contactService.saveAllContactType(this.dataSource.data).subscribe((res : any) =>{
 			if(res.code == 200){
-				this.notifyService.showSuccess("Successfully activated!", "Contact Type");
+				this.notifyService.showSuccess("Successfully saved!", "Contact Type");
+				this.selection.clear();
+				this.ngOnInit();
+			}else{
+				this.notifyService.showError(res.message, "Contact Type");
+			}
+		});
+	}
+	singleSetActive(row,val){
+		let msg = "";
+		if(val){
+			row.is_active = true;
+			msg = "Successfully activated!";
+		}else{
+			row.is_active = false;
+			msg = "Successfully inactivated!";
+		}
+		this.contactService.setActiveInactiveContactType(row).subscribe((res : any) =>{
+			if(res.code == 200){
+				this.notifyService.showSuccess(msg, "Contact Type");
 				this.selection.clear();
 				this.ngOnInit();
 			}else{

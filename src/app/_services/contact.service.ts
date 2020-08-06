@@ -38,6 +38,15 @@ export class ContactService {
             })
         );
     }
+    setActiveInactiveContactType(data : any) {
+        return this.http.put(`${environment.apiUrl}${this.baseUrlCtype}/update`, data)
+            .pipe(map(x => {
+                return x;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
     saveContactTypeData(data : any) {
         return this.http.post(`${environment.apiUrl}${this.baseUrlCtype}/save`, data)
             .pipe(map(x => {

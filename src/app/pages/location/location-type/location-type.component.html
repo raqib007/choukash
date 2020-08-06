@@ -1,5 +1,5 @@
 
-<div class="elastic">
+<div class="elastic location-type">
 	<elastic-list name="" [columns]="columns" (filterChange)="onFilterChange($event)">
 
 		<div class="extra-actions" fxLayout="row" fxLayoutAlign="start baseline" >
@@ -51,10 +51,10 @@
 					</button>
 
 					<mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
-						<button (click)="singleSetActive(row,true)" mat-menu-item>
+						<button (click)="singleSetActive(row,true)" mat-menu-item [disabled]="row.is_active">
 							<span>Set as Active</span>
 						</button>
-						<button (click)="singleSetActive(row,false)" mat-menu-item>
+						<button (click)="singleSetActive(row,false)" mat-menu-item [disabled]="!row.is_active">
 							<span>Set As Inactve</span>
 						</button>
 					</mat-menu>
@@ -62,7 +62,7 @@
 			</ng-container>
 
 			<mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
-			<mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+			<mat-row *matRowDef="let row; columns: visibleColumns;" [ngClass]="{'inactive': !row.is_active}"></mat-row>
 		</mat-table>
 
         <mat-paginator class="paginator" [pageSizeOptions]="[10, 20, 50,100]" showFirstLastButtons></mat-paginator>

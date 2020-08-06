@@ -1,4 +1,15 @@
 
+.location-type{
+    .checkbox1{
+        background-color: brown;
+    }
+    .inactive{
+        background: #dbdbdb52!important;
+        .mat-cell, .mat-footer-cell{
+            color: #989696de!important;
+        }
+    }
+}
 // .mat-table{
 // 	height: calc(80vh - 269px)!important;
 //     overflow: auto!important;
