@@ -56,24 +56,41 @@
         </div>
         <div fxFlex="calc(33.3%-16px)" fxFlex.xs="calc(33.3%-16px)" class="aside">
             <div class="upload" fxLayout="column" fxLayoutAlign="center center">
-                <label class="filelabel" *ngIf="!previewUrl">
+
+                <label class="filelabel" *ngIf="!isImageSaved">
                     <mat-icon>cloud_upload</mat-icon>
-                    <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="onSelectFile($event)"/>
+                    <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" (change)="fileChangeEvent($event)"/>
                 </label>
     
-                <div class="image-preview" *ngIf="previewUrl">
-                    <img fxFlex="150px" class="picture" [src]="previewUrl" />                 
+                <div class="image-preview" *ngIf="isImageSaved">
+                    <img [src]="cardImageBase64" />                 
                 </div>
     
-                <div *ngIf="!previewUrl">
+                <div *ngIf="!isImageSaved">
                     <p>You can drag and drop the file or click here to browse</p>
                 </div>
+
+                <!-- <div class="custom-file fileInputProfileWrap">
+                    <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+                    <div class="img-space">
+                        <ng-container *ngIf="isImageSaved; else elseTemplate">
+                            <img [src]="cardImageBase64" />
+                        </ng-container>
+                        <ng-template #elseTemplate >
+                            <img src="assets/img/cloud_upload.png" class="img-responsive">
+                            <p>You can drag and drop the file or click here to browse</p>
+                        </ng-template>
+                    </div>
+                </div> -->
 
             </div>
     
             <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                <button type="button" mat-button (click)="onSubmit()">UPLOAD IMAGE</button>
+                <button type="button" mat-button (click)="uploadLogo()">UPLOAD IMAGE</button>
+                <button type="button" mat-button (click)="onRemoveImg()">REMOVE</button>
             </div>
+
+            <!-- {{cardImageBase64}} -->
         </div>
     </div>
 

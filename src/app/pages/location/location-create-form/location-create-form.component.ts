@@ -29,7 +29,7 @@ export class LocationCreateFormComponent implements OnInit {
     showErrMsg = false;
     errMsg = '';
 	mode: 'create' | 'update' = 'create';
-	locationData : any;
+	locationData = new Location();
 
 	dropdownList = {
 		locationGroups : [],
@@ -38,19 +38,20 @@ export class LocationCreateFormComponent implements OnInit {
 	};
 
 	constructor(
-			// private fb: FormBuilder,
-			// private dialogRef: MatDialogRef<LocationCreateFormComponent>,
-			// private store: Store<fromRoot.State>,
-			// @Inject(MAT_DIALOG_DATA) public defaults: any
+		// private fb: FormBuilder,
+		// private dialogRef: MatDialogRef<LocationCreateFormComponent>,
+		// private store: Store<fromRoot.State>,
+		// @Inject(MAT_DIALOG_DATA) public defaults: any
 
-			private fb: FormBuilder,
-            private locationService: LocationService,
-            private notifyService : NotificationService,
-			private dialogRef: MatDialogRef<LocationCreateFormComponent>,
-			@Inject(MAT_DIALOG_DATA) location:Location 
+		private fb: FormBuilder,
+		private locationService: LocationService,
+		private notifyService : NotificationService,
+		private dialogRef: MatDialogRef<LocationCreateFormComponent>,
+		@Inject(MAT_DIALOG_DATA) data:any 
 		) {
-			this.locationData = location;
-			if (location.location_id != '') {
+			this.locationData = data.location;
+			this.dropdownList = data.dropdownList;
+			if (this.locationData.location_id != '') {
 				this.mode = 'update';
 			} else {
 				this.mode = 'create';
@@ -58,10 +59,6 @@ export class LocationCreateFormComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getLocationType();
-		this.getLocationGroup();
-		this.getCountry();
-
 		// this.form = this.fb.group({
 		// 	id: [LocationCreateFormComponent.id++],
 		// 	firstName: [this.defaults.firstName || '',],
@@ -103,69 +100,6 @@ export class LocationCreateFormComponent implements OnInit {
 		// this.form.setValue(location);
 	}
 	
-	/** get location type list **/
-	getLocationType(){
-        this.locationService.getAllLocationType()
-		.subscribe(
-			res => {
-				res = res.filter((item : any) => item.is_active == true);
-				this.dropdownList.locationList = res.map(l => {
-					let data = {
-						id : l.location_type_id,
-						value : l.location_type_name
-					};
-					return data;
-				});
-			},
-			err => {
-				this.notifyService.showError(err, "User Group");
-			},
-			() => {
-			}
-		);
-	}
-	/** get location group list **/
-	getLocationGroup(){
-        this.locationService.getAllLocationGroup()
-		.subscribe(
-			res => {
-				res = res.filter((item : any) => item.is_active == true);
-				this.dropdownList.locationGroups = res.map(l => {
-					let data = {
-						id : l.location_group_id,
-						value : l.location_group_name
-					};
-					return data;
-				});
-			},
-			err => {
-				this.notifyService.showError(err, "User Group");
-			},
-			() => {
-			}
-		);
-	}
-	/** get country list **/
-	getCountry(){
-		this.locationService.getCountryList()
-		.subscribe(
-			res => {
-				this.dropdownList.countryList = res.map(l => {
-					let data = {
-						code : l.alpha2Code,
-						name : l.name
-					};
-					return data;
-				});
-			},
-			err => {
-				this.notifyService.showError(err, "User Group");
-			},
-			() => {
-			}
-		);
-	}
-
 	save() {
 		if (this.mode === 'create') {
 			this.createCustomer();

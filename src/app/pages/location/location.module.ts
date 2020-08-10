@@ -96,7 +96,8 @@ import { LocationTypeCreateFormComponent } from './location-type/location-type-c
 	],
 	exports: [
 		LocationComponent,
-		LocationTypeComponent
+		LocationTypeComponent,
+		LocationGroupListComponent
 	],
 	entryComponents: [
 		LocationCreateFormComponent,

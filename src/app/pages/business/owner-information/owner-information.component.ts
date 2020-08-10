@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OwnerInfoCreateFormComponent } from './owner-info-create-form/owner-info-create-form.component';
 import { ContactService, DropdownListService, NotificationService } from 'src/app/_services';
 import { Contact } from 'src/app/model';
+import * as _ from 'lodash';
 
 @Component({
 	selector: 'app-owner-information',
@@ -26,6 +27,13 @@ export class OwnerInformationComponent implements OnInit {
 	showInvoicetForm: boolean = false;
 	showShippingForm: boolean = false;
 	allData : any;
+
+
+	imageError: string = '' ;
+    isImageSaved: boolean = false;
+    isLoading: boolean = false;
+	cardImageBase64: string = '' ;
+
 	constructor(
 		private dialog: MatDialog,
 		private contactService : ContactService,
@@ -35,7 +43,6 @@ export class OwnerInformationComponent implements OnInit {
 	}
 	ngOnInit(): void {
 		this.getOwnerInfo();
-		this.getLocationType();
 		this.getLocationGroup();
 		this.getContactType();
 		this.getContactGroup();
@@ -72,7 +79,7 @@ export class OwnerInformationComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Location Type");
 			},
 			() => {
 			}
@@ -112,7 +119,7 @@ export class OwnerInformationComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Contact Type");
 			},
 			() => {
 			}
@@ -132,7 +139,7 @@ export class OwnerInformationComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Contact Group");
 			},
 			() => {
 			}
@@ -152,7 +159,7 @@ export class OwnerInformationComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Country");
 			},
 			() => {
 			}
@@ -169,9 +176,6 @@ export class OwnerInformationComponent implements OnInit {
 				this.previewUrl = event.target.result;
 			}
 		  }
-	}
-  	onSubmit() {
-
 	}
 	createContact(){
 		const pass_data = {
@@ -248,4 +252,72 @@ export class OwnerInformationComponent implements OnInit {
 			}
 		});
 	}
+
+	fileChangeEvent(fileInput: any) {
+		this.isLoading = true;
+        this.imageError = null;
+        if (fileInput.target.files && fileInput.target.files.length) {
+
+            const max_size = 20971520;
+            const allowed_types = ['image/png', 'image/jpeg'];
+            const max_height = 15200;
+			const max_width = 25600;
+            if (fileInput.target.files[0].size > max_size) {
+                this.imageError =
+                    'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+
+                return false;
+            }
+
+            if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+                this.imageError = 'Only Images are allowed ( JPG | PNG )';
+                return false;
+            }
+			const reader = new FileReader();
+			const [file] = fileInput.target.files;
+			reader.readAsDataURL(file);
+
+            reader.onload = (e: any) => {
+                const image = new Image();
+                image.src = e.target.result;
+                image.onload = rs => {
+                    const img_height = rs.currentTarget['height'];
+                    const img_width = rs.currentTarget['width'];
+                    console.log(img_height, img_width);
+                    if (img_height > max_height && img_width > max_width) {
+                        this.imageError =
+                            'Maximum dimentions allowed ' +
+                            max_height +
+                            '*' +
+                            max_width +
+                            'px';
+                        return false;
+                    } else {
+                        const imgBase64Path = e.target.result;
+                        this.cardImageBase64 = imgBase64Path;
+						this.isImageSaved = true;
+						this.isLoading = false;
+						this.addressList[0].image = imgBase64Path;
+                    }
+                };
+			};
+			// reader.readAsDataURL(fileInput.target.files[0]);
+        }
+	}
+
+	uploadLogo() {
+		this.contactService.updateSingleContactData(this.addressList[0]).subscribe((res : any) => {
+			if(res.code == 200){
+				this.notifyService.showSuccess("Image updated!!", "Owner's Information");
+			}else{
+				this.notifyService.showError("Error Occured!!", "Owner's Information");
+			}
+		});
+	}
+	onRemoveImg(){
+		this.imageError = '' ;
+		this.isImageSaved = false;
+		this.cardImageBase64 = '' ;
+	}
+
 }

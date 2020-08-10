@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./business.component.scss']
 })
 export class BusinessComponent implements OnInit {
-	selectedIndex = 0;
+	selectedIndex = 1;
 	constructor() { }
 	ngOnInit(): void {
 	}

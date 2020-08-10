@@ -24,21 +24,21 @@ export class ShippingAddressComponent implements OnInit {
 	) {
 		this.selectedItem = [
 			{checked:true,value:"Gononet LLC"},
-			{checked:false,value:"bname"},
-			{checked:false,value:"authority"},
-			{checked:false,value:"fname"},
-			{checked:false,value:"lname"},
-			{checked:false,value:"lgroup"},
-			{checked:false,value:"address"},
+			{checked:false,value:"business_name"},
+			{checked:false,value:"job_title"},
+			{checked:false,value:"first_name"},
+			{checked:false,value:"last_name"},
+			{checked:false,value:"location_group_name"},
+			{checked:false,value:"open_address"},
 			{checked:false,value:"zip"},
 			{checked:false,value:"city"},
 			{checked:false,value:"country"},
-			{checked:false,value:"phone"},
+			{checked:false,value:"telephone"},
 			{checked:false,value:"mobile"},
 			{checked:false,value:"email"},
 			{checked:false,value:"website"},
-			{checked:false,value:"ctype"},
-			{checked:false,value:"cstype"}
+			{checked:false,value:"contact_type_name"},
+			{checked:false,value:"contact_sub_group_name"}
 		];
     }
     ngOnInit(): void {

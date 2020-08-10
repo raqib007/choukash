@@ -24,37 +24,32 @@ import { LocationService, NotificationService } from 'src/app/_services';
 	// host: { '[@routeTransition]': '' }
 })
 export class LocationListComponent implements List<Location>, OnInit, OnDestroy {
-	// disabled = false;
-	// labelPosition = 1;
-	// checked = false;
-	// indeterminate = 3;
-
-	formData = {
-		location_id : '',
-		address_type : '',
-		location_group_id : '',
-		location_group_name : '',
-		location_type_id : '',
-		location_type_name : '',
-		business_name : '',
-		job_title : '',
-		first_name : '',
-		last_name : '',
-		open_address : '',
-		zip : '',
-		city : '',
-		country : '',
-		telephone : '',
-		mobile : '',
-		email : '',
-		company_id : '',
-		contact_sub_group_id : '',
-		contact_type_id : '',
-		is_active: true,
-		location_code : '',
-		website : ''
-	};
-
+	// formData = {
+	// 	location_id : '',
+	// 	address_type : '',
+	// 	location_group_id : '',
+	// 	location_group_name : '',
+	// 	location_type_id : '',
+	// 	location_type_name : '',
+	// 	business_name : '',
+	// 	job_title : '',
+	// 	first_name : '',
+	// 	last_name : '',
+	// 	open_address : '',
+	// 	zip : '',
+	// 	city : '',
+	// 	country : '',
+	// 	telephone : '',
+	// 	mobile : '',
+	// 	email : '',
+	// 	company_id : '',
+	// 	contact_sub_group_id : '',
+	// 	contact_type_id : '',
+	// 	is_active: true,
+	// 	location_code : '',
+	// 	website : ''
+	// };
+	formData = new Location();
 	subject$: ReplaySubject<Location[]> = new ReplaySubject<Location[]>(1);
 	data$: Observable<Location[]>;
 	locations: Location[];
@@ -87,6 +82,12 @@ export class LocationListComponent implements List<Location>, OnInit, OnDestroy 
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
+	dropdownList = {
+		locationGroups : [],
+		locationList : [],
+		countryList : []
+	};
+
 	constructor(
 		private dialog: MatDialog,
 		private locationService: LocationService,
@@ -102,13 +103,16 @@ export class LocationListComponent implements List<Location>, OnInit, OnDestroy 
 		.subscribe(
 			res => {
 				console.log('res = ',res);
-				// this.locations = res.filter((item : any) => item.is_active == true);
+				this.locations = res.filter((item : any) => item.is_active == true);
 			},
 			err => {
 				this.notifyService.showError(err, "Location");
 			},
 			() => {
 				this.prepareData();
+				this.getLocationType();
+				this.getLocationGroup();
+				this.getCountry();
 			}
 		);
 	}
@@ -127,28 +131,82 @@ export class LocationListComponent implements List<Location>, OnInit, OnDestroy 
 		this.dataSource = new ListDataSource<Location>(this.database, this.sort, this.paginator, this.columns);
 	}
 
-	createLocation(location) { 
-		this.dialog.open(
-			LocationCreateFormComponent, { 
-				panelClass: 'custom-dialog-container',
-				data : location
-			}).afterClosed().subscribe((location: Location) => {
-				if (location) {
-					this.locations.unshift(new Location(location));
-					this.subject$.next(this.locations);
-				}
-		});
-	} 
-	
+
+	/** get location type list **/
+	getLocationType(){
+        this.locationService.getAllLocationType()
+		.subscribe(
+			res => {
+				res = res.filter((item : any) => item.is_active == true);
+				this.dropdownList.locationList = res.map(l => {
+					let data = {
+						id : l.location_type_id,
+						value : l.location_type_name
+					};
+					return data;
+				});
+			},
+			err => {
+				this.notifyService.showError(err, "User Group");
+			},
+			() => {
+			}
+		);
+	}
+	/** get location group list **/
+	getLocationGroup(){
+        this.locationService.getAllLocationGroup()
+		.subscribe(
+			res => {
+				res = res.filter((item : any) => item.is_active == true);
+				this.dropdownList.locationGroups = res.map(l => {
+					let data = {
+						id : l.location_group_id,
+						value : l.location_group_name
+					};
+					return data;
+				});
+			},
+			err => {
+				this.notifyService.showError(err, "User Group");
+			},
+			() => {
+			}
+		);
+	}
+	/** get country list **/
+	getCountry(){
+		this.locationService.getCountryList()
+		.subscribe(
+			res => {
+				this.dropdownList.countryList = res.map(l => {
+					let data = {
+						code : l.alpha2Code,
+						name : l.name
+					};
+					return data;
+				});
+			},
+			err => {
+				this.notifyService.showError(err, "User Group");
+			},
+			() => {
+			}
+		);
+	}
 	updateLocation(location) {
+		let pass_data = {
+			location : location,
+			dropdownList : this.dropdownList
+		};
 		this.dialog.open(LocationCreateFormComponent, {
-			data: location
+			data: pass_data
 		}).afterClosed().subscribe(resp => {
 		if (resp) {
 			const index = this.locations.findIndex((existinglocation) => existinglocation.location_id === resp.location_id);
 			this.locations[index] = new Location(resp);
 			this.subject$.next(this.locations);
-		}
+			}
 		});
 	}
 	
@@ -166,12 +224,16 @@ export class LocationListComponent implements List<Location>, OnInit, OnDestroy 
 
 	/* Add and Edit Funtion For Location Group */
 	editLocation(location){
+		let pass_data = {
+			location : location,
+			dropdownList : this.dropdownList
+		};
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
 		dialogConfig.maxWidth = '100vw';
 		dialogConfig.width = '80vw';
-		dialogConfig.data = location;
+		dialogConfig.data = pass_data;
 		const dialogRef = this.dialog.open(LocationCreateFormComponent,dialogConfig);
         dialogRef.afterClosed().subscribe(
             val => console.log("Dialog output:", val)

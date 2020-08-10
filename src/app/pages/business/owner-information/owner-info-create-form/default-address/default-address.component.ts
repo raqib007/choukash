@@ -26,21 +26,21 @@ export class DefaultAddressComponent implements OnInit {
 	) {
 		this.selectedItem = [
 			{checked:true,value:"Gononet LLC"},
-			{checked:false,value:"bname"},
-			{checked:false,value:"authority"},
-			{checked:false,value:"fname"},
-			{checked:false,value:"lname"},
-			{checked:false,value:"lgroup"},
-			{checked:false,value:"address"},
+			{checked:false,value:"business_name"},
+			{checked:false,value:"job_title"},
+			{checked:false,value:"first_name"},
+			{checked:false,value:"last_name"},
+			{checked:false,value:"location_group_name"},
+			{checked:false,value:"open_address"},
 			{checked:false,value:"zip"},
 			{checked:false,value:"city"},
 			{checked:false,value:"country"},
-			{checked:false,value:"phone"},
+			{checked:false,value:"telephone"},
 			{checked:false,value:"mobile"},
 			{checked:false,value:"email"},
 			{checked:false,value:"website"},
-			{checked:false,value:"ctype"},
-			{checked:false,value:"cstype"}
+			{checked:false,value:"contact_type_name"},
+			{checked:false,value:"contact_sub_group_name"}
 		];
     }
     ngOnInit(): void {
@@ -68,7 +68,7 @@ export class DefaultAddressComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Location Type");
 			},
 			() => {
 			}
@@ -108,7 +108,7 @@ export class DefaultAddressComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Contact Type");
 			},
 			() => {
 			}
@@ -128,7 +128,7 @@ export class DefaultAddressComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Contact Group");
 			},
 			() => {
 			}
@@ -145,7 +145,7 @@ export class DefaultAddressComponent implements OnInit {
 		}).afterClosed().subscribe(
 			val => {
 				if(val != 'no'){
-					this.getLocationType();
+					this.getLocationGroup();
 				}
 			}
 		);

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./location.component.scss']
 })
 export class LocationComponent implements OnInit {
-	selectedIndex = 0;
+	selectedIndex = 2;
 	constructor() { }
 
 	ngOnInit(): void {

@@ -46,49 +46,33 @@ export class Location {
     updated_on : string;
     
 
-    constructor(l) {
-        // this.id = l.id;
-        // this.locgroup = l.locgroup;
-        // this.location = l.location;
-        // this.locationType = l.locationType;
-        // this.name = l.name;
-        // this.jobtitle = l.jobtitle;
-        // this.firstName = l.firstName;
-        // this.lastName = l.lastName;
-        // this.address = l.address;
-        // this.zipcode = l.zipcode;
-        // this.city = l.city;
-        // this.country = l.country;
-        // this.phoneNumber = l.phoneNumber;
-        // this.mobileNumber = l.mobileNumber;
-        // this.mail = l.mail;
-
-        this.location_id = l.location_id;
-        this.address_type = l.address_type;
-        this.business_name = l.business_name;
-        this.city = l.city;
-        this.company_id = l.company_id;
-        this.contact_sub_group_id = l.contact_sub_group_id;
-        this.contact_type_id = l.contact_type_id;
-        this.country = l.country;
-        this.email = l.email;
-        this.first_name = l.first_name;
-        this.last_name = l.last_name;
-        this.is_active = l.is_active;
-        this.job_title = l.job_title;
-        this.location_code = l.location_code;
-        this.location_group_id = l.location_group_id;
-        this.location_group_name = l.location_group_name;
-        this.location_type_id = l.location_type_id;
-        this.location_type_name = l.location_type_name;
-        this.mobile = l.mobile;
-        this.open_address = l.open_address;
-        this.telephone = l.telephone;
-        this.website = l.website;
-        this.zip = l.zip;
-        this.created_by = l.created_by;
-        this.created_on = l.created_on;
-        this.updated_by = l.updated_by;
-        this.updated_on = l.updated_on;
+    constructor(l? : any) {
+        this.location_id = l && l.location_id || '';
+        this.address_type = l && l.address_type || '';
+        this.business_name = l && l.business_name || '';
+        this.city = l && l.city || '';
+        this.company_id = l && l.company_id || '';
+        this.contact_sub_group_id = l && l.contact_sub_group_id || '';
+        this.contact_type_id = l && l.contact_type_id || '';
+        this.country = l && l.country || '';
+        this.email = l && l.email || '';
+        this.first_name = l && l.first_name || '';
+        this.last_name = l && l.last_name || '';
+        this.is_active = l && l.is_active || '';
+        this.job_title = l && l.job_title || '';
+        this.location_code = l && l.location_code || '';
+        this.location_group_id = l && l.location_group_id || '';
+        this.location_group_name = l && l.location_group_name || '';
+        this.location_type_id = l && l.location_type_id || '';
+        this.location_type_name = l && l.location_type_name || '';
+        this.mobile = l && l.mobile || '';
+        this.open_address = l && l.open_address || '';
+        this.telephone = l && l.telephone || '';
+        this.website = l && l.website || '';
+        this.zip = l && l.zip || '';
+        this.created_by = l && l.created_by || '';
+        this.created_on = l && l.created_on || '';
+        this.updated_by = l && l.updated_by || '';
+        this.updated_on = l && l.updated_on || '';
     }
 }

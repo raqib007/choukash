@@ -97,7 +97,7 @@
 			</ng-container>
 
 			<mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
-			<mat-row *matRowDef="let row; columns: visibleColumns;" (click)="updateLocation(row)" class="clickable">
+			<mat-row *matRowDef="let row; columns: visibleColumns;" (click)="editLocation(row)" class="clickable">
 			</mat-row>
 		</mat-table>
 		<mat-paginator class="paginator" 

@@ -25,6 +25,7 @@ export class Contact {
     company_id: string;
     note: string;
     is_owner: boolean;
+    image: string;
 
     constructor(contact? : any) {
         this.contact_id = contact && contact.contact_id || '';
@@ -53,5 +54,6 @@ export class Contact {
         this.company_id = contact && contact.company_id || '';
         this.note = contact && contact.note || '';
         this.is_owner = contact && contact.is_owner || false;
+        this.image = contact && contact.image || false;
     }
 }

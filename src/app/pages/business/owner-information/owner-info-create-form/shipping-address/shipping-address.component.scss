@@ -1,66 +1,82 @@
-.fxflex-div{
-    flex: 1 1 100%; 
-    box-sizing: border-box; 
-    max-width: 100%;
-    margin-top:10px;
-    padding-left: 1.6rem;
-    border:0px solid red;
-}
-.fxflex-div2{
-    flex: 1 1 100%; box-sizing: border-box; max-width: 25%;margin-top: 5em;
-    border:0px solid black;
-}
-.form-group{
-    flex: 1 1 100%; box-sizing: border-box; max-width: 100%;
-}
-.mat-checkbox{
-    margin-top: 1rem!important;
-    cursor: pointer;
-}
-.mat-form-field{
-    width: 100%!important;
-    font-size: 13px;
-}
-.mat-select{
-    font-size: 13px;
-}
-.chkbox-full{
-    margin-left: -1.5rem!important;
-    margin-top: .5rem!important;
-    cursor: pointer;
-}
-.input-full-width {
-    width: 100%;
-    margin-left: 1rem;
-}
-.input-full-width2 {
-    width: 90%;
-    margin-left: 1.5rem;
-}
-.white-bold{
-    font-weight: bold;
-    font-size: 600;
-}
-.btn-group .btn-default{
-    border:1px solid #ddd!important;
-}
-.left-align{
-    text-align: left;
-}
-.center-align{
-    text-align: center;
-}
-.right-align{
-    text-align: right;
-}
-.btn-group :hover{
-    border: navy;
-}
 
-.lbl-footer{
-    font-size: 14px!important;
-    color: rgba(0, 0, 0, 0.54)!important;
-}
-#div_preview span{
-    color: rgba(0, 0, 0, 0.54)!important;
+@import "../../../../../../styles/_var.scss";
+
+.business-default-address{
+    .mat-form-field{
+        width: 92%!important;
+        font-size: 13px;
+    }
+    .mat-address{
+        .mat-form-field{
+            width: 94%!important;
+            font-size: 13px;
+        }
+    }
+    .mat-select{
+        .mat-form-field{
+            width: 87%!important;
+            font-size: 13px;
+        }
+        .mat-checkbox{
+            margin-top: 15px;
+        }
+    }
+    @media screen and (max-width: 992px) {
+        .mat-select{
+            .mat-form-field{
+                width: 87%!important;
+            }
+        }
+        .mat-address{
+            .mat-form-field{
+                width: 94%!important;
+            }
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .mat-address{
+            .mat-form-field{
+                width: 92%!important;
+            }
+        }
+        .mat-select{
+            .mat-form-field{
+                width: 85%!important;
+            }
+        }
+    }
+    ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+        padding-bottom: 1em!important;
+        margin-left: 15px!important;
+    }
+    .white-bold{
+        font-weight: bold;
+        font-size: 600;
+    }
+    .btn-group .btn-default{
+        border:1px solid #ddd!important;
+    }
+    .left-align{
+        text-align: left;
+    }
+    .center-align{
+        text-align: center;
+    }
+    .right-align{
+        text-align: right;
+    }
+    .btn-group :hover{
+        border: navy;
+    }
+    
+    .lbl-footer{
+        font-size: 14px!important;
+        color: rgba(0, 0, 0, 0.54)!important;
+    }
+    #div_preview span{
+        color: rgba(0, 0, 0, 0.54)!important;
+    }
+    .div-right-end{
+        margin-top: 0rem;
+    }
 }
