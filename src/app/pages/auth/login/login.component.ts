@@ -38,7 +38,11 @@ export class LoginComponent implements OnInit {
 		this.loading = true;
 		this.showErr = false;
 		this.errorMsg = "";
-        this.authService.login(form.value)
+		let pass_data = {
+			username : "mustafamym@gmail.com",
+			password : "mustafa"
+		}
+        this.authService.login(pass_data)
             .pipe(first())
             .subscribe(
                 data => {

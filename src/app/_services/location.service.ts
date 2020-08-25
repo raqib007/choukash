@@ -11,9 +11,12 @@ import { Location,LocationGroup } from '../model';
 
 export class LocationService {
 
-    baseUrlLtype = "/masterSetup-1.0.0/setup/location_type";
-    baseUrlLgroup = "/masterSetup-1.0.0/setup/location_group";
-    baseUrlLocation = "/masterSetup-1.0.0/setup/locations";
+    // baseUrlLtype = "/masterSetup-1.0.0/setup/location_type";
+    baseUrlLtype = "/locationManagement-1.0.0/location/location_type";
+    // baseUrlLgroup = "/masterSetup-1.0.0/setup/location_group";
+    baseUrlLgroup = "/locationManagement-1.0.0/location/location_group";
+    // baseUrlLocation = "/masterSetup-1.0.0/setup/locations";
+    baseUrlLocation = "/locationManagement-1.0.0/location/locations";
 
     constructor(
         private router: Router,
@@ -130,7 +133,6 @@ export class LocationService {
             })
         );
     }
-
     /*** get location data from location list ***/
     getAllLocation() {
         return this.http.get<Location[]>(`${environment.apiUrl}${this.baseUrlLocation}/get/all`).pipe(

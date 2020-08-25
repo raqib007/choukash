@@ -1,10 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
-	<!-- <div class="register mat-elevation-z12">
-		<div class="register-header" fxLayout="column" fxLayoutAlign="center center">
-			<img class="logo" src="assets/img/logo2x.png">
-        </div>
-    </div> -->
-    
+<!-- <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
     <div fxLayout="column" fxLayoutAlign="center center" class="email-verify mat-elevation-z12">
         <img class="logo" src="assets/img/logo_dark2x.png">
         <div>
@@ -17,4 +11,27 @@
             <button mat-raised-button color="primary" (click)="gotoLogin()">Go To Login Page</button>
         </div>
     </div>
+</div> -->
+
+
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+	<div class="email-verify2 mat-elevation-z12">
+		<div class="header" fxLayout="column" fxLayoutAlign="center center">
+			<img class="logo" src="assets/img/logo2x.png">
+        </div>
+        
+        <div fxLayout="column" fxLayoutAlign="center center" class="email-verify mat-elevation-z12">
+            <div>
+                <img class="logo" src="assets/img/email-verified.png">
+            </div>
+            <div>
+                <label class="lblSuccess">Thanks! Your email address has been verified.</label>
+            </div>
+            <div style="margin-top: 20px;">
+                <button mat-raised-button color="primary" (click)="gotoLogin()">Go To Login Page</button>
+            </div>
+        </div>
+
+	</div>
 </div>
+

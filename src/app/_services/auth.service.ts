@@ -29,6 +29,7 @@ export class AuthService {
     }
 
     baseUrl = "/loginAuth-1.0.0/user/user_info";
+    userUrl = "/GononetUserCreationService/api/v1";
     
     public get userValue(): User {
         return this.userSubject.value;
@@ -38,10 +39,9 @@ export class AuthService {
         const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
         return (Math.floor((new Date).getTime() / 1000)) >= expiry;
     }
-      
 
     register(user: User) {
-        return this.http.post(`${environment.apiUrl}/loginAuth-1.0.0/user/user_info/save`, user).pipe(
+        return this.http.post(`${environment.apiUrlAWS}${this.userUrl}/users`, user).pipe(
             map((res : any) => {
                 return res;
             }),catchError( error => {
@@ -61,9 +61,11 @@ export class AuthService {
     }
 
     login(data) {
-        return this.http.post<any>(`${environment.apiUrl}/loginAuth-1.0.0/users/login`,data,
+        // return this.http.post<any>(`${environment.apiUrl}/loginAuth-1.0.0/users/login`,data,
+        return this.http.post<any>('http://13.212.34.184:8585/GononetAuthService/oauth/token',data,
             {observe: 'response' as 'body'}).pipe(
                 map((user : any) => {
+                    console.log('in login = ',user);
                     let user_data = {
                         id:user.headers.get('userid'),
                         first_name:user.headers.get('firstname'),
@@ -75,7 +77,7 @@ export class AuthService {
                         token:user.headers.get('authorization'),
                         expires:user.headers.get('expires')
                     }
-                    this.userSubject.next(user_data);
+                    // this.userSubject.next(user_data);
                     localStorage.setItem('choukashUser', JSON.stringify(user_data));
                     return user;
                 }),catchError( error => {
@@ -129,7 +131,7 @@ export class AuthService {
         return this.http.put(`${environment.apiUrl}/users/${id}`, params)
             .pipe(map(x => {
                 /* update stored user if the logged in user updated their own record */
-                if (id == this.userValue.id) {
+                if (id == this.userValue.userId) {
                     /* update local storage
                     const user = { ...this.userValue, ...params };
                     localStorage.setItem('user', JSON.stringify(user));
@@ -145,7 +147,7 @@ export class AuthService {
         return this.http.delete(`${environment.apiUrl}/users/${id}`)
             .pipe(map(x => {
                 /* auto logout if the logged in user deleted their own record */
-                if (id == this.userValue.id) {
+                if (id == this.userValue.userId) {
                     this.logout();
                 }
                 return x;

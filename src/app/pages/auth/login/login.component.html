@@ -7,7 +7,7 @@
 			<div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
 				<label *ngIf="showErr" class="text-danger">{{errorMsg}}</label>
 				<mat-form-field>
-					<input matInput placeholder="E-Mail" name="email" required [(ngModel)]="email" autocomplete="new-password" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+					<input matInput placeholder="Email" name="email" required [(ngModel)]="email" autocomplete="new-password" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 				</mat-form-field>
 				<mat-form-field>
 					<input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password" minlength="6">

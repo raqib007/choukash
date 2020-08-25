@@ -12,6 +12,7 @@ import { Location,LocationGroup } from '../model';
 export class DropdownListService {
 
     baseUrl = "/masterSetup-1.0.0/setup/";
+    baseUrlL = "/locationManagement-1.0.0/location/";
 
     constructor(
         private router: Router,
@@ -37,7 +38,7 @@ export class DropdownListService {
         );
     }
     getLocationGroup() {
-        return this.http.get(`${environment.apiUrl}${this.baseUrl}/location_group/get/dropdown_list`).pipe(
+        return this.http.get(`${environment.apiUrl}${this.baseUrlL}/location_group/get/dropdown_list`).pipe(
             map((res : any) => {
                 return res.body;
             }),catchError( error => {
@@ -46,7 +47,7 @@ export class DropdownListService {
         );
     }
     getLocationType() {
-        return this.http.get(`${environment.apiUrl}${this.baseUrl}/location_type/get/dropdown_list`).pipe(
+        return this.http.get(`${environment.apiUrl}${this.baseUrlL}/location_type/get/dropdown_list`).pipe(
             map((res : any) => {
                 return res.body;
             }),catchError( error => {

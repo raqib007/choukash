@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { AlertService,AuthService } from '../../../_services';
 import { MustMatch } from '../../../_helpers/must-watch.validator';
+import { CustomValidators } from 'src/app/_helpers';
 
 @Component({
 	selector: 'elastic-register',
@@ -24,28 +25,73 @@ export class RegisterComponent implements OnInit {
     showErrorMsg = false;
 	user: any = {};
 	error_msg = "";
+
 	constructor(
 		private formBuilder: FormBuilder,
+		private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
 		private authService : AuthService,
         private alertService: AlertService
-	) { }
+	) { 
+		// this.registerForm = this.createSignupForm();
+	}
 
 	ngOnInit() {
 		this.registerForm = this.formBuilder.group({
-            first_name: ['', Validators.required],
-            last_name: ['', Validators.required],
-            user_name: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            userName: ['', Validators.required],
+            primaryEmail: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            passwordConfirm: ['', Validators.required],
+			passwordConfirm: ['', Validators.required],
             acceptTerms: [false, Validators.requiredTrue]
         }, {
-            validator: MustMatch('password', 'passwordConfirm')
+			validator: MustMatch('password', 'passwordConfirm')
         });
 	}
 
+	createSignupForm(): FormGroup {
+		return this.fb.group(
+			{
+				firstName: ['', Validators.required],
+				lastName: ['', Validators.required],
+				userName: ['', Validators.required],
+				primaryEmail: ['', [Validators.required, Validators.email]],
+				password: [
+					null,
+					Validators.compose([
+						Validators.required,
+						// check whether the entered password has a number
+						CustomValidators.patternValidator(/\d/, {
+							hasNumber: true
+						}),
+						// check whether the entered password has upper case letter
+						CustomValidators.patternValidator(/[A-Z]/, {
+							hasCapitalCase: true
+						}),
+						// check whether the entered password has a lower case letter
+						CustomValidators.patternValidator(/[a-z]/, {
+							hasSmallCase: true
+						}),
+						// check whether the entered password has a special character
+						CustomValidators.patternValidator(
+							/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+							{
+								hasSpecialCharacters: true
+							}
+						),
+						Validators.minLength(8)
+					])
+				],
+				passwordConfirm: [null, Validators.compose([Validators.required])],
+				acceptTerms: [false, Validators.requiredTrue]
+			},
+			{
+				validator: CustomValidators.passwordMatchValidator
+			}
+		);
+	}
 	get f() { return this.registerForm.controls; }
 
 	register() {
@@ -53,22 +99,18 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-		// console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-		
         /** reset alerts on submit **/
         this.alertService.clear();
 		this.loading = true;
 		this.authService.register(this.registerForm.value).subscribe((res)=>{
-			console.log('in resgister = ',res.code);
-			console.log(res.code == 500);
+			console.log('in resgister = ',res);
 			this.error_msg = res.message;
-			if(res.code == 500){
+			if(res.status == true){
+				this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+			}else{
 				this.showErrorMsg = true;
 				this.alertService.error(res.message);
 				this.loading = false;
-			}
-			if(res.code == 200){
-				this.alertService.success('Registration successful', { keepAfterRouteChange: true });
 			}
 		});
 	}

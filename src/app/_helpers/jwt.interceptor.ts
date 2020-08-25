@@ -14,11 +14,13 @@ export class JwtInterceptor implements HttpInterceptor {
         const user = this.accountService.userValue;
         const isLoggedIn = user && user.token;
         const isApiUrl = request.url.startsWith(environment.apiUrl);
-        if (this.isHeaderNeeded(request.url) && isLoggedIn && isApiUrl) {
+        // if (this.isHeaderNeeded(request.url) && isLoggedIn && isApiUrl) {
+        if (true) {
             request = request.clone({
                 setHeaders: {
                     // Authorization: `${user.token}`
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWhhbmplcmluQGdtYWlsLmNvbSIsImV4cCI6MTU5NTUwNDAzM30.fRisA5JSEEdcv3dTQ8CmmuMiudhcWJ4u9CUaHdcHUV0`
+                    // Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWhhbmplcmluQGdtYWlsLmNvbSIsImV4cCI6MTU5NTUwNDAzM30.fRisA5JSEEdcv3dTQ8CmmuMiudhcWJ4u9CUaHdcHUV0`
+                    Authorization: `Basic bXVzdGFmYTptdXN0YWZh`
                 }
             });
         }

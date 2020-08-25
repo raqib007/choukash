@@ -2,71 +2,39 @@
 
 :host {
   display: block;
-  background: #fff;
+  background: #fff url('/assets/img/demo/backgrounds/pattern-1.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   width: 100%;
 }
 
 .email-verify {
-  padding: 7rem;
-  padding-top: 3rem;
-  .lblSuccess{
-      font-size: 25px;
-      font-weight: bold;
-  }
-  // background: white;
-  // width: 380px;
+    padding: 7rem;
+    padding-top: 3rem;
+    .lblSuccess{
+        font-size: 25px;
+        font-weight: bold;
+    }
+}
 
-  // .register-header {
-  //   background: $layout-alpha__background-color__sidenav-item;
-  //   padding: 24px;
+.email-verify2 {
+    background: white;
+    width: 37vw;
 
-  //   .logo {
-  //     height: 25px;
-  //     width: auto;
-  //   }
-  // }
+    .header {
+		background: $layout-alpha__background-color__sidenav-item;
+		padding: 24px;
 
-  // .register-content {
-  //   padding: 24px 42px 42px;
-
-  //   .mat-form-field {
-  //     width: 100%;
-  //   }
-
-  //   .extra-options {
-  //     margin: 16px 0 32px;
-
-  //     .remember-me {
-  //       color: #777;
-  //     }
-  //   }
-
-  //   a {
-  //     text-decoration: none;
-  //     color: #2196F3;
-
-  //     &:hover {
-  //       text-decoration: underline;
-  //     }
-  //   }
-
-  //   .note {
-  //     color: #777;
-  //     margin: 24px 0 0;
-  //     text-align: center;
-  //   }
-  // }
-  // .text-danger{
-  //   color:red;
-  //   margin-bottom: 10px;
-  // }
-  // .invalid-feedback{
-  //   width: 100%;
-  //   margin-top: .25rem;
-  //   font-size: 80%;
-  //   color: #dc3545;
-  //   margin-left: 25px;
-  // }
+		.logo {
+			height: 25px;
+			width: auto;
+		}
+    }
+    .email-verify {
+		padding: 1rem 2rem 3rem 2rem;
+		.lblSuccess{
+			font-size: 20px;
+			font-weight: bold;
+		}
+  	}
 }
