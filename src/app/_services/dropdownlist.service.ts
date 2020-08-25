@@ -28,6 +28,15 @@ export class DropdownListService {
             })
         );
     }
+    getCountryList2() {
+        return this.http.get('/assets/country-list.json').pipe(
+            map((res : any) => {
+                return res;
+            }),catchError( error => {
+                return throwError(error);
+            })
+        );
+    }
     getUserGroup() {
         return this.http.get(`${environment.apiUrl}/loginAuth-1.0.0/user/user_group/get/dropdown_list`).pipe(
             map((res : any) => {

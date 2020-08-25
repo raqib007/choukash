@@ -10,7 +10,7 @@ import { isNgTemplate } from '@angular/compiler';
 	host: { '[@routeTransition]': '' }
 })
 export class SettingsComponent implements OnInit, AfterContentInit {
-	seletedIndex = 1;
+	seletedIndex = 3;
 	constructor() { }
 	sidebarList = [];
 	subHeaderName = "Business";

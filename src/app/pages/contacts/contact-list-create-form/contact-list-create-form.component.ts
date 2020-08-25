@@ -56,6 +56,13 @@ export class ContactListCreateFormComponent implements OnInit {
 	alignmentType = 1;
 	country = [];
 
+	addressList = [];
+	addressType = [
+		{name:'Default Address',value:'Default'},
+		{name:'Invoice Address',value:'Invoice'},
+		{name:'Shipping Address',value:'Delivery'}
+	];
+
     constructor(
 		private fb: FormBuilder,
 		private contactService : ContactService,
@@ -132,6 +139,23 @@ export class ContactListCreateFormComponent implements OnInit {
     }
     close() {
         this.dialogRef.close();
-    }
+	}
+	
+	addAddress(){
+		this.addressList.push({
+			address_type : '',
+			open_address : '',
+			zip : '',
+			city : '',
+			country : '',
+			mobile : '',
+			telephone : '',
+			email : '',
+			website : ''
+		});
+	}
+	removeAddress(){
+		this.addressList.splice(this.addressList.length-1, 1);
+	}
 }
 

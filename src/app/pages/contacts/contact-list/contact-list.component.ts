@@ -132,7 +132,7 @@ export class ContactListComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Location Type");
 			},
 			() => {
 			}
@@ -172,7 +172,7 @@ export class ContactListComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Contact Type");
 			},
 			() => {
 			}
@@ -192,7 +192,7 @@ export class ContactListComponent implements OnInit {
 				});
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Contact Group");
 			},
 			() => {
 			}
@@ -200,19 +200,13 @@ export class ContactListComponent implements OnInit {
 	}
 	/** get country list **/
 	getCountry(){
-		this.dropdownService.getCountryList()
+		this.dropdownService.getCountryList2()
 		.subscribe(
 			res => {
-				this.country = res.map(l => {
-					let data = {
-						code : l.alpha2Code,
-						name : l.name
-					};
-					return data;
-				});
+				this.country = res;
 			},
 			err => {
-				this.notifyService.showError(err, "User Group");
+				this.notifyService.showError(err, "Country List");
 			},
 			() => {
 			}

@@ -1,6 +1,11 @@
 @import "../../../../styles/_var.scss";
 
-.mat-form-field{
-	width: 100%!important;
-	font-size: 13px;
+.contact-form{
+	.mat-form-field{
+		width: 100%!important;
+		font-size: 13px;
+	}
+	h4{
+		margin: 15px 0 6px;
+	}
 }
