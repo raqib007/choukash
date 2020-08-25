@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTE_TRANSITION } from '../../../app.animation';
-import { User } from '../../../_models';
-
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { AlertService,AuthService } from '../../../_services';
 import { MustMatch } from '../../../_helpers/must-watch.validator';
 import { CustomValidators } from 'src/app/_helpers';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../dialog/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
 	selector: 'elastic-register',
@@ -26,13 +24,16 @@ export class RegisterComponent implements OnInit {
 	user: any = {};
 	error_msg = "";
 
+	showSuccessMsg : boolean = false;
+
 	constructor(
 		private formBuilder: FormBuilder,
 		private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
 		private authService : AuthService,
-        private alertService: AlertService
+		private alertService: AlertService,
+		private dialog: MatDialog
 	) { 
 		// this.registerForm = this.createSignupForm();
 	}
@@ -96,21 +97,37 @@ export class RegisterComponent implements OnInit {
 
 	register() {
 		this.submitted = true;
-        if (this.registerForm.invalid) {
-            return;
-        }
-        /** reset alerts on submit **/
-        this.alertService.clear();
-		this.loading = true;
-		this.authService.register(this.registerForm.value).subscribe((res)=>{
-			console.log('in resgister = ',res);
-			this.error_msg = res.message;
-			if(res.status == true){
-				this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-			}else{
-				this.showErrorMsg = true;
-				this.alertService.error(res.message);
-				this.loading = false;
+		this.showSuccessMsg = true;
+        // if (this.registerForm.invalid) {
+        //     return;
+        // }
+        // this.alertService.clear();
+		// this.loading = true;
+		// this.authService.register(this.registerForm.value).subscribe((res)=>{
+		// 	console.log('in resgister = ',res);
+		// 	this.error_msg = res.message;
+		// 	if(res.status == true){
+		// 		this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+		// 	}else{
+		// 		this.showErrorMsg = true;
+		// 		this.alertService.error(res.message);
+		// 		this.loading = false;
+		// 	}
+		// });
+
+		const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+			width: '40vw',
+			data: {
+				id: 0, 
+				title: 'Verification Email Sent', 
+				btn1: 'CANCEL', 
+				btn2: 'CLOSE', 
+				bothBtn: false, 
+				msg: 'We have sent a verification email to '+this.registerForm.value.primaryEmail+' . You may take up to an hour for the verification email to arrive in this user’s inbox.  The address has been added to the list of verified identities with a status of “Pending Verification” and will be marked as “Verified” when the user opens email massage and complete the verification process. '}
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			if(result == 'yes'){
+
 			}
 		});
 	}

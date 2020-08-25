@@ -1,13 +1,11 @@
-<h2 mat-dialog-title>Confirmation Alert</h2>
+
+<h2 mat-dialog-title>{{title}}</h2>
 
 <mat-dialog-content class="mat-typography">
-    <ng-template let-data>
-        Hello, {{data.msg}}
-      </ng-template>
     <p>{{data.msg}}</p>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close="no" >CANCEL</button>
-    <button mat-button mat-dialog-close="yes" cdkFocusInitial>YES</button>
+    <button mat-button mat-dialog-close="no" *ngIf="bothBtn">{{btn1}}</button>
+    <button mat-button mat-dialog-close="yes" cdkFocusInitial>{{btn2}}</button>
 </mat-dialog-actions>

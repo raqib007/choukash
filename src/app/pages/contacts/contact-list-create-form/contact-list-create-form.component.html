@@ -185,7 +185,7 @@
                 </button>
             </div>
 
-            <div ffxFlex.xs="calc(50%-24px)" fxFlex="calc(50%-24px)" *ngIf="i == (addressList.length -1)">
+            <div fxFlex.xs="calc(50%-24px)" fxFlex="calc(50%-24px)" *ngIf="i == (addressList.length -1)">
                 <label>Remove Address</label>
                 <button (click)="removeAddress()" matTooltip="Remove" mat-icon-button color="primary">
                     <mat-icon>delete</mat-icon>
