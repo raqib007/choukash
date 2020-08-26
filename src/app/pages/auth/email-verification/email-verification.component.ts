@@ -12,6 +12,8 @@ import { AlertService,AuthService } from '../../../_services';
 })
 export class EmailVerificationComponent implements OnInit {
 	token: string;
+	showSuccessMsg : boolean = false;
+	errMsg = "Something went wrong !";
 	constructor(
         private actRoute: ActivatedRoute,
         private router: Router,
@@ -23,13 +25,17 @@ export class EmailVerificationComponent implements OnInit {
 	ngOnInit() {
 		this.actRoute.queryParamMap.subscribe(queryParams => {
 			console.log(queryParams);
-			this.token = queryParams.get("token")
+			this.token = queryParams.get("token");
+			this.authService.verifyEmail(this.token).subscribe((res)=>{
+				this.errMsg = res.message;
+				if(res.status){
+					this.showSuccessMsg = true;
+				}
+			});
 		});
 	}
 	gotoLogin() {
-		this.authService.verifyEmail(this.token).subscribe((res)=>{
-			this.router.navigate(['/login']);
-		});
+		this.router.navigate(['/login']);
 	}
 
 }

@@ -15,7 +15,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-	email: string;
+	username: string;
 	password: string;
 	loading = false;
 	returnUrl: string;
@@ -38,11 +38,8 @@ export class LoginComponent implements OnInit {
 		this.loading = true;
 		this.showErr = false;
 		this.errorMsg = "";
-		let pass_data = {
-			username : "mustafamym@gmail.com",
-			password : "mustafa"
-		}
-        this.authService.login(pass_data)
+		
+        this.authService.login(form.value)
             .pipe(first())
             .subscribe(
                 data => {

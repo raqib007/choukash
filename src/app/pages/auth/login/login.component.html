@@ -7,13 +7,13 @@
 			<div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
 				<label *ngIf="showErr" class="text-danger">{{errorMsg}}</label>
 				<mat-form-field>
-					<input matInput placeholder="Email" name="email" required [(ngModel)]="email" autocomplete="new-password" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+					<input matInput placeholder="Email" name="username" required [(ngModel)]="username" autocomplete="new-password" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 				</mat-form-field>
 				<mat-form-field>
 					<input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password" minlength="6">
 				</mat-form-field>
 				<div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
-					<mat-checkbox class="remember-me">Remember Me</mat-checkbox>
+					<mat-checkbox class="remember-me" color="primary">Remember Me</mat-checkbox>
 					<a class="forgot-password" [routerLink]="['/auth/forgot-password']">Forgot Password?</a>
 				</div>
 				<button color="primary" mat-raised-button [disabled]="!form.valid">SIGN IN</button>

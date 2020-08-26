@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable,throwError  } from 'rxjs';
 import { map,catchError } from 'rxjs/operators';
@@ -30,6 +30,7 @@ export class AuthService {
 
     baseUrl = "/loginAuth-1.0.0/user/user_info";
     userUrl = "/GononetUserCreationService/api/v1";
+    authUrl = "/GononetAuthService/oauth";
     
     public get userValue(): User {
         return this.userSubject.value;
@@ -51,7 +52,10 @@ export class AuthService {
     }
 
     verifyEmail(token: string){
-        return this.http.get(`${environment.apiUrl}${this.baseUrl}/email_verification?token=${token}`).pipe(
+        let data = {
+            "token": token
+        };
+        return this.http.post(`${environment.apiUrlAWS}${this.userUrl}/users/confirm-account`,data).pipe(
             map((res : any) => {
                 return res;
             }),catchError( error => {
@@ -61,9 +65,10 @@ export class AuthService {
     }
 
     login(data) {
-        // return this.http.post<any>(`${environment.apiUrl}/loginAuth-1.0.0/users/login`,data,
-        return this.http.post<any>('http://13.212.34.184:8585/GononetAuthService/oauth/token',data,
-            {observe: 'response' as 'body'}).pipe(
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        return this.http.post<any>(`${environment.apiUrlAWSAuth}${this.authUrl}/token`,data, {headers: headers }).pipe(
                 map((user : any) => {
                     console.log('in login = ',user);
                     let user_data = {

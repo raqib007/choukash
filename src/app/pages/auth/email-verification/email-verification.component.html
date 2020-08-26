@@ -14,13 +14,13 @@
 </div> -->
 
 
-<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;" >
 	<div class="email-verify2 mat-elevation-z12">
 		<div class="header" fxLayout="column" fxLayoutAlign="center center">
 			<img class="logo" src="assets/img/logo2x.png">
         </div>
         
-        <div fxLayout="column" fxLayoutAlign="center center" class="email-verify mat-elevation-z12">
+        <div fxLayout="column" fxLayoutAlign="center center" class="email-verify mat-elevation-z12" *ngIf="showSuccessMsg">
             <div>
                 <img class="logo" src="assets/img/email-verified.png">
             </div>
@@ -30,6 +30,18 @@
             <div style="margin-top: 20px;">
                 <button mat-raised-button color="primary" (click)="gotoLogin()">Go To Login Page</button>
             </div>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center" class="email-verify mat-elevation-z12" *ngIf="!showSuccessMsg">
+            <!-- <div>
+                <img class="logo" src="assets/img/email-verified.png">
+            </div> -->
+            <div>
+                <label class="lblSuccess">{{errMsg}}</label>
+            </div>
+            <!-- <div style="margin-top: 20px;">
+                <button mat-raised-button color="primary" (click)="gotoLogin()">Go To Login Page</button>
+            </div> -->
         </div>
 
 	</div>

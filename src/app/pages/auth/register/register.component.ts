@@ -97,37 +97,36 @@ export class RegisterComponent implements OnInit {
 
 	register() {
 		this.submitted = true;
-		this.showSuccessMsg = true;
-        // if (this.registerForm.invalid) {
-        //     return;
-        // }
-        // this.alertService.clear();
-		// this.loading = true;
-		// this.authService.register(this.registerForm.value).subscribe((res)=>{
-		// 	console.log('in resgister = ',res);
-		// 	this.error_msg = res.message;
-		// 	if(res.status == true){
-		// 		this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-		// 	}else{
-		// 		this.showErrorMsg = true;
-		// 		this.alertService.error(res.message);
-		// 		this.loading = false;
-		// 	}
-		// });
-
-		const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-			width: '40vw',
-			data: {
-				id: 0, 
-				title: 'Verification Email Sent', 
-				btn1: 'CANCEL', 
-				btn2: 'CLOSE', 
-				bothBtn: false, 
-				msg: 'We have sent a verification email to '+this.registerForm.value.primaryEmail+' . You may take up to an hour for the verification email to arrive in this user’s inbox.  The address has been added to the list of verified identities with a status of “Pending Verification” and will be marked as “Verified” when the user opens email massage and complete the verification process. '}
-		});
-		dialogRef.afterClosed().subscribe(result => {
-			if(result == 'yes'){
-
+        if (this.registerForm.invalid) {
+            return;
+        }
+        this.alertService.clear();
+		this.loading = true;
+		this.authService.register(this.registerForm.value).subscribe((res)=>{
+			console.log('in resgister = ',res);
+			this.error_msg = res.message;
+			if(res.status == true){
+				this.showSuccessMsg = true;
+				this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+				const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+					width: '40vw',
+					data: {
+						id: 0, 
+						title: 'Verification Email Sent', 
+						btn1: 'CANCEL', 
+						btn2: 'CLOSE', 
+						bothBtn: false, 
+						msg: 'We have sent a verification email to '+this.registerForm.value.primaryEmail+' . You may take up to an hour for the verification email to arrive in this user’s inbox.  The address has been added to the list of verified identities with a status of “Pending Verification” and will be marked as “Verified” when the user opens email massage and complete the verification process. '}
+				});
+				dialogRef.afterClosed().subscribe(result => {
+					if(result == 'yes'){
+		
+					}
+				});
+			}else{
+				this.showErrorMsg = true;
+				this.alertService.error(res.message);
+				this.loading = false;
 			}
 		});
 	}
