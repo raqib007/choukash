@@ -12,7 +12,7 @@ export class AppComponent {
 	title = 'choukash';
 	  
 	constructor(private authService: AuthService) {
-        this.authService.user.subscribe(x => this.user = x);
+        // this.authService.user.subscribe(x => this.user = x);
     }
 
     logout() {

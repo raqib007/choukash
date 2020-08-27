@@ -12,7 +12,7 @@ export class ToolbarUserButtonComponent implements OnInit, AfterViewInit {
 	user : any;
 	constructor(private authService : AuthService) {
 		this.authService.user.subscribe(x => this.user = x);
-		// this.user = this.authService.userValue;
+		this.user = this.authService.userValue;
 	}
 
 	ngOnInit() {

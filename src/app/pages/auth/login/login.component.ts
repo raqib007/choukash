@@ -43,7 +43,13 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+					this.authService.getUserDetailByAccessToken()
+					.subscribe(res => {
+						console.log('after login = ',res);
+						this.router.navigate([this.returnUrl]);
+					},
+					error => {
+					});
                 },
                 error => {
 					this.showErr = true;

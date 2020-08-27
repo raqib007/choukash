@@ -72,18 +72,22 @@ export class PasswordResetComponent implements OnInit {
 		);
 	}
 	changePass() {
-		this.authService.passwordChanged(this.frmSignup.value.password,this.token).subscribe((res)=>{
-			console.log('in reset pass = ',res.operationResult);
-			// this.error_msg = res.message;
-			// if(res.code == 500){
-			// 	this.showErrorMsg = true;
+		let passData = {
+			"confirmPassword": this.frmSignup.value.confirmPassword,
+			"password": this.frmSignup.value.password,
+			"token": this.token
+		};
+		this.authService.passwordChanged(passData).subscribe((res)=>{
+			this.error_msg = res.message;
+			if(res.httpStatusCode == 500){
+				this.showErrorMsg = true;
 				this.alertService.error(res.operationResult);
-			// 	this.loading = false;
-			// }
-			// if(res.code == 200){
-			// 	this.alertService.success('Password change successful', { keepAfterRouteChange: true });
-			// 	this.router.navigate(['/login']);
-			// }
+				this.loading = false;
+			}
+			if(res.httpStatusCode == 200){
+				this.alertService.success('Password change successful', { keepAfterRouteChange: true });
+				this.router.navigate(['/login']);
+			}
 		});
 	}
 

@@ -14,26 +14,34 @@ export class JwtInterceptor implements HttpInterceptor {
         const user = this.accountService.userValue;
         const isLoggedIn = user && user.token;
         const isApiUrl = request.url.startsWith(environment.apiUrl);
-        // if (this.isHeaderNeeded(request.url) && isLoggedIn && isApiUrl) {
-        if (true) {
+        const isAuthApiUrl = request.url.startsWith(environment.apiUrlAWSAuth);
+
+        if (this.isHeaderNeeded(request.url) && isLoggedIn && (isApiUrl || isAuthApiUrl)) {
             request = request.clone({
                 setHeaders: {
-                    // Authorization: `${user.token}`
-                    // Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWhhbmplcmluQGdtYWlsLmNvbSIsImV4cCI6MTU5NTUwNDAzM30.fRisA5JSEEdcv3dTQ8CmmuMiudhcWJ4u9CUaHdcHUV0`
-                    Authorization: `Basic bXVzdGFmYTptdXN0YWZh`
+                    Authorization: `${user.token_type} ${user.token}`
                 }
             });
         }
         return next.handle(request);
     }
 
-    isHeaderNeeded(url: string) {
+    isHeaderNeededOld(url: string) {
         if (url.split('/')[3] == 'loginAuth-1.0.0') {
             if(url.split('/')[6] == 'update' || url.split('/')[6] == 'get' || url.split('/')[6] == 'delete' || url.split('/')[5] == 'user_group'){
                 return true;
             }else{
                 return false;
             }
+        }else if (url.split('/')[3] == 'GononetAuthService') {
+            return true;
+        }else {
+            return false;
+        }
+    }
+    isHeaderNeeded(url: string) {
+        if (url.split('/')[3] == 'GononetAuthService') {
+            return true;
         } else {
             return false;
         }

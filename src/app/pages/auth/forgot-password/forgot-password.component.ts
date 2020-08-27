@@ -14,7 +14,8 @@ import { AuthModule } from '../auth.module';
 export class ForgotPasswordComponent implements OnInit {
 
     email: string;
-
+    msg = '';
+    showMsg : boolean = false;
     constructor(
 	  private router: Router,
 	  private authService : AuthService
@@ -25,7 +26,11 @@ export class ForgotPasswordComponent implements OnInit {
 
     send() {
         this.authService.passwordReset(this.email).subscribe((res)=>{
-			console.log('in resgister = ',res.code);
+            console.log('in resgister = ',res.httpStatusCode);
+            if(res.httpStatusCode){
+                this.msg = res.message;
+                this.showMsg = true;
+            }
 		});
         // this.router.navigate(['/']);
     }

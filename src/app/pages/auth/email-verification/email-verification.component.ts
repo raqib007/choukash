@@ -13,6 +13,7 @@ import { AlertService,AuthService } from '../../../_services';
 export class EmailVerificationComponent implements OnInit {
 	token: string;
 	showSuccessMsg : boolean = false;
+	showDiv : boolean = false;
 	errMsg = "Something went wrong !";
 	constructor(
         private actRoute: ActivatedRoute,
@@ -24,18 +25,17 @@ export class EmailVerificationComponent implements OnInit {
 	}
 	ngOnInit() {
 		this.actRoute.queryParamMap.subscribe(queryParams => {
-			console.log(queryParams);
 			this.token = queryParams.get("token");
 			this.authService.verifyEmail(this.token).subscribe((res)=>{
 				this.errMsg = res.message;
 				if(res.status){
 					this.showSuccessMsg = true;
 				}
+				this.showDiv = true;
 			});
 		});
 	}
 	gotoLogin() {
 		this.router.navigate(['/login']);
 	}
-
 }

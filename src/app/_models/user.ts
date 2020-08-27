@@ -7,5 +7,6 @@
     password: string;
     passwordConfirm: string;
     token?: string;
+    token_type?: string;
     expires: string;
 }
