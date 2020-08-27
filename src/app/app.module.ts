@@ -21,6 +21,7 @@ import { CdkTableModule} from '@angular/cdk/table';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AuthGuard } from '../app/_guard/index';
 import { JwtInterceptor,ErrorInterceptor } from './_helpers';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
 	declarations: [
@@ -53,7 +54,8 @@ import { JwtInterceptor,ErrorInterceptor } from './_helpers';
 	providers: [
 		AuthGuard,
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+		// { provide: LocationStrategy,  useClass: HashLocationStrategy }
 	],
 	bootstrap: [AppComponent],
 	entryComponents: [

@@ -41,10 +41,10 @@ const routes: Routes = [
 		]
 	},
 	/*** otherwise redirect to home ***/
-	{ path : '**', redirectTo : ' '},
 	{ path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-	{ path : 'auth',children: [...authRoutes]}
+	{ path : 'auth',children: [...authRoutes]},
+	{ path : '**', redirectTo : ''}
 ];
 
 @NgModule({

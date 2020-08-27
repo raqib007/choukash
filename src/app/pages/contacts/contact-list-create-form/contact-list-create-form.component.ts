@@ -58,7 +58,6 @@ export class ContactListCreateFormComponent implements OnInit {
 
 	addressList = [];
 	addressType = [
-		{name:'Default Address',value:'Default'},
 		{name:'Invoice Address',value:'Invoice'},
 		{name:'Shipping Address',value:'Delivery'}
 	];

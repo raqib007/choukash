@@ -1,0 +1,42 @@
+
+
+<div class="elastic">
+	<elastic-list name="" [columns]="columns" (filterChange)="onFilterChange($event)">
+
+		<!-- <div class="extra-actions" fxLayout="row" fxLayoutAlign="start baseline" >
+			<div fxFlex>
+				<button mat-raised-button (click)="editGroup(formData)" color="primary">CREATE</button>
+			</div>
+		</div> -->
+		
+		<mat-table #table [dataSource]="data" matSort>
+			<ng-container class="checkbox1" *ngFor="let column of columns">
+				<ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+					<mat-header-cell *matHeaderCellDef mat-sort-header [fxFlex]="column.width"> {{ column.name }}</mat-header-cell>
+					<mat-cell *matCellDef="let row" [fxFlex]="column.width"> {{ row[column.property] }}</mat-cell>
+				</ng-container>
+			</ng-container>
+
+			<ng-container matColumnDef="actions">
+				<mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header fxFlex="10%">Action</mat-header-cell>
+				<mat-cell class="actions-cell" *matCellDef="let row">
+					<button  mat-icon-button color="primary" (click)="editGroup(row)"><mat-icon>edit</mat-icon></button>
+                    <button  mat-icon-button color="primary" (click)="deleteGroup(row)"><mat-icon>delete</mat-icon></button>
+				</mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+		</mat-table>
+
+		<mat-paginator class="paginator" 
+			[pageIndex]="0"
+			[pageSizeOptions]="[30,50,100]"
+			[length]="resultsLength" 
+			[pageSize]="pageSize">
+		</mat-paginator>
+
+	</elastic-list>
+</div>
+
+

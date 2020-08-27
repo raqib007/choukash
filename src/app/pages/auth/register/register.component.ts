@@ -105,7 +105,7 @@ export class RegisterComponent implements OnInit {
 		this.authService.register(this.registerForm.value).subscribe((res)=>{
 			console.log('in resgister = ',res);
 			this.error_msg = res.message;
-			if(res.status == true){
+			if(res.httpStatusCode == 201){
 				this.showSuccessMsg = true;
 				this.alertService.success('Registration successful', { keepAfterRouteChange: true });
 				const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -120,7 +120,7 @@ export class RegisterComponent implements OnInit {
 				});
 				dialogRef.afterClosed().subscribe(result => {
 					if(result == 'yes'){
-		
+						this.router.navigate(['/login']);
 					}
 				});
 			}else{

@@ -51,12 +51,6 @@ export class LoginComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
 				});
-				
-		// this.authService.login(form.value).subscribe((res)=>{
-		// 	console.log('login = ',res);
-		// 	form.reset();
-		// 	this.router.navigate(['/']);
-		// });
 	}
 
 }

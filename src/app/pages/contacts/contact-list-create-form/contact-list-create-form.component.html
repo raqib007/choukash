@@ -1,26 +1,25 @@
 
 <h2 mat-dialog-title>{{title}}</h2>
 <mat-dialog-content [formGroup]="form" class="contact-form mat-typography">
-
     <div fxFlex="100%">
         <div fxLayout="row wrap" fxLayoutGap="24px">
-            <mat-form-field fxFlex.xs="calc(100%-24px)" fxFlex="calc(100%-24px)">
+            <!-- <mat-form-field fxFlex.xs="calc(100%-24px)" fxFlex="calc(100%-24px)">
                 <mat-label>Location Type</mat-label>
                 <mat-select formControlName="location_type_id">
                     <mat-option *ngFor="let l of locationType" [value]="l.id">
                         {{l.value}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
             
-            <!-- <mat-form-field fxFlex.xs="calc(100%-24px)" fxFlex="calc(100%-24px)">
+            <mat-form-field fxFlex.xs="calc(100%-24px)" fxFlex="calc(100%-24px)">
                 <mat-label>Location Group</mat-label>
                 <mat-select formControlName="location_group_id">
                     <mat-option *ngFor="let l of locationGroup" [value]="l.id">
                         {{l.value}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field> -->
+            </mat-form-field>
 
             <mat-form-field fxFlex.xs="calc(50%-24px)" fxFlex="calc(50%-24px)">
                 <mat-label>Contact Type</mat-label>
@@ -120,9 +119,7 @@
         </div>
 
         <div *ngFor="let address of addressList;let i = index" fxLayout="row wrap" fxLayoutGap="24px">
-
             <h4 fxFlex.xs="calc(100%-24px)" fxFlex="calc(100%-24px)">Address {{i+1}}</h4>
-
             <mat-form-field fxFlex.xs="calc(100%-24px)" fxFlex="calc(100%-24px)">
                 <mat-label>Address Type</mat-label>
                 <mat-select formControlName="location_type_id">
@@ -193,9 +190,7 @@
             </div>
         </div>
     </div>
-  
 </mat-dialog-content>
-
 
 <mat-dialog-actions align="end">
     <button mat-raised-button mat-dialog-close="no">CANCEL</button>

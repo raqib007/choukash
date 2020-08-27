@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable,throwError  } from 'rxjs';
 import { map,catchError } from 'rxjs/operators';
@@ -68,22 +68,15 @@ export class AuthService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
-        return this.http.post<any>(`${environment.apiUrlAWSAuth}${this.authUrl}/token`,data, {headers: headers }).pipe(
+        const body = new HttpParams()
+        .set('grant_type', 'password')
+        .set('username', data.username)
+        .set('password', data.password);
+        
+        return this.http.post<any>(`${environment.apiUrlAWSAuth}${this.authUrl}/token`,body, {headers: headers }).pipe(
                 map((user : any) => {
+                    localStorage.setItem('choukashUser', JSON.stringify(user));
                     console.log('in login = ',user);
-                    let user_data = {
-                        id:user.headers.get('userid'),
-                        first_name:user.headers.get('firstname'),
-                        last_name:user.headers.get('lastname'),
-                        user_name:user.headers.get('firstname')+' '+user.headers.get('lastname'),
-                        email:user.headers.get('authorization'),
-                        password:user.headers.get('authorization'),
-                        passwordConfirm:user.headers.get('authorization'),
-                        token:user.headers.get('authorization'),
-                        expires:user.headers.get('expires')
-                    }
-                    // this.userSubject.next(user_data);
-                    localStorage.setItem('choukashUser', JSON.stringify(user_data));
                     return user;
                 }),catchError( error => {
                     console.log('error ',error);
