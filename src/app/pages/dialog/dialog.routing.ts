@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { DialogComponent } from './dialog.component';
 
+//noooo
 const routes: Routes = [
 	{
 		path: '',
